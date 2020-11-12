@@ -3,7 +3,7 @@ const expressServer = express()
 const { port } = require('./config/environment')
 require('dotenv').config()
 const bodyParser = require('body-parser')
-const { Router } = require('express')
+const Router = require('./router')
 const mongoose = require('mongoose')
 
 

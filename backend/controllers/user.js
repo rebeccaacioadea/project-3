@@ -4,12 +4,11 @@ const { secret } = require('../config/environment')
 
 function registerUser(req, res) {
   const body = req.body
-  console.log(body)
+  console.log('hello')
   User
     .create(body)
     .then(user => {
       res.send(user)
-      console.log(body)
     })
     .catch(err => res.send(err))
 }
