@@ -2,6 +2,8 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
+
+// ? REGISTER
 function registerUser(req, res) {
   const body = req.body
   console.log('hello')
@@ -13,6 +15,8 @@ function registerUser(req, res) {
     .catch(err => res.send(err))
 }
 
+
+// ? LOGIN
 function loginUser(req, res) {
   User
     .findOne({ userName: req.body.userName })
@@ -31,21 +35,55 @@ function loginUser(req, res) {
       )
 
       res.status(202).send({ token, message: 'Login was successful' })
-    
+
     })
     .catch(err => res.send(err))
 }
 
-// function editUser(req, res) {
 
-// }
+// ? EDIT USER
+function editUser(req, res) {
+  // userid is whats in our route
+  const userId = req.params.userid
+  const body = req.body
+  // _id is the mongoose user object key 
+  const currentUserId = req.currentUser._id
 
-// function deleteUser(req, res) {
+  User
+    .findById(userId)
+    .then(user => {
+      if (!user) return res.send({ message: 'No User Found' })
+      if (!user.equals(currentUserId)) return res.send({ message: 'Unauthorized User' })
 
-// }
+      user.set(body)
+      user.save()
+      res.send(user)
+    })
+    .catch(err => res.send(err))
+}
+
+
+// ? DELETE USER
+function deleteUser(req, res) {
+  const userId = req.params.userid
+  const currentUserId = req.currentUser._id
+
+  User
+    .findById(userId)
+    .then(user => {
+      if (!user) return res.send({ message: 'No User Found' })
+      if (!user.equals(currentUserId)) return res.send({ message: 'Unauthorized User' })
+
+      user.deleteOne()
+      res.send({ message: 'User Deleted' })
+    })
+    .catch(err => res.send(err))
+}
 
 
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  editUser,
+  deleteUser
 }

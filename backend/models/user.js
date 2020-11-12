@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   owner: { type: Boolean, required: false },
   sitter: { type: Boolean, required: false },
-  postcode: { type: Number, required: true },
+  postcode: { type: String, required: true },
   // Embedded Relationship, badges are unique to each user
   badges: [badgeSchema]
 })

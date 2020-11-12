@@ -1,40 +1,38 @@
 const express = require('express')
-
 const router = express.Router()
-// const dataController = require('./controllers/data')
+const dataController = require('./controllers/data')
 const userController = require('./controllers/user')
-// const secureRoute = require('./middleware/secureRoute')
+const secureRoute = require('./middleware/secureRoute')
 
 
-// // * PLANTS
-// // Grabbing from external API
-// router.route('/plants-external/:query')
-//   .get(dataController.getPlants)
+// ? PLANTS
+// Grabbing from external API
+router.route('/plants-external/:query')
+  .get(dataController.getExternalData)
 
-// // Adding to OUR API
-// // ! + SECURE ROUTE
-// router.route('/plants')
-//   .post(dataController.addPlants)
+// Adding to OUR API
+router.route('/plants')
+  .post(secureRoute, dataController.addPlants)
 
-// // Editing OUR API
-// // ! + SECURE ROUTE
-// router.route('/plants/:id')
-//   .put(dataController.editPlants)
-//   .delete(dataController.deletePlants)
+// Editing OUR API
+router.route('/plants/:id')
+  .put(secureRoute, dataController.editPlants)
+  .delete(secureRoute, dataController.deletePlants)
 
 
-// * USERS
-// Register
+// ? USERS
+// REGISTER
 router.route('/user/register')
   .post(userController.registerUser)
 
-// Login
+// LOGIN
 router.route('/user/login')
   .post(userController.loginUser)
 
-// router.route('/user/login/:userid')
-//   .put(userController.editUser)
-//   .delete(userController.deleteUser)
+// EDIT
+router.route('/user/login/:userid')
+  .put(secureRoute, userController.editUser)
+  .delete(secureRoute, userController.deleteUser)
 
 
 module.exports = router 
