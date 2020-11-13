@@ -13,12 +13,13 @@ router.route('/plants-external/:query')
 // Adding to OUR API
 router.route('/plants')
   .post(secureRoute, dataController.addPlants)
+  .get(secureRoute, dataController.getPlants)
 
 // Editing OUR API
 router.route('/plants/:id')
   .put(secureRoute, dataController.editPlants)
   .delete(secureRoute, dataController.deletePlants)
-
+  .get(secureRoute, dataController.getPlantsByUser)
 
 // ? USERS
 // REGISTER
@@ -29,10 +30,13 @@ router.route('/user/register')
 router.route('/user/login')
   .post(userController.loginUser)
 
-// EDIT
-router.route('/user/login/:userid')
+// FIND / EDIT
+router.route('/user/users')
+  .get(secureRoute, userController.listUsers)
+
+router.route('/user/:userid')
   .put(secureRoute, userController.editUser)
   .delete(secureRoute, userController.deleteUser)
-
+  .get(secureRoute, userController.getUser)
 
 module.exports = router 

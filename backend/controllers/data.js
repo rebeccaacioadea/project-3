@@ -2,7 +2,6 @@ const axios = require('axios')
 const Data = require('../models/data')
 require('dotenv').config()
 
-
 // ? GET PLANT FROM EXTERNAL API
 function getExternalData(req, res) {
   const query = req.params.query
@@ -10,13 +9,9 @@ function getExternalData(req, res) {
 
   axios.get(`https://trefle.io/api/v1/species/search?token=${token}&q=${query}`)
 
-    .then(resp => {
-      res.send(resp.data)
-    })
-
+    .then(resp => res.send(resp.data))
     .catch(err => res.send(err))
 }
-
 
 // ? ADD PLANT TO OUR API
 function addPlants(req, res) {
@@ -24,12 +19,24 @@ function addPlants(req, res) {
 
   Data
     .create(req.body)
-    .then(plant => {
-      res.send(plant)
-    })
+    .then(plant => res.send(plant))
     .catch(error => res.send(error))
 }
 
+function getPlants(req, res) {
+  Data
+    .find()
+    .populate('user')
+    .then(resp => res.send(resp))
+}
+
+function getPlantsByUser(req, res) {
+  const userId = req.params.id
+  Data
+    .find({ user: userId })
+    .populate('user')
+    .then(resp => res.send(resp))
+}
 
 // ? EDIT OUR PLANT
 function editPlants(req, res) {
@@ -41,7 +48,7 @@ function editPlants(req, res) {
     .findById(name)
     .then(plant => {
       if (!plant) return res.send({ message: 'No Plant Found' })
-      if (!plant.user.equals(currentUser)) return res.status(401).send({ status: 'Unathorized' })
+      if (!req.currentUser.isAdmin && !plant.user.equals(currentUser)) return res.status(401).send({ status: 'Unauthorized' })
 
       plant.set(body)
       plant.save()
@@ -59,17 +66,18 @@ function deletePlants(req, res) {
     .findById(name)
     .then(plant => {
       if (!plant) return res.send({ message: 'No Plant Found' })
-      if (!plant.user.equals(currentUser)) return res.status(401).send({ status: 'Unathorized' })
+      if (!req.currentUser.isAdmin && !plant.user.equals(currentUser)) return res.status(401).send({ status: 'Unauthorized' })
       plant.deleteOne()
       res.send(plant)
     })
-    .catch(err => res.send(err)) 
+    .catch(err => res.send(err))
 }
-
 
 module.exports = {
   getExternalData,
   addPlants,
   editPlants,
-  deletePlants
+  deletePlants,
+  getPlants,
+  getPlantsByUser
 }

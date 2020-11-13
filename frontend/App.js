@@ -3,8 +3,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './styles/style.scss'
 
 import PlantHelp from './components/PlantHelp'
+import PlantProfile from './components/PlantProfile'
 import EditPlant from './components/EditPlant'
 import AddPlant from './components/AddPlant'
+import Wishlist from './components/Wishlist'
 import UserPage from './components/UserPage'
 import Fernstagram from './components/Fernstagram'
 import PlantSitters from './components/PlantSitters'
@@ -15,6 +17,7 @@ import Login from './components/Login'
 import Header from './components/Header'
 import Home from './components/Home'
 
+
 const App = () => {
   return <BrowserRouter>
     <Header />
@@ -22,8 +25,10 @@ const App = () => {
       {/* Additional Pages / Quality Of Life ETC */}
       <Route exact path="/plant-help/" component={PlantHelp} />
       {/* User Interface */}
+      <Route exact path="/profile-plant/:plantId/" component={PlantProfile} />
       <Route exact path="/edit-plant/:plantId/" component={EditPlant} />
       <Route exact path="/add-plant/:plantId/" component={AddPlant} />
+      <Route exact path="/user-page/:userid/wishlist/" component={Wishlist} />
       <Route exact path="/user-page/:userId" component={UserPage} />
       {/* Message Boards */}
       <Route exact path="/fernstagram/" component={Fernstagram} />
