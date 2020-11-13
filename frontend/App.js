@@ -29,7 +29,7 @@ const App = () => {
       <Route exact path="/edit-plant/:plantId/" component={EditPlant} />
       <Route exact path="/add-plant/:plantId/" component={AddPlant} />
       <Route exact path="/user-page/:userid/wishlist/" component={Wishlist} />
-      <Route exact path="/user-page/:userId" component={UserPage} />
+      <Route exact path="/user-page/:userId/" component={UserPage} />
       {/* Message Boards */}
       <Route exact path="/fernstagram/" component={Fernstagram} />
       <Route exact path="/plant-sitters/" component={PlantSitters} />
