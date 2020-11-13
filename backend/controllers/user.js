@@ -80,10 +80,33 @@ function deleteUser(req, res) {
     .catch(err => res.send(err))
 }
 
+// ? GET USER
+function getUser(req, res) {
+  const userId = req.params.userid
+  User
+    .findById(userId)
+    .populate('plants')
+    .then(user => {
+      if (!user) return res.send({ message: 'No User Found' })
+      res.send(user)
+    })
+    .catch(err => res.send(err))
+}
+
+// ? LIST USERS 
+function listUsers(req, res) {
+  console.log('in list cont')
+  User
+    .find()
+    .populate('plants')
+    .then(resp => res.send(resp))
+}
 
 module.exports = {
   registerUser,
   loginUser,
   editUser,
-  deleteUser
+  deleteUser,
+  getUser,
+  listUsers
 }

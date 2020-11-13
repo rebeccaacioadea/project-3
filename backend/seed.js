@@ -19,7 +19,8 @@ mongoose.connect(
             password: 'admin',
             passwordConfirmation: 'admin',
             postcode: '0',
-            badges: []
+            badges: [],
+            isAdmin: true
           }
         ])
       })
