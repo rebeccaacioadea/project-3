@@ -5,17 +5,23 @@ import axios from 'axios'
 const Register = (props) => {
 
   const [formData, updateFormData] = useState({
-    username: '',
+    name: '',
+    userName: '',
     email: '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
+    postcode: ''
+  
   })
-  const [errors, updateErrors] = useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: ''
-  })
+  // const [errors, updateErrors] = useState({
+  //   name: '',
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   passwordConfirmation: '',
+  //   postCode: ''
+ 
+  // })
 
   
 
@@ -28,13 +34,13 @@ const Register = (props) => {
       [name]: value
     }
 
-    const newErrors = {
-      ...errors,
-      [name]: ''
-    }
+    // const newErrors = {
+    //   ...errors,
+    //   [name]: ''
+    // }
 
     updateFormData(data)
-    updateErrors(newErrors)
+    // updateErrors(newErrors)
   }
 
   function handleSubmit(event) {
@@ -43,11 +49,11 @@ const Register = (props) => {
     axios.post('/api//user/register', formData)
       .then(resp => {
         console.log(resp.data)
-        if (resp.data.errors) {
-          updateErrors(resp.data.error)
-        } else {
+        // if (resp.data.errors) {
+        //   updateErrors(resp.data.error)
+        // } else {
           props.history.push('/user/login')
-        }
+        // }
          
        
 
@@ -58,15 +64,34 @@ const Register = (props) => {
     <h1> Create Account</h1>
     <div>
       <div>
+        <label>Full Name</label>
         <input
           type = "text"
           onChange = {handleChange}
-          value = {formData.username}
-          name="username"
-          placeholder = "Username"
+          value = {formData.name}
+          name="name"
+          placeholder = "Name"
         />
+        {/* {errors.name && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.name.path}`}
+        </p>} */}
       </div>
       <div>
+        <label>Username</label>
+        <input
+          type = "text"
+          onChange = {handleChange}
+          value = {formData.userName}
+          name="userName"
+          placeholder = "UserName"
+        />
+        {/* {errors.username && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.username.path}`}
+        </p>} */}
+  
+      </div>
+      <div>
+        <label>Email</label>
         <input
           type = "text"
           onChange = {handleChange}
@@ -74,8 +99,12 @@ const Register = (props) => {
           name="email"
           placeholder = "Email"
         />
+        {/* {errors.email && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.email.path}`}
+        </p>} */}
       </div>
       <div>
+        <label>Password</label>
         <input
           type = "text"
           onChange = {handleChange}
@@ -83,8 +112,13 @@ const Register = (props) => {
           name="password"
           placeholder = "Password"
         />
+        {/* {errors.password && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.password.path}`}
+        </p>} */}
       </div>
+      
       <div>
+        <label>Confirm Password</label>
         <input
           type = "text"
           onChange = {handleChange}
@@ -92,7 +126,24 @@ const Register = (props) => {
           name="passwordConfirmation"
           placeholder = "Confirm Password"
         />
+        {/* {errors.passwordConfirmation && <p style={{ color: 'red' }}>
+          {'Does not match password'}
+        </p>} */}
       </div>
+    </div>
+    <div>
+      <label>PostCode</label>
+      <input
+        type = "text"
+        onChange = {handleChange}
+        value = {formData.postcode}
+        name="postcode"
+        placeholder = "postcode"
+      />
+      {/* {errors.postCode && <p style={{ color: 'red' }}>
+        {`There was a problem with your ${errors.postCode.path}`}
+      </p>} */}
+      
     </div>
     <button>Create Account</button>
     
