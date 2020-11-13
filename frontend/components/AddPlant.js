@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 // * Common name
 // * Scientific name 
@@ -18,39 +18,44 @@ import { Link } from 'react-router-dom'
 const AddPlant = (props) => {
   const plantData = props.location.state.plant
 
-
-  // Pushing the data to our API when ADD button is click: 
+// UseState to re-create the form to post to OUR plant API
   const [formData, updateFormData] = useState({
-    image: '',
+    image: `${plantData.image_url}`,
     commonName: `${plantData.common_name}`,
     scientificName: `${plantData.scientific_name}`,
     careNotes: '',
     outdoor: '',
     plantType: ''
   })
-  const inputFields = ['image', 'commonName', 'scientificName', 'careNotes', 'outdoor', 'plantType']
 
-  // const [text, setText] = useState('')
   { console.log(formData) }
+  { console.log(plantData) }
+  { console.log(localStorage.token) }
 
+  // Function to take values from the browser and include in formData
   function handleChange(event) {
     const data = {
       ...formData,
-      [name]: event.target.value
+      [event.target.name]: event.target.value
     }
     updateFormData(data)
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault()
-  //   axios.post('api/plants', formData)
-  //     .then(resp => {
-  //       props.history.push('/plant-search')
-  //     })
-  // }
+  // Function to POST data to our API 
+  function handleSubmit(event) {
+    event.preventDefault()
+    const token = localStorage.getItem('token')
+    axios.post('/api/plants', formData, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(resp => {
+        props.history.push('/plant-search')
+      })
+  }
 
   return <div>
     <div>
+      <img src={plantData.image_url}></img>
       <h3>{plantData.scientific_name}</h3>
       <h3>{plantData.common_name}</h3>
       <h5>{plantData.bibliography}</h5>
@@ -61,17 +66,40 @@ const AddPlant = (props) => {
         value={formData.careNotes}
         name="careNotes"
       ></textarea>
+      <button
+        onClick={handleChange}
+        value={true}
+        name="outdoor"
+      >outdoor</button>
+      <button
+        onClick={handleChange}
+        value={false}
+        name="outdoor">
+        Indoor</button>
+
+      <select
+        onChange={handleChange}
+        name="plantType">
+        <option>Plant Type...</option>
+        <option>Bulb</option>
+        <option>Cactus/Succulent</option>
+        <option>Climber</option>
+        <option>Conifer</option>
+        <option>Fern</option>
+        <option>Fruit</option>
+        <option>Herb</option>
+        <option>Ornamental</option>
+        <option>Grass</option>
+        <option>Perennial</option>
+        <option>Rose</option>
+        <option>Shrub</option>
+        <option>Tree</option>
+        <option>Palm</option>
+        <option>Bamboo</option>
+      </select>
+      <button onClick={handleSubmit}>Add to my list</button>
     </div>
-
-
-
-
-
   </div>
-
-
-
-
 }
 
 export default AddPlant
