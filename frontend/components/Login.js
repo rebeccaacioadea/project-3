@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+import Bulma from 'bulma'
+
 // * Standard Login Form (Pre populate?)
 // * Once logged in -> Link to Home
 
@@ -33,27 +35,37 @@ const Login = (props) => {
   }
 
 
-  return <form onSubmit={handleSubmit} >
-    <div>
-      <label>Username</label>
-      <input 
-        type ="text"
-        onChange={handleChange}
-        value = {formData.userName}
-        name = "userName"
-      />
+  return <form className="login" onSubmit={handleSubmit} >
+    <div className="field">
+      <label className="label">Username</label>
+      <div className="control">
+        <input className="input" 
+          type="text" 
+          placeholder=""
+          onChange={handleChange}
+          value = {formData.userName}
+          name = "userName"
+        />
+      </div>
     </div>
 
-    <div>
-      <label>Password</label>
-      <input 
-        type ="text"
-        onChange={handleChange}
-        value = {formData.password}
-        name = "password"
-      />
+    <div className="field">
+      <label className="label">Password</label>
+      <div className="control">
+        <input className="input" 
+          type="text" 
+          placeholder=""
+          onChange={handleChange}
+          value = {formData.password}
+          name = "password"
+        />
+      </div>
     </div>
-    <button>Login </button>
+
+    <div className="control">
+      <button className="button is-primary">Submit</button>
+    </div>
+   
   </form>
 }
 
