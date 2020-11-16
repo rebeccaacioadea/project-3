@@ -1,13 +1,23 @@
-
+//? REGISTER-PAGE
 form {
   height: 300px;
   width: 600px;
 
 }
-
+//? LOGIN-PAGE
 .login {
   margin-left: 40px;
 }
+//?EDIT-PLANT-PAGE
+#editPlant{
+  width:100vw;
+margin-left: 40px;
+  background-color: grey
+  
+
+}
+
+
 // ? IMPORTS
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:ital,wght@0,300;0,600;0,700;1,300;1,400;1,500&display=swap");
 

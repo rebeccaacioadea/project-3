@@ -9,6 +9,7 @@ const PlantProfile = (props) => {
 
   // Carrying plant ID over from addPlant
   const plantId = props.match.params.plantId
+  console.log(plantId)
 
   const token = localStorage.getItem('token')
   const [plantData, updatePlantData] = useState({})
