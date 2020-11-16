@@ -20,7 +20,7 @@ const UserPage = (props) => {
   const [currentUser, updateCurrentUser] = useState({})
   const token = localStorage.getItem('token')
   const profileId = props.match.params.userId
-  const [profilePlants, profilePlants] = useState({})
+  // const [profilePlants, profilePlants] = useState({})
 
   // useEffect(() => {
   axios.get(`/api/user/${getUserId()}`, {
