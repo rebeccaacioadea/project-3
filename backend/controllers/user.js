@@ -95,7 +95,6 @@ function getUser(req, res) {
 
 // ? LIST USERS 
 function listUsers(req, res) {
-  console.log('in list cont')
   User
     .find()
     .populate('plants')

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Data = require('./models/data')
 const User = require('./models/user')
+const Message = require('./models/message')
 
 mongoose.connect(
   'mongodb://localhost/seeded',
@@ -39,6 +40,28 @@ mongoose.connect(
         return users
       })
 
+      .then(users => {
+        return Message.create([
+          {
+            commentBody: 'Looking for someone to do a daily check-in on my trees and give them a hug.',
+            dateStart: Date() + 100000,
+            dateEnd: Date() + 400000,
+            user: users[0]
+          },
+          {
+            commentBody: 'My orchids need a twice daily water and a bedtime story.',
+            dateStart: Date() + 700000,
+            dateEnd: Date() + 900000,
+            user: users[1]
+          }
+        ])
+      })
+
+      .then(Messages => {
+        console.log(`${Messages.length} board messages have been created`)
+        return Messages
+      })
+
       .then((users) => {
         return Data.create([
           {
@@ -67,7 +90,6 @@ mongoose.connect(
           }
         ])
       })
-
       .then(Data => {
         console.log(`${Data.length} plants have been created`)
       })

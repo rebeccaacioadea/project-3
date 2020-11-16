@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const dataController = require('./controllers/data')
 const userController = require('./controllers/user')
+const messageController = require('./controllers/message')
 const secureRoute = require('./middleware/secureRoute')
 
 
@@ -20,8 +21,9 @@ router.route('/plants/:id')
   .get(dataController.singlePlant)
   .delete(secureRoute, dataController.deletePlants)
   .put(secureRoute, dataController.editPlants)
-  .get(dataController.getPlantsByUser)
 
+router.route('/users-plants/:userid')
+  .get(dataController.getPlantsByUser)
 
 // ? USERS
 // REGISTER
@@ -40,5 +42,26 @@ router.route('/user/:userid')
   .put(secureRoute, userController.editUser)
   .delete(secureRoute, userController.deleteUser)
   .get(secureRoute, userController.getUser)
+
+// ? MESSAGE BOARD 
+// GET MESSAGES
+router.route('/messages/message-board')
+  .get(secureRoute, messageController.getMessages)
+  .post(secureRoute, messageController.addMessage)
+
+// router.route('/messages/:messageid/comments')
+//   .post(secureRoute, messageController.postComment)
+// 
+// router.route('/messages/:messageid/:commentid')
+//   .put(secureRoute, messageController.editComment)
+//   .delete(secureRoute, messageController.deleteComment)
+
+router.route('/messages/:messageid')
+  .get(secureRoute, messageController.getMessage)
+  .put(secureRoute, messageController.editMessage)
+  .delete(secureRoute, messageController.deleteMessage)
+
+
+
 
 module.exports = router 

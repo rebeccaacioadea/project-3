@@ -31,7 +31,8 @@ function getPlants(req, res) {
 }
 
 function getPlantsByUser(req, res) {
-  const userId = req.params.id
+  const userId = req.params.userid
+  console.log(userId)
   Data
     .find({ user: userId })
     .populate('user')
