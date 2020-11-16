@@ -53,14 +53,14 @@ const PlantSearch = () => {
             {/* <img src="./images/magnifying.svg" alt="magnifying" /> */}
           </button>
 
-          <div>
+          <div> 
             {results.map((plant, index) => {
-              return<Link key={index}
+              return <Link key={index}
                 to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
-                <div>
+                <div className="list-item" id="home-profile">
                   <h2>{plant.common_name} </h2>
                   <h3>{plant.scientific_name}</h3>
-                  <img src={plant.image_url}></img>
+                  {/* <img src={plant.image_url}></img> */}
                 </div>
               </Link>
             })}
