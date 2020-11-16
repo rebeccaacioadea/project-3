@@ -66,7 +66,7 @@ function deletePlants(req, res) {
     .findById(name)
     .then(plant => {
       if (!plant) return res.send({ message: 'No Plant Found' })
-      if (!req.currentUser.isAdmin && !plant.user.equals(currentUser)) return res.status(401).send({ status: 'Unauthorized' })
+      if (!req.currentUser.isAdmin && !plant.user.equals(currentUser._id)) return res.status(401).send({ status: 'Unauthorized' })
       plant.deleteOne()
       res.send(plant)
     })
