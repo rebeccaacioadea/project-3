@@ -73,11 +73,25 @@ function deletePlants(req, res) {
     .catch(err => res.send(err))
 }
 
+// ? GET SINGLE PLANT
+function singlePlant(req, res) {
+  const id = req.params.id
+  console.log('hello')
+  Data
+    .findById(id)
+    .then(plant => {
+      res.send(plant)
+    })
+    .catch(err => res.send(err))
+}
+
+
 module.exports = {
   getExternalData,
   addPlants,
   editPlants,
   deletePlants,
   getPlants,
-  getPlantsByUser
+  getPlantsByUser, 
+  singlePlant
 }

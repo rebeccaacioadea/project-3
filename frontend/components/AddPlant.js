@@ -14,11 +14,12 @@ import axios from 'axios'
 
 // ? Form to add User details before POSTING to list
 
+// ! STILL TO ADD - WISH LIST ICON
 
 const AddPlant = (props) => {
   const plantData = props.location.state.plant
 
-// UseState to re-create the form to post to OUR plant API
+  // UseState to re-create the form to post to OUR plant API
   const [formData, updateFormData] = useState({
     image: `${plantData.image_url}`,
     commonName: `${plantData.common_name}`,
@@ -45,11 +46,14 @@ const AddPlant = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
+
     axios.post('/api/plants', formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
-        props.history.push('/plant-search')
+        const newPlantId = resp.data._id
+        props.history.push({ pathname: `/profile-plant/${newPlantId}`, state: { formData } })
+        console.log(resp.data._id)
       })
   }
 
