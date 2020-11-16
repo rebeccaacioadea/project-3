@@ -13,13 +13,15 @@ router.route('/plants-external/:query')
 // Adding to OUR API
 router.route('/plants')
   .post(secureRoute, dataController.addPlants)
-  .get(secureRoute, dataController.getPlants)
+  .get(dataController.getPlants)
 
 // Editing OUR API
 router.route('/plants/:id')
-  .put(secureRoute, dataController.editPlants)
+  .get(dataController.singlePlant)
   .delete(secureRoute, dataController.deletePlants)
-  .get(secureRoute, dataController.getPlantsByUser)
+  .put(secureRoute, dataController.editPlants)
+  .get(dataController.getPlantsByUser)
+
 
 // ? USERS
 // REGISTER

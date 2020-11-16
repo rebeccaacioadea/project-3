@@ -22,8 +22,14 @@ const userSchema = new mongoose.Schema({
   image: { type: String, required: false },
   name: { type: String, required: true },
   userName: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  email: { 
+    type: String, required: true, unique: true
+    // match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  },
+  password: { 
+    type: String, required: true, minlength: 6, 
+    match: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
+  },
   owner: { type: Boolean, required: false },
   sitter: { type: Boolean, required: false },
   postcode: { type: String, required: true },

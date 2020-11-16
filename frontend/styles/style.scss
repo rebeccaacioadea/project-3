@@ -8,3 +8,241 @@ form {
 .login {
   margin-left: 40px;
 }
+// ? IMPORTS
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:ital,wght@0,300;0,600;0,700;1,300;1,400;1,500&display=swap");
+
+// ? MAIN
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+// ? FONTS
+$lato: "Lato", sans-serif;
+$monts: "Montserrat", sans-serif;
+
+// ? COLOR
+$button: #8fb996;
+$brown: #cdac89;
+$Headings-Icons: #819667;
+$highlight: #ea5559;
+$overlay: rgba(129, 150, 103, 0.8);
+$background: #faf6eb;
+$font: #505168;
+
+// ? FONTS
+h1 {
+  font-family: $monts;
+  color: white;
+  font-weight: 600;
+  font-size: 38px;
+  margin: 0px;
+}
+
+h2 {
+  font-family: $monts;
+  color: $font;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0px;
+}
+
+h3 {
+  font-family: $monts;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0px;
+  letter-spacing: 1px;
+}
+
+h5 {
+  font-family: $monts;
+  color: $font;
+  font-weight: 300;
+  font-size: 12px;
+  font-style: italic;
+  margin: 0px;
+  letter-spacing: 0.3em;
+}
+
+h6 {
+  font-family: $monts;
+  color: $font;
+  font-weight: 400;
+  font-size: 16px;
+  font-style: italic;
+  margin: 0px;
+}
+
+// ? GLOBAL
+body {
+  margin: 0px;
+  background-color: $background;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: transparent;
+}
+
+// ? NAV
+nav {
+  position: absolute;
+  top: 0;
+
+  img {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+  }
+}
+
+// ? HOME
+.cover {
+  background: linear-gradient($overlay, $overlay), url("/images/BG-1.jpg");
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+
+  h1 {
+    position: absolute;
+    top: 90px;
+    left: 30px;
+  }
+}
+//
+.content {
+  border-radius: 30px;
+  background-color: white;
+  position: absolute;
+  top: 170px;
+  width: 100%;
+  min-width: 375px;
+  max-width: 700px;
+  box-shadow: 0 21px 80px 0 rgba(80, 92, 66, 0.4);
+}
+
+.margin {
+  margin: 30px 30px 30px 30px;
+  hr {
+    position: static;
+    margin: 35px 0px 0px 0px;
+    height: 2px;
+    background-color: rgba(129, 150, 103, 0.3);
+    border: 0px;
+  }
+}
+
+.header-title {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.header-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h6 {
+    margin-left: 10px;
+  }
+}
+
+.status {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-transform: uppercase;
+  text-align: center;
+
+  h1 {
+    font-weight: 700;
+    color: rgba(80, 81, 104, 0.8);
+    font-size: 25px;
+    margin: 0px;
+  }
+
+  h5 {
+    margin-top: 5px;
+  }
+
+  div:first-child {
+    margin-right: 10px;
+  }
+
+  div:last-child {
+    margin-left: 10px;
+  }
+}
+
+.list {
+  margin-top: 30px;
+}
+
+.list-item {
+  height: 120px;
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+
+  img {
+    margin-left: 30px;
+  }
+
+  h3 {
+    margin-right: 30px;
+  }
+}
+
+#home-profile {
+  background: linear-gradient($overlay, $overlay), url("/images/BG-2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#home-search {
+  background: linear-gradient($overlay, $overlay), url("/images/BG-3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#home-map {
+  background: linear-gradient($overlay, $overlay), url("/images/BG-4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#home-ferngram {
+  background: linear-gradient($overlay, $overlay), url("/images/BG-5.jpg");
+  background-size: cover;
+  background-position: bottom;
+}
+
+#home-pinboard {
+  background: linear-gradient($overlay, $overlay), url("/images/BG-6.jpg");
+  background-size: cover;
+  background-position: center;
+}

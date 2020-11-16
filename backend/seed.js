@@ -16,11 +16,20 @@ mongoose.connect(
             name: 'admin',
             userName: 'admin',
             email: 'admin@admin.com',
-            password: 'admin',
-            passwordConfirmation: 'admin',
-            postcode: '0',
+            password: 'Admin1!',
+            passwordConfirmation: 'Admin1!',
+            postcode: 'SE108GE',
             badges: [],
             isAdmin: true
+          },
+          {
+            email: 'hello@hello.com',
+            name: 'hello',
+            userName: 'hello',
+            password: 'Hello1!',
+            passwordConfirmation: 'Hello1!',
+            postcode: 'CT146DL',
+            badges: []
           }
         ])
       })
@@ -40,7 +49,7 @@ mongoose.connect(
             outdoor: false,
             user: users[0]
           },
-          { 
+          {
             image: 'https://bs.floristic.org/image/o/0f3f31fd38dbf8668fc19dd0ca60aab1793bf925',
             commonName: 'Garden Tomato',
             scientificName: 'Solanum lycopersicum',
@@ -54,7 +63,7 @@ mongoose.connect(
             image: 'https://bs.floristic.org/image/o/91f52328edb009bb771ff1e1d865fae14d80ec3b',
             careNotes: 'Water often, keep out of sunlight.',
             outdoor: false,
-            user: users[0]
+            user: users[1]
           }
         ])
       })
@@ -66,5 +75,5 @@ mongoose.connect(
       .finally(() => {
         mongoose.connection.close()
       })
-  } 
+  }
 )

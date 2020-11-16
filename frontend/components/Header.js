@@ -1,4 +1,5 @@
 import React from 'react'
+// import Icon from '../images/NAV-WHITE.svg'
 
 // ! Burger for mobile
 // ! Navbar for desktop 
@@ -14,7 +15,9 @@ import React from 'react'
 
 
 const Header = () => {
-  return <h1>hello header</h1>
+  return <nav>
+    <img src={'../images/NAV-WHITE.svg'} alt="icon"/>
+  </nav>
 }
 
 export default Header
