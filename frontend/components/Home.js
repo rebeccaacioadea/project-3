@@ -72,31 +72,31 @@ const Home = () => {
 
         <hr />
         <section className="list">
-          <Link to={`/user-page/${user._id}/`}>
+          <Link to={`/user-page/${user._id}`}>
             <div className="list-item" id="home-profile">
               <img src="./images/profile.svg" alt="profile" />
               <h3>Profile</h3>
             </div>
           </Link>
-          <Link to={'/plant-search/'}>
+          <Link to={'/plant-search'}>
             <div className="list-item" id="home-search">
               <img src="./images/magnifying.svg" alt="magnifying" />
               <h3>Plant Search</h3>
             </div>
           </Link>
-          <Link to={'/user-map/'}>
+          <Link to={'/user-map'}>
             <div className="list-item" id="home-map">
               <img src="./images/map.svg" alt="map" />
               <h3>User Map</h3>
             </div>
           </Link>
-          <Link to={'/fernstagram/'}>
+          <Link to={'/fernstagram'}>
             <div className="list-item" id="home-ferngram">
               <img src="./images/leaves.svg" alt="leaves" />
               <h3>FernGram</h3>
             </div>
           </Link>
-          <Link to={'/plant-sitters/'}>
+          <Link to={'/plant-sitters'}>
             <div className="list-item" id="home-pinboard">
               <img src="./images/pinboard.svg" alt="pinboard" />
               <h3>Pin Board</h3>

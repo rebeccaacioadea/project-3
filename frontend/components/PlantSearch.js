@@ -30,33 +30,51 @@ const PlantSearch = () => {
   }, [query])
 
 
-  return <div>
-    <input
-      placeholder="Search"
-      onChange={(event) => updateTypedWord(event.target.value)}
-      value={typedWord}
-      {...console.log(typedWord)}
-    />
-    <button
-      onClick={() => {
-        updateQuery(typedWord)
-        console.log(query)
-      }}>Search
-    </button>
+  return <main>
+    <section className="cover">
+      <h1>Plant Library</h1>
 
-    <div>
-      {results.map((plant, index) => {
-        return <Link key={index}
-          to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
+    </section>
+
+    <section className="content">
+      <section className="margin">
+        <div>
+          <input
+            placeholder="Search"
+            onChange={(event) => updateTypedWord(event.target.value)}
+            value={typedWord}
+            {...console.log(typedWord)}
+          />
+          <button
+            onClick={() => {
+              updateQuery(typedWord)
+              console.log(query)
+            }}>
+            {/* <img src="./images/magnifying.svg" alt="magnifying" /> */}
+          </button>
+
           <div>
-            <h2>{plant.common_name} </h2>
-            <h3>{plant.scientific_name}</h3>
-            <img src={plant.image_url}></img>
+            {results.map((plant, index) => {
+              return<Link key={index}
+                to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
+                <div>
+                  <h2>{plant.common_name} </h2>
+                  <h3>{plant.scientific_name}</h3>
+                  <img src={plant.image_url}></img>
+                </div>
+              </Link>
+            })}
           </div>
-        </Link>
-      })}
-    </div>
-  </div>
+        </div>
+      </section>
+    </section>
+
+
+  </main>
+
+
+
+
 }
 
 export default PlantSearch
