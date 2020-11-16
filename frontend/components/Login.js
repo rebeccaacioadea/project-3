@@ -27,13 +27,52 @@ const Login = (props) => {
     axios.post('/api/user/login/', formData)
       .then(resp => {
         localStorage.setItem('token', resp.data.token)
-      
+
         props.history.push('/')
       })
   }
 
 
-  return <form className="login" onSubmit={handleSubmit} >
+  return <main>
+    <section className="cover">
+      <h1>Login</h1>
+    </section>
+
+    <section className="content" id="register">
+      <section className="margin">
+        <form onSubmit={handleSubmit}>
+          <div className="form-section">
+            <label className="label"><h5>Username</h5></label>
+            <input className="input"
+              type="text"
+              placeholder="Type Here"
+              onChange={handleChange}
+              value={formData.userName}
+              name="userName"
+            />
+          </div>
+          <div className="form-section">
+            <label className="label"><h5>Password</h5></label>
+            <input className="input"
+              type="text"
+              placeholder="Type Here"
+              onChange={handleChange}
+              value={formData.password}
+              name="password"
+            />
+          </div>
+          <button className="button-green" id="register-button">Sign Up</button>
+        </form>
+      </section>
+    </section>
+
+  </main>
+}
+
+export default Login
+
+
+{/* <form className="login" onSubmit={handleSubmit} >
     <div className="field">
       <label className="label">Username</label>
       <div className="control">
@@ -64,7 +103,4 @@ const Login = (props) => {
       <button className="button is-primary">Submit</button>
     </div>
    
-  </form>
-}
-
-export default Login
+  </form> */}
