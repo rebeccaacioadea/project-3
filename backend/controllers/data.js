@@ -35,7 +35,6 @@ function getPlantsByUser(req, res) {
   console.log(userId)
   Data
     .find({ user: userId })
-    .populate('user')
     .then(resp => res.send(resp))
 }
 

@@ -61,7 +61,4 @@ router.route('/messages/:messageid')
   .put(secureRoute, messageController.editMessage)
   .delete(secureRoute, messageController.deleteMessage)
 
-
-
-
 module.exports = router 
