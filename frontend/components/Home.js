@@ -19,9 +19,19 @@ const Home = () => {
 
   const token = localStorage.getItem('token')
 
-  if (!token) return <section>
-    <h2>No one logged in here!</h2>
-  </section>
+  if (!token) return <main>
+    <section className="cover">
+      <h1>Welcome</h1>
+    </section>
+    <section className="content">
+      <section className="margin">
+        <h4>
+          Welcome to Seeded! A platform dedicated to help users find plant sitters
+        </h4>
+      </section>
+    </section>
+  </main>
+  
 
   useEffect(() => {
     axios.get(`api/user/${getUserId()}`, {
@@ -32,6 +42,7 @@ const Home = () => {
         console.log(resp.data)
       })
   }, [])
+
 
   return <main>
     <section className="cover">

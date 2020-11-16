@@ -30,37 +30,35 @@ const PlantSearch = () => {
   }, [query])
 
 
-  return <main>
-    <section className="cover">
-      <h1>Plant Library</h1>
-
+  return <main className="main">
+    <section className="search-cover">
+      <h1>Plant <br /> Library</h1>
+      <input className="search-bar"
+        placeholder="Search"
+        onChange={(event) => updateTypedWord(event.target.value)}
+        value={typedWord}
+        {...console.log(typedWord)}
+      />
+      <button className="search-button"
+        onClick={() => {
+          updateQuery(typedWord)
+          console.log(query)
+        }}>
+      </button>
     </section>
 
-    <section className="content">
-      <section className="margin">
+    <section className="content" id="content-search">
+      <section className="margin" id="search-margin">
         <div>
-          <input
-            placeholder="Search"
-            onChange={(event) => updateTypedWord(event.target.value)}
-            value={typedWord}
-            {...console.log(typedWord)}
-          />
-          <button
-            onClick={() => {
-              updateQuery(typedWord)
-              console.log(query)
-            }}>
-            {/* <img src="./images/magnifying.svg" alt="magnifying" /> */}
-          </button>
-
           <div>
             {results.map((plant, index) => {
-              return<Link key={index}
+              return <Link key={index}
                 to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
-                <div>
-                  <h2>{plant.common_name} </h2>
-                  <h3>{plant.scientific_name}</h3>
-                  <img src={plant.image_url}></img>
+                <div style={{ backgroundImage: `url(${plant.image_url})` }}
+                  className="list-item">
+                  <h3>{plant.common_name} </h3>
+                  <h4>{plant.scientific_name}</h4>
+
                 </div>
               </Link>
             })}

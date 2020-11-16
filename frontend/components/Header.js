@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getUserId } from '../lib/auth'
+import axios from 'axios'
 
 // ! Burger for mobile
 // ! Navbar for desktop 
@@ -15,6 +17,20 @@ import { Link } from 'react-router-dom'
 
 
 const Header = () => {
+
+  const [user, updateUser] = useState([])
+
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    axios.get(`api/user/${getUserId()}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(resp => {
+        updateUser(resp.data)
+      })
+  }, [])
+
   /* Set the width of the side navigation to 250px */
   function openNav() {
     document.getElementById('mySidenav').style.width = '300px'
@@ -37,7 +53,7 @@ const Header = () => {
         </div>
       </Link>
 
-      <Link to={'/'}>
+      <Link to={`/user-page/${user._id}`}>
         <div className="nav-item">
           <img src={'../images/nav-profile.svg'} alt="nav-profile" />
           Profile

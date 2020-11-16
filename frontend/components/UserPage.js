@@ -1,5 +1,6 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { getUserId } from '../lib/auth'
 // ! User Page
 // * Name 
 // * Image
@@ -15,8 +16,37 @@ import React from 'react'
 // ? Link to see messages
 
 
-const UserPage = () => {
-  return <h1>hello userpage</h1>
+const UserPage = (props) => {
+  const [currentUser, updateCurrentUser] = useState({})
+  const token = localStorage.getItem('token')
+  const profileId = props.match.params.userId
+  const [profilePlants, profilePlants] = useState({})
+
+  // useEffect(() => {
+  axios.get(`/api/user/${getUserId()}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(resp => {
+      updateCurrentUser(resp.data)
+      console.log(resp.data)
+    })
+  // }, [])
+
+
+  // axios.get(`api/users/plants/${profileId}`)
+  //   .then(resp => {
+  //     profilePlants(resp.data)
+  //     console.log(resp.data)
+  //   })
+
+  return <main>
+    <h3>{currentUser.name}</h3>
+
+  </main>
+
+
+
 }
+
 
 export default UserPage
