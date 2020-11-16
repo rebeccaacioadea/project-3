@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
+import axios from 'axios'
 
 // * Image 
 // * Outdoor plant 
@@ -6,7 +7,13 @@ import React from 'react'
 // * User notes
 // * Confirmation button takes you back to personal plant page
 
-const EditPlant = () => {
+const EditPlant = (props) => {
+const plantId = props.match.params.plantId
+
+
+
+
+  { console.log(props) }
   return <h1>hello editplant</h1>
 }
 
