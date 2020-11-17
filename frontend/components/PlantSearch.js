@@ -15,20 +15,26 @@ const PlantSearch = () => {
   const [query, updateQuery] = useState('')
   const [typedWord, updateTypedWord] = useState('')
 
+  // * GETting data from API. 
   const searchFunction = (query) => {
     axios.get(`api/plants-external/${query}`)
-      // axios.get('api/plants-external/coconut')
       .then(resp => {
         updateResults(resp.data.data)
-        // console.log(resp.data.data)
       })
   }
 
-  console.log(results)
+  // console.log(results)
   useEffect(() => {
     return searchFunction(query)
   }, [query])
 
+  // * Function to search results when enter button pressed
+  function enterKey(event) {
+    if (event.key === 'Enter') {
+      updateQuery(typedWord)
+      // console.log(query)
+    }
+  }
 
   return <main className="main">
     <section className="search-cover">
@@ -37,42 +43,36 @@ const PlantSearch = () => {
         placeholder="Search"
         onChange={(event) => updateTypedWord(event.target.value)}
         value={typedWord}
-        {...console.log(typedWord)}
+        onKeyPress={enterKey}
+      // {...console.log(typedWord)}
       />
-      <button className="search-button"
+      {/* <button className="search-button"
         onClick={() => {
           updateQuery(typedWord)
           console.log(query)
         }}>
-      </button>
+      </button> */}
     </section>
 
     <section className="content" id="content-search">
       <section className="margin" id="search-margin">
-        <div>
-          <div>
-            {results.map((plant, index) => {
-              return <Link key={index}
-                to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
-                <div style={{ backgroundImage: `url(${plant.image_url})` }}
-                  className="list-item">
-                  <h3>{plant.common_name} </h3>
-                  <h4>{plant.scientific_name}</h4>
-
-                </div>
-              </Link>
-            })}
-          </div>
-        </div>
+        {/* <div>
+          <div> */}
+        {results.map((plant, index) => {
+          return <Link key={index}
+            to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
+            <div style={{ backgroundImage: `url(${plant.image_url})` }}
+              className="list-item">
+              <h3>{plant.common_name} </h3>
+              <h4>{plant.scientific_name}</h4>
+            </div>
+          </Link>
+        })}
+        {/* </div>
+        </div> */}
       </section>
     </section>
-
-
   </main>
-
-
-
-
 }
 
 export default PlantSearch
