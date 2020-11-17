@@ -1,23 +1,20 @@
+// form {
+//   height: 300px;
+//   width: 600px;
+// }
+// //? LOGIN-PAGE
+// .login {
+//   margin-left: 40px;
 
-form {
-  height: 300px;
-  width: 600px;
-}
-//? LOGIN-PAGE
-.login {
-  margin-left: 40px;
+// }
+// //?EDIT-PLANT-PAGE
+// #editPlant{
+//   width:100vw;
+// margin-left: 40px;
+// padding: 10px;
+//   background-color: grey
 
-}
-//?EDIT-PLANT-PAGE
-#editPlant{
-  width:100vw;
-margin-left: 40px;
-padding: 10px;
-  background-color: grey
-  
-
-}
-
+// }
 
 // ? IMPORTS
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:ital,wght@0,300;0,600;0,700;1,300;1,400;1,500&display=swap");
@@ -96,6 +93,14 @@ h6 {
   font-weight: 400;
   font-size: 16px;
   font-style: italic;
+  margin: 0px;
+}
+
+p {
+  font-family: $lato;
+  color: $font;
+  font-weight: 400;
+  font-size: 16px;
   margin: 0px;
 }
 
@@ -182,7 +187,7 @@ nav {
   margin-left: 50px;
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+/* Height is less than 450px */
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -205,7 +210,7 @@ nav {
     left: 30px;
   }
 }
-//
+
 .content {
   border-radius: 30px;
   background-color: white;
@@ -219,15 +224,21 @@ nav {
 
 .margin {
   margin: 30px 30px 30px 30px;
-  hr {
-    position: static;
-    margin: 35px 0px 0px 0px;
-    height: 2px;
-    background-color: rgba(129, 150, 103, 0.3);
-    border: 0px;
-  }
 }
 
+hr {
+  position: static;
+  margin: 35px 0px 0px 0px;
+  height: 2px;
+  background-color: rgba(129, 150, 103, 0.3);
+  border: 0px;
+}
+
+.hr-less-space {
+  margin: 20px 0px 0px 0px;
+}
+
+// ! **** KEEP ORDER
 .header-title {
   margin-top: 5px;
   display: flex;
@@ -240,6 +251,11 @@ nav {
     height: 32px;
   }
 }
+
+.extra-space {
+  margin-top: 20px;
+}
+// ! **** KEEP ORDER
 
 .header-icon {
   display: flex;
@@ -331,6 +347,48 @@ nav {
   background-position: center;
 }
 
+// ? ADD PLANT
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+// * TARGETS 'DEER' RADIO 
+.radio-buttons > :first-child {
+  margin-right: 20px;
+  }
+
+
+.plant-type {
+  font-family: $monts;
+  font-size: 16px;
+}
+
+.bio {
+  margin: 20px 0px 30px 0px;
+}
+
+// * TARGETS 'H5' 'SYNONYM' 
+.bio > :first-child {
+  margin-bottom: 10px;
+  }
+
+textarea {
+  outline: none;
+  resize: none;
+  overflow: auto;
+  padding: 20px;
+}
+
+
+select  {
+  padding: 10px
+}
+
+
+
 // ? Plant search
 .search-cover {
   background: linear-gradient($overlay, $overlay), url("/images/BG-1.jpg");
@@ -338,11 +396,10 @@ nav {
   height: 363.5px;
   width: 100%;
   border-radius: 30px;
-//   display: flex;
-// flex-direction: column;
-// align-items: center;
-// justify-content: center;
-
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
 
   h1 {
     position: absolute;
@@ -364,11 +421,11 @@ nav {
   height: 47px;
   width: 90%;
   border-radius: 7px;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   border: hidden;
   position: absolute;
-top: 230px;
-left: 30px;
+  top: 230px;
+  left: 30px;
 }
 
 #search-profile {
@@ -384,11 +441,13 @@ left: 30px;
     margin-right: 30px;
   }
 }
+
 // ? REGISTER
 #register {
   min-width: 375px;
   max-width: 600px;
 }
+
 .input {
   background-color: $background;
   border-radius: 10px;
@@ -452,7 +511,40 @@ form {
   color: white;
 }
 
-#register-button {
+#button-grow {
   min-width: 100%;
   max-width: 540px;
 }
+
+// ! DON'T MOVE ORDER OF .BUTTON-RADIO
+// ! AND .ACTIVE
+.button-radio {
+  height: 80px;
+  min-width: 150px;
+  max-width: 310px;
+  border: none;
+  background: #faf6eb;
+  border-radius: 10px;
+  font-family: $monts;
+  color: $Headings-Icons;
+  font-weight: 300;
+  font-size: 16px;
+  margin: 0px;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+
+  img {
+    margin-right: 5px;
+  }
+}
+
+.active {
+  background-color: $button;
+  color: white;
+}
+
+// ! *****

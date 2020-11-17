@@ -18,7 +18,7 @@ import axios from 'axios'
 
 const AddPlant = (props) => {
   const plantData = props.location.state.plant
-
+  const [radioButton, updateRadioButton] = useState()
   // UseState to re-create the form to post to OUR plant API
   const [formData, updateFormData] = useState({
     image: `${plantData.image_url}`,
@@ -57,7 +57,129 @@ const AddPlant = (props) => {
       })
   }
 
-  return <div>
+  function handleRadioButton(event) {
+    event.preventDefault()
+    updateRadioButton(!radioButton)
+    handleChange(event)
+  }
+
+  return <main>
+    <section className="cover">
+      <h1>Add Plant</h1>
+    </section>
+
+    <section className="content">
+      <section className="margin">
+
+
+        <h4>{plantData.scientific_name}</h4>
+        <h2>{plantData.common_name}</h2>
+        <div className="header-title extra-space">
+          {/* Making left section and right edit icon align center */}
+          <div className="header-icon">
+            {/* Making 'Messages' and the icon align center */}
+            <img src="../images/book.svg" alt="message-icon" />
+            <h6>{plantData.bibliography}</h6>
+          </div>
+          <div>
+            <img src="../images/share.svg" alt="edit-icon" />
+          </div>
+        </div>
+
+        <hr className="hr-less-space"/>
+
+        <div className="bio">
+          <h5>SYNONYMS</h5>
+          <p>{plantData.synonyms}</p>
+        </div>
+
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-section">
+            {radioButton === true ?
+              <div className="radio-buttons">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active"
+                  value={true}
+                  name="outdoor">
+                  <img src="../images/deer-white.svg" alt="deer" />Outdoor</button>
+                <button
+                  id="button-radio-grow"
+                  className="button-radio "
+                  onClick={handleRadioButton}
+                  value={false}
+                  name="outdoor">
+                  <img src="../images/fireplace-green.svg" alt="deer" />
+              Indoor</button>
+              </div>
+              :
+              <div className="radio-buttons">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio"
+                  onClick={handleRadioButton}
+                  value={true}
+                  name="outdoor">
+                  <img src="../images/deer-green.svg" alt="deer" />Outdoor</button>
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active"
+                  value={false}
+                  name="outdoor">
+                  <img src="../images/fireplace-white.svg" alt="deer" />
+              Indoor</button>
+              </div>
+            }
+          </div>
+          <div className="form-section">
+            <select
+              className="plant-type input"
+              onChange={handleChange}
+              name="plantType">
+              <option>Plant Type...</option>
+              <option>Bulb</option>
+              <option>Cactus/Succulent</option>
+              <option>Climber</option>
+              <option>Conifer</option>
+              <option>Fern</option>
+              <option>Fruit</option>
+              <option>Herb</option>
+              <option>Ornamental</option>
+              <option>Grass</option>
+              <option>Perennial</option>
+              <option>Rose</option>
+              <option>Shrub</option>
+              <option>Tree</option>
+              <option>Palm</option>
+              <option>Bamboo</option>
+            </select>
+          </div>
+
+          <div className="form-section">
+            <textarea
+              className="input"
+              placeholder="Care notes for your plant..."
+              onChange={handleChange}
+              value={formData.careNotes}
+              name="careNotes"
+            ></textarea>
+          </div>
+
+
+
+          <button className="button-green" id="button-grow">Add to my list</button>
+        </form>
+
+
+      </section>
+    </section>
+  </main>
+}
+
+export default AddPlant
+
+{/* <div>
     <div>
       <img src={plantData.image_url}></img>
       <h3>{plantData.scientific_name}</h3>
@@ -103,7 +225,4 @@ const AddPlant = (props) => {
       </select>
       <button onClick={handleSubmit}>Add to my list</button>
     </div>
-  </div>
-}
-
-export default AddPlant
+  </div> */}
