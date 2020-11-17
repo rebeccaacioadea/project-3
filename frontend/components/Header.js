@@ -23,11 +23,12 @@ const Header = () => {
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    axios.get(`api/user/${getUserId()}`, {
+    axios.get(`/api/user/${getUserId()}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
         updateUser(resp.data)
+        console.log(resp.data.user)
       })
   }, [])
 

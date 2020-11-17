@@ -40,7 +40,7 @@ router.route('/user/users')
 router.route('/user/:userid')
   .put(secureRoute, userController.editUser)
   .delete(secureRoute, userController.deleteUser)
-  .get(secureRoute, userController.getUser)
+  .get(userController.getUser)
 
 // ? MESSAGE BOARD 
 // GET MESSAGES
