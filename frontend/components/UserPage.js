@@ -85,7 +85,6 @@ const UserPage = (props) => {
         <hr />
 
         <div>
-
           <div className="bio">
             <h5>Bio</h5>
             <p>Bio goes here TO MAP WHEN USER SCHEMA HAS BEEN UPDATED</p>

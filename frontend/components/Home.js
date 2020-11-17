@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
 
   const [user, updateUser] = useState([])
+  const [userPlants, updateUserPlants] = useState([])
 
   const token = localStorage.getItem('token')
 
@@ -31,17 +32,33 @@ const Home = () => {
       </section>
     </section>
   </main>
-  
 
   useEffect(() => {
+    
     axios.get(`api/user/${getUserId()}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
         updateUser(resp.data)
+        console.log(typeof resp.data._id)
+      })
+      .then(()=> {
+        getPlantList()
+        console.log('it worked')
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+  const getPlantList = () => {
+    console.log(user._id)
+
+    axios.get(`api/users-plants/${user._id}`)
+      .then(resp => {
+        updateUserPlants(resp.data)
         console.log(resp.data)
       })
-  }, [])
+      .catch(err => console.log(err))
+  }
 
 
   return <main>
@@ -76,7 +93,7 @@ const Home = () => {
           </div>
           <img src="./images/vertical-line.svg" alt="vertical-line" />
           <div>
-            <h1>0</h1>
+            <h1>{userPlants.length}</h1>
             <h5>Plant<br />Count</h5>
           </div>
         </section>
