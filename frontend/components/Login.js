@@ -61,7 +61,7 @@ const Login = (props) => {
               name="password"
             />
           </div>
-          <button className="button-green" id="register-button">Sign Up</button>
+          <button className="button-green" id="button-grow">Sign Up</button>
         </form>
       </section>
     </section>

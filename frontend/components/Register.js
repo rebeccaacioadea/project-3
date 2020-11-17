@@ -47,7 +47,7 @@ const Register = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
 
-    axios.post('/api//user/register', formData)
+    axios.post('/api/user/register', formData)
       .then(resp => {
         console.log(resp.data)
         if (resp.data.errors) {
@@ -157,7 +157,7 @@ const Register = (props) => {
             </p>}
           </div>
 
-          <button className="button-green" id="register-button">Sign Up</button>
+          <button className="button-green" id="button-grow">Sign Up</button>
 
 
         </form>
