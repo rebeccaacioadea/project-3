@@ -110,7 +110,7 @@ const AddPlant = (props) => {
                   onClick={handleRadioButton}
                   value={false}
                   name="outdoor">
-                  <img src="../images/fireplace-green.svg" alt="deer" />
+                  <img src="../images/fireplace-green.svg" alt="fireplace" />
               Indoor</button>
               </div>
               :
@@ -127,7 +127,7 @@ const AddPlant = (props) => {
                   className="button-radio active"
                   value={false}
                   name="outdoor">
-                  <img src="../images/fireplace-white.svg" alt="deer" />
+                  <img src="../images/fireplace-white.svg" alt="fireplace" />
               Indoor</button>
               </div>
             }
@@ -168,7 +168,7 @@ const AddPlant = (props) => {
 
 
 
-          <button className="button-green" id="button-grow">Add to my list</button>
+          <button className="button-green">Add to my list</button>
         </form>
 
 

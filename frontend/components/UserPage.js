@@ -85,7 +85,7 @@ const UserPage = (props) => {
           <div>
             {userPlants.map((plant, index) => {
               return <Link key={index}
-                to={`/edit-plant/${plant._id}`} >
+                to={`/profile-plant/${plant._id}`} >
                 <div style={{ backgroundImage: `url(${plant.image})` }}
                   className="list-item">
                   <h3>{plant.commonName} </h3>
