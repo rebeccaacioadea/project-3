@@ -58,7 +58,7 @@ const EditPlant = (props) => {
   }
 
 
-  return <form id="editPlant" onSubmit = { handleSubmit} > 
+  return <form id="editPlant" > 
     <div>
       <div>
         <div>
@@ -70,8 +70,8 @@ const EditPlant = (props) => {
             name = "image"
           />
         </div>
-        <h3>scientificName: {plantData.scientificName}</h3>
-        <h3>commonName: {plantData.commonName}</h3>
+        <h2>{plantData.scientificName}</h2>
+        <h3> {plantData.commonName}</h3>
  
         <textarea
           placeholder="Care notes for your plant..."

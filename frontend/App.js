@@ -15,6 +15,7 @@ import UserMap from './components/UserMap'
 import Register from './components/Register'
 import Login from './components/Login'
 import Header from './components/Header'
+import Settings from './components/Settings'
 import Home from './components/Home'
 
 
@@ -40,6 +41,7 @@ const App = () => {
       <Route exact path="/user/register" component={Register} />
       <Route exact path="/user/login/" component={Login} />
       {/* Landing Page */}
+      <Route exact path ="/user-page/:userId/settings/" component = { Settings } />
       <Route exact path="/" component={Home} />
     </Switch>
   </BrowserRouter>

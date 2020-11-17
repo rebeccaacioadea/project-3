@@ -88,7 +88,7 @@ const Header = () => {
         </div>
       </Link>
 
-      <Link to={'/'}>
+      <Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }} >
         <div className="nav-item">
           <img src={'../images/nav-settings.svg'} alt="nav-settings" />
           Settings
