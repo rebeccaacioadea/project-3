@@ -33,33 +33,33 @@ const Home = () => {
     </section>
   </main>
 
-  useEffect(() => {
-    
+  function gettingUserInfo() {
     axios.get(`api/user/${getUserId()}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
         updateUser(resp.data)
         console.log(typeof resp.data._id)
-      })
-      .then(()=> {
-        getPlantList()
-        console.log('it worked')
-      })
-      .catch(err => console.log(err))
-  }, [])
-
-  const getPlantList = () => {
-    console.log(user._id)
-
-    axios.get(`api/users-plants/${user._id}`)
-      .then(resp => {
-        updateUserPlants(resp.data)
         console.log(resp.data)
       })
       .catch(err => console.log(err))
   }
 
+  function getPlantList() {
+    console.log('is it working?')
+    axios.get(`api/users-plants/${getUserId()}`)
+      .then(resp => {
+        updateUserPlants(resp.data)
+        console.log(resp.data)
+        console.log('itworked')
+      })
+      .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    gettingUserInfo()
+    getPlantList()
+  }, [])
 
   return <main>
     <section className="cover">
