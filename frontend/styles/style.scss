@@ -355,11 +355,10 @@ hr {
   margin-bottom: 30px;
 }
 
-// * TARGETS 'DEER' RADIO 
+// * TARGETS 'DEER' RADIO
 .radio-buttons > :first-child {
   margin-right: 20px;
-  }
-
+}
 
 .plant-type {
   font-family: $monts;
@@ -370,10 +369,10 @@ hr {
   margin: 20px 0px 30px 0px;
 }
 
-// * TARGETS 'H5' 'SYNONYM' 
+// * TARGETS 'H5' 'SYNONYM'
 .bio > :first-child {
   margin-bottom: 10px;
-  }
+}
 
 textarea {
   outline: none;
@@ -382,12 +381,9 @@ textarea {
   padding: 20px;
 }
 
-
-select  {
-  padding: 10px
+select {
+  padding: 10px;
 }
-
-
 
 // ? Plant search
 .search-cover {
@@ -432,7 +428,7 @@ select  {
   background: linear-gradient($overlay, $overlay);
   background-size: cover;
   background-position: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: column;
   align-items: flex-end;
 
@@ -494,12 +490,43 @@ form {
   align-items: center;
 }
 
+// ? PLANT PROFILE
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: $background;
+  border-radius: 10px;
+  height: 64px;
+
+  img {
+    margin: 0px 20px 0px 20px;
+  }
+
+  h4 {
+    color: $Headings-Icons;
+  }
+}
+
+.add-space {
+  margin-top: 30px;
+}
+
+.care-notes {
+  margin: 30px 0px 30px 0px;
+  h4 {
+    margin-bottom: 5px;
+  }
+}
+
 // ? BUTTONS
 .button-green {
   background: $button;
   box-shadow: -4px 5px 60px 0 rgba(0, 0, 0, 0.08);
   border-radius: 5px;
-  width: 315px;
+  min-width: 100%;
+  max-width: 540px;
   border: 0px;
   height: 50px;
   font-family: $monts;
@@ -511,9 +538,10 @@ form {
   color: white;
 }
 
-#button-grow {
-  min-width: 100%;
-  max-width: 540px;
+.button-red {
+  background-color: $highlight;
+  box-shadow: none;
+  margin-top: 20px;
 }
 
 // ! DON'T MOVE ORDER OF .BUTTON-RADIO
@@ -549,4 +577,11 @@ form {
 
 // ! *****
 // ? User Profile
-
+.button-addPlant {
+  background: $brown;
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

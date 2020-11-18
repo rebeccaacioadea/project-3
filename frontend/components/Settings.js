@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getUserId, isCreator} from '../lib/auth'
+
 import axios from 'axios'
-
-
-
 
 
 
@@ -15,14 +12,16 @@ const Settings = (props) => {
 
   console.log(props)
 
-  
+  const [radioButton, updateRadioButton] = useState()
+
   const [formData, updateFormData] = useState({
     name: `${userData.name}`,
     userName: `${userData.userName}`,
     email: `${userData.email}`,
     password: '',
     passwordConfirmation: '',
-    postcode: `${userData.postcode}`
+    postcode: `${userData.postcode}`,
+    image: ''
 
   })
 
@@ -40,12 +39,12 @@ const Settings = (props) => {
   console.log(formData)
 
 
-  //! this to complete this 
-  // function handleRadioButton(event) {
-  //   event.preventDefault()
-  
-
-  // }
+ 
+  function handleRadioButton(event) {
+    event.preventDefault()
+    updateRadioButton(!radioButton)
+    handleChange(event)
+  }
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -65,33 +64,54 @@ const Settings = (props) => {
 
   return <div className="section">
     <h5> Update your profile</h5>
-    <h1>{`Hello ${userData.userName}`} </h1>
+    <img src="" alt="userImage" />
+    <h1>{`Hello ${userData.name}`} </h1>
 
     <form onSubmit={handleSubmit} >
 
-      //! Need to complete this
-      //! Radio-Button 
-      {/* <h5>Status</h5>
+      <h5>Status</h5>
       <div className="">
-        <button
-          type = "radio"
-          onClick={handleRadioButton}
-          value="yes"
-          name="type">
-            Sitter
-        </button>
+        <div>
+          {radioButton === true ?
+            <div className="radio-buttons">
+              <button
+                id="button-radio-grow"
+                className="button-radio active"
+                value="sitter"
+                name="status">
+                <img src="" alt="" />Sitter</button>
+              <button
+                id="button-radio-grow"
+                className="button-radio "
+                onClick={handleRadioButton}
+                value="owner"
+                name="status">
+                <img src="" alt="" />
+                Owner</button>
+            </div>
+            :
+            <div className="radio-buttons">
+              <button
+                id="button-radio-grow"
+                className="button-radio"
+                onClick={handleRadioButton}
+                value="sitter"
+                name="status">
+                <img src="" alt="" />Sitter</button>
+            
+              <button
+                id="button-radio-grow"
+                className="button-radio active"
+                value="owner"
+                name="status">
+                <img src="" alt="" />
+                Owner</button>
+            </div>
+          } 
+        </div>  
+      </div>
 
-        <button
-
-          onClick={handleRadioButton}
-          value="no"
-          name="type">
-            Owner
-        </button>  
-      </div>  */}
-
-
-
+      {/* //! need to addd image---> user should upload their image */}
       <div className="form-section">
         <label className="label"><h5>Name</h5></label>
         <input className="input"

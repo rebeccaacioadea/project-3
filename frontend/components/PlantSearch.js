@@ -62,7 +62,7 @@ const PlantSearch = () => {
           return <Link key={index}
             to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
             <div style={{ backgroundImage: `url(${plant.image_url})` }}
-              className="list-item">
+              className="list-item" id="search-profile">
               <h3>{plant.common_name} </h3>
               <h4>{plant.scientific_name}</h4>
             </div>
