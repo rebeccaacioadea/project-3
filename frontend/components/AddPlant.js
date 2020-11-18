@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
 
@@ -19,19 +19,41 @@ import axios from 'axios'
 const AddPlant = (props) => {
   const plantData = props.location.state.plant
   const [radioButton, updateRadioButton] = useState()
-  // UseState to re-create the form to post to OUR plant API
+  const [reducedSynonyms, updateReducedSynonyms] = useState('')
+
+  // ! * WED RICO LOOK AT
+  useEffect(() => {
+    let synLimit = 4
+    plantData.synonyms.map((syn) => {
+      if (synLimit !== 0) {
+        updateReducedSynonyms(reducedSynonyms + syn)
+        synLimit--
+        console.log(synLimit)
+      } else if (synLimit === 0 && synLimit > 0) {
+        updateReducedSynonyms(reducedSynonyms + syn)
+        synLimit--
+        console.log(synLimit)
+      }
+
+    })
+    console.log(reducedSynonyms)
+    console.log(plantData.synonyms)
+  }, [])
+  // ! ****
+
   const [formData, updateFormData] = useState({
     image: `${plantData.image_url}`,
     commonName: `${plantData.common_name}`,
     scientificName: `${plantData.scientific_name}`,
+    library: `${plantData.bibliography}`,
+    synonyms: `${reducedSynonyms}`,
     careNotes: '',
-    outdoor: '',
+    outdoor: false,
     plantType: ''
   })
 
-  { console.log(formData) }
-  { console.log(plantData) }
-  { console.log(localStorage.token) }
+  // { console.log(formData) }
+  // { console.log(plantData) }
 
   // Function to take values from the browser and include in formData
   function handleChange(event) {
@@ -86,11 +108,11 @@ const AddPlant = (props) => {
           </div>
         </div>
 
-        <hr className="hr-less-space"/>
+        <hr className="hr-less-space" />
 
         <div className="bio">
           <h5>SYNONYMS</h5>
-          <p>{plantData.synonyms}</p>
+          <p>{reducedSynonyms}</p>
         </div>
 
 

@@ -37,13 +37,10 @@ const UserPage = (props) => {
       })
   }, [])
 
-  { console.log(userPlants) }
-  { console.log(userInfo) }
 
   function handleRadioButton(event) {
     event.preventDefault()
     updateRadioButton(!radioButton)
-    console.log(radioButton)
   }
 
   return <main>

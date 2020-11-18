@@ -15,10 +15,26 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
 
-  const [user, updateUser] = useState([])
+  const [user, updateUser] = useState({})
+
   const [userPlants, updateUserPlants] = useState([])
 
   const token = localStorage.getItem('token')
+
+  useEffect(() => {
+
+    axios.get(`api/user/${getUserId()}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(resp => {
+        updateUser(resp.data)
+        console.log(resp.data)
+      })
+      .then(() => {
+        getPlantList()
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   if (!token) return <main>
     <section className="cover">
@@ -33,29 +49,13 @@ const Home = () => {
     </section>
   </main>
 
-  useEffect(() => {
-    
-    axios.get(`api/user/${getUserId()}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(resp => {
-        updateUser(resp.data)
-        console.log(typeof resp.data._id)
-      })
-      .then(()=> {
-        getPlantList()
-        console.log('it worked')
-      })
-      .catch(err => console.log(err))
-  }, [])
+
 
   const getPlantList = () => {
-    console.log(user._id)
 
     axios.get(`api/users-plants/${user._id}`)
       .then(resp => {
         updateUserPlants(resp.data)
-        console.log(resp.data)
       })
       .catch(err => console.log(err))
   }
