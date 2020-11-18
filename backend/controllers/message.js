@@ -4,6 +4,7 @@ function getMessages(req, res) {
   Message
     .find().sort({ 'createdAt': -1 })
     .populate('user')
+    .populate('comments.user')
     .then(resp => res.send(resp))
 }
 
@@ -12,6 +13,7 @@ function addMessage(req, res) {
   message.user = req.currentUser
   Message
     .create(message)
+    .populate('user')
     .then(message => res.send(message))
     .catch(error => res.send(error))
 }
@@ -66,7 +68,7 @@ function postComment(req, res) {
   comment.user = req.currentUser
   Message
     .findById(messageId)
-    .populate('comment.user')
+    .populate('user')
     .then(message => {
       if (!message) return res.status(404).send({ message: 'Not found' })
       message.comments.push(comment)
