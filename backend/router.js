@@ -35,7 +35,7 @@ router.route('/user/login')
 
 // FIND / EDIT
 router.route('/user/users')
-  .get(secureRoute, userController.listUsers)
+  .get(userController.listUsers)
 
 router.route('/user/:userid')
   .put(secureRoute, userController.editUser)
@@ -59,5 +59,8 @@ router.route('/messages/:messageid')
   .get(secureRoute, messageController.getMessage)
   .put(secureRoute, messageController.editMessage)
   .delete(secureRoute, messageController.deleteMessage)
+
+router.route('/post-code/:postcode')
+  .get(userController.postcodeGet)
 
 module.exports = router 

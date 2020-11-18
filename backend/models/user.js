@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema({
   owner: { type: Boolean, required: false },
   sitter: { type: Boolean, required: false },
   postcode: { type: String, required: true },
+  bio: { type: String, required: false },
   isAdmin: { type: Boolean },
   // Embedded Relationship, badges are unique to each user
   badges: [badgeSchema]

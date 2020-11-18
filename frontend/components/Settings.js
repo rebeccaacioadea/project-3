@@ -21,7 +21,8 @@ const Settings = (props) => {
     password: '',
     passwordConfirmation: '',
     postcode: `${userData.postcode}`,
-    image: ''
+    image: '',
+    bio: ''
 
   })
 
@@ -39,7 +40,7 @@ const Settings = (props) => {
   console.log(formData)
 
 
- 
+
   function handleRadioButton(event) {
     event.preventDefault()
     updateRadioButton(!radioButton)
@@ -98,7 +99,7 @@ const Settings = (props) => {
                 value="sitter"
                 name="status">
                 <img src="" alt="" />Sitter</button>
-            
+
               <button
                 id="button-radio-grow"
                 className="button-radio active"
@@ -107,8 +108,8 @@ const Settings = (props) => {
                 <img src="" alt="" />
                 Owner</button>
             </div>
-          } 
-        </div>  
+          }
+        </div>
       </div>
 
       {/* //! need to addd image---> user should upload their image */}
@@ -163,16 +164,26 @@ const Settings = (props) => {
         />
       </div>
 
-      <button style={{ backgroundColor: 'red'}}
+      <div className="form-section">
+        <textarea
+          className="input"
+          placeholder={userData.bio}
+          onChange={handleChange}
+          value={formData.bio}
+          name="bio"
+        ></textarea>
+      </div>
+
+      <button style={{ backgroundColor: 'red' }}
         onClick={handleSubmit}>Update My Profile</button>
 
 
     </form>
 
-   
-      
+
+
   </div>
-  
+
 
 
 }
