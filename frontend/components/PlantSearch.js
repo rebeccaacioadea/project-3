@@ -17,13 +17,14 @@ const PlantSearch = () => {
 
   // * GETting data from API. 
   const searchFunction = (query) => {
-    axios.get(`api/plants-external/${query}`)
-      .then(resp => {
-        updateResults(resp.data.data)
-      })
+    if (query) {
+      axios.get(`api/plants-external/${query}`)
+        .then(resp => {
+          updateResults(resp.data.data)
+        })
+    } 
   }
 
-  // console.log(results)
   useEffect(() => {
     return searchFunction(query)
   }, [query])
@@ -32,7 +33,6 @@ const PlantSearch = () => {
   function enterKey(event) {
     if (event.key === 'Enter') {
       updateQuery(typedWord)
-      // console.log(query)
     }
   }
 
@@ -44,20 +44,11 @@ const PlantSearch = () => {
         onChange={(event) => updateTypedWord(event.target.value)}
         value={typedWord}
         onKeyPress={enterKey}
-      // {...console.log(typedWord)}
       />
-      {/* <button className="search-button"
-        onClick={() => {
-          updateQuery(typedWord)
-          console.log(query)
-        }}>
-      </button> */}
     </section>
 
     <section className="content" id="content-search">
       <section className="margin" id="search-margin">
-        {/* <div>
-          <div> */}
         {results.map((plant, index) => {
           return <Link key={index}
             to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
@@ -68,8 +59,6 @@ const PlantSearch = () => {
             </div>
           </Link>
         })}
-        {/* </div>
-        </div> */}
       </section>
     </section>
   </main>

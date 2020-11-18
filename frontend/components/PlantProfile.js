@@ -43,7 +43,10 @@ const PlantProfile = (props) => {
           <div className="header-icon">
             {/* Making 'Messages' and the icon align center */}
             <img src="../images/book.svg" alt="message-icon" />
-            <h6>INSERT LIBRARY SCHEMA</h6>
+            <h6>{plantData.library ?
+              plantData.library
+              :
+              'No known bibliography documented'}</h6>
           </div>
           <div>
             <img src="../images/share.svg" alt="edit-icon" />
@@ -54,7 +57,10 @@ const PlantProfile = (props) => {
 
         <div className="bio">
           <h5>SYNONYMS</h5>
-          <p>We have to insert the synonyms into the plant schema.</p>
+          <p>{plantData.synonyms ?
+            plantData.synonyms
+            :
+            'No known synonyms'}</p>
         </div>
 
         {plantData.outdoor === true ?

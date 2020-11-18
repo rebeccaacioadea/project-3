@@ -28,7 +28,6 @@ const Header = () => {
     })
       .then(resp => {
         updateUser(resp.data)
-        console.log(resp.data)
       })
   }, [])
 

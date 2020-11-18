@@ -13,16 +13,12 @@ const EditPlant = (props) => {
   const [plantData, updatePlantData] = useState({})
 
   useEffect(() => {
-    console.log(plantId)
-    console.log('ID ABOVE')
+    console.log(props)
     axios.get(`/api/plants/${plantId}`)
       .then(resp => {
         updatePlantData(resp.data)
-        updateRadioButton(!radioButton)
-        console.log(resp.data)
-
+        updateRadioButton(resp.data.outdoor)
       })
-
   }, [])
 
   const [formData, updateFormData] = useState({
@@ -31,9 +27,7 @@ const EditPlant = (props) => {
     plantType: ''
   })
 
-
-
-
+  
   function handleChange(event) {
     const name = event.target.name
     const value = event.target.value
@@ -57,7 +51,7 @@ const EditPlant = (props) => {
         props.history.push('/')
 
       })
-    console.log('success')
+    console.log('Submitted Succesfully')
   }
 
   function handleRadioButton(event) {
