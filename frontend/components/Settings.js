@@ -17,7 +17,9 @@ const Settings = (props) => {
     password: '',
     passwordConfirmation: '',
     postcode: `${userData.postcode}`,
-    image: ''
+    image: '',
+    bio: ''
+
   })
 
 
@@ -216,7 +218,7 @@ export default Settings
                 value="sitter"
                 name="status">
                 <img src="" alt="" />Sitter</button>
-            
+
               <button
                 id="button-radio-grow"
                 className="button-radio active"
@@ -225,8 +227,8 @@ export default Settings
                 <img src="" alt="" />
                 Owner</button>
             </div>
-          } 
-        </div>  
+          }
+        </div>
       </div>
 
       <div className="form-section">
@@ -280,7 +282,17 @@ export default Settings
         />
       </div>
 
-      <button style={{ backgroundColor: 'red'}}
+      <div className="form-section">
+        <textarea
+          className="input"
+          placeholder={userData.bio}
+          onChange={handleChange}
+          value={formData.bio}
+          name="bio"
+        ></textarea>
+      </div>
+
+      <button style={{ backgroundColor: 'red' }}
         onClick={handleSubmit}>Update My Profile</button>
 
 

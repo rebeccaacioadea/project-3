@@ -21,7 +21,8 @@ mongoose.connect(
             passwordConfirmation: 'Admin1!',
             postcode: 'SE108GE',
             badges: [],
-            isAdmin: true
+            isAdmin: true,
+            bio: 'Say aloe to my little friend'
           },
           {
             email: 'hello@hello.com',
@@ -30,7 +31,8 @@ mongoose.connect(
             password: 'Hello1!',
             passwordConfirmation: 'Hello1!',
             postcode: 'CT146DL',
-            badges: []
+            badges: [],
+            bio: 'Just your usual plant obsessed software engineer.'
           }
         ])
       })
