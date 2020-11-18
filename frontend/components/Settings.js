@@ -5,23 +5,10 @@ import axios from 'axios'
 
 
 const Settings = (props) => {
-  const [userData, updateUserData] = useState({})
-  const token = localStorage.getItem('token')
-
+  const userData = props.location.state.user
+  const userId = props.match.params.userId
 
   const [radioButton, updateRadioButton] = useState()
-
-  useEffect(() => {
-    axios.get(`/api/user/${getUserId()}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(resp => {
-        updateUserData(resp.data)
-        console.log(resp.data)
-      })
-      .catch(err => console.log(err))
-  }, [])
-
 
   const [formData, updateFormData] = useState({
     name: `${userData.name}`,
@@ -43,11 +30,10 @@ const Settings = (props) => {
       [name]: value
     }
     updateFormData(data)
+    console.log(formData)
   }
-  console.log(formData)
 
 
- 
   function handleRadioButton(event) {
     event.preventDefault()
     updateRadioButton(!radioButton)
@@ -66,13 +52,138 @@ const Settings = (props) => {
         if (resp.data.errors) return console.log(resp.data.errors)
         props.history.push('/')
       })
+      .then(() => {
+        location.reload()
+      })
   }
 
 
 
-  return <div className="section">
+  return <main>
+    <section className="cover">
+      <h1>Settings</h1>
+    </section>
+
+
+    <section className="content">
+      <section className="margin">
+        <h2>{userData.name}</h2>
+
+
+        <form onSubmit={handleSubmit}>
+
+          <div className="form-section">
+            {radioButton === true ?
+              <div className="radio-buttons">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active"
+                  value="sitter"
+                  name="status">
+                  <img src="" alt="" />Sitter</button>
+                <button
+                  id="button-radio-grow"
+                  className="button-radio "
+                  onClick={handleRadioButton}
+                  value="owner"
+                  name="status">
+                  <img src="" alt="" />
+                Owner</button>
+              </div>
+              :
+              <div className="radio-buttons">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio"
+                  onClick={handleRadioButton}
+                  value="sitter"
+                  name="status">
+                  <img src="" alt="" />Sitter</button>
+
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active"
+                  value="owner"
+                  name="status">
+                  <img src="" alt="" />
+                Owner</button>
+              </div>
+            }
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>Name</h5></label>
+            <input className="input"
+              type="text"
+              placeholder={userData.name}
+              onChange={handleChange}
+              value={formData.name}
+              name="name"
+            />
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>Email</h5></label>
+            <input className="input"
+              type="text"
+              placeholder={userData.email}
+              onChange={handleChange}
+              value={formData.email}
+              name="email"
+            />
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>Postcode</h5></label>
+            <input className="input"
+              type="text"
+              placeholder={userData.postcode}
+              onChange={handleChange}
+              value={formData.postcode}
+              name="postcode"
+            />
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>Password</h5></label>
+            <input className="input"
+              type="text"
+              placeholder=""
+              onChange={handleChange}
+              value={formData.password}
+              name="password"
+            />
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>Confirm Password</h5></label>
+            <input className="input"
+              type="text"
+              placeholder=""
+              onChange={handleChange}
+              value={formData.passwordConfirmation}
+              name="passwordConfirmation"
+            />
+          </div>
+
+          <button onClick={handleSubmit} className="button-green">Update</button>
+
+        </form>
+
+
+      </section>
+    </section>
+  </main >
+
+
+
+}
+
+
+export default Settings
+
+{/* <div className="section">
     <h5> Update your profile</h5>
-    {/* <img src="" alt="userImage" /> */}
     <h1>{`Hello ${userData.name}`} </h1>
     <form onSubmit={handleSubmit} >
 
@@ -118,7 +229,6 @@ const Settings = (props) => {
         </div>  
       </div>
 
-      {/* //! need to addd image---> user should upload their image */}
       <div className="form-section">
         <label className="label"><h5>Name</h5></label>
         <input className="input"
@@ -178,11 +288,4 @@ const Settings = (props) => {
 
    
       
-  </div>
-  
-
-
-}
-
-
-export default Settings
+  </div> */}

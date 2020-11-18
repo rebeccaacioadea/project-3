@@ -29,6 +29,9 @@ const Login = (props) => {
         localStorage.setItem('token', resp.data.token)
         props.history.push('/')
       })
+      .then(() => {
+        location.reload()
+      })
   }
 
 
@@ -60,7 +63,7 @@ const Login = (props) => {
               name="password"
             />
           </div>
-          <button className="button-green" id="button-grow">LOGIN</button>
+          <a href="/" onClick={handleSubmit} className="button-green" id="button-grow">LOGIN</a>
         </form>
       </section>
     </section>

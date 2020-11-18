@@ -51,8 +51,8 @@ const Header = () => {
 
   function logout() {
     localStorage.clear()
-    location.reload()
-    return false
+    // location.reload()
+    // return false
   }
 
   if (token) return <nav>
@@ -102,17 +102,19 @@ const Header = () => {
         </div>
       </Link>
 
-      <Link to={`/user-page/${user._id}/settings`} >
+      <Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }} >
         <div className="nav-item">
           <img src={navSetting} alt="nav-settings" />
           Settings
         </div>
       </Link>
 
+
+
       <div className="nav-div-buttons">
-        <button className="button-green button-nav button-brown" onClick={logout}>
+        <a href="/" className="button-green button-nav button-brown" onClick={logout}>
           Logout
-        </button>
+        </a>
       </div>
 
 
@@ -137,8 +139,6 @@ const Header = () => {
             REGISTER
           </button>
         </Link>
-
-
       </div>
 
 
@@ -153,3 +153,11 @@ const Header = () => {
 }
 
 export default Header
+
+
+{/* <Link to={`/user-page/${user._id}/settings`} >
+<div className="nav-item">
+  <img src={navSetting} alt="nav-settings" />
+  Settings
+</div>
+</Link> */}
