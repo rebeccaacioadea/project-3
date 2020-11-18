@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getUserId } from '../lib/auth'
 import axios from 'axios'
+import navHome from '../images/nav-home.svg'
+import navProfile from '../images/nav-profile.svg'
+import navSearch from '../images/nav-search.svg'
+import navMap from '../images/nav-map.svg'
+import navPin from '../images/nav-pinboard.svg'
+import navGram from '../images/nav-ferngram.svg'
+import navSetting from '../images/nav-settings.svg'
+import navWhite from '../images/NAV-WHITE.svg'
 
 // ! Burger for mobile
 // ! Navbar for desktop 
@@ -41,71 +49,107 @@ const Header = () => {
     document.getElementById('mySidenav').style.width = '0'
   }
 
-  return <nav>
+  function logout() {
+    localStorage.clear()
+    location.reload()
+    return false
+  }
+
+  if (token) return <nav>
     <div id="mySidenav" className="sidenav">
       <a className="closebtn"
         onClick={closeNav}>&times;</a>
 
       <Link to={'/'}>
         <div className="nav-item">
-          <img src={'../images/nav-home.svg'} alt="nav-home" />
+          <img src={navHome} alt="nav-home" />
           Home
         </div>
       </Link>
 
       <Link to={`/user-page/${user._id}`}>
         <div className="nav-item">
-          <img src={'../images/nav-profile.svg'} alt="nav-profile" />
+          <img src={navProfile} alt="nav-profile" />
           Profile
         </div>
       </Link>
 
       <Link to={'/plant-search'}>
         <div className="nav-item">
-          <img src={'../images/nav-search.svg'} alt="nav-search" />
+          <img src={navSearch} alt="nav-search" />
           Plant Search
         </div>
       </Link>
 
       <Link to={'/user-map'}>
         <div className="nav-item">
-          <img src={'../images/nav-map.svg'} alt="nav-map" />
+          <img src={navMap} alt="nav-map" />
           User Map
         </div>
       </Link>
 
       <Link to={'/plant-sitters'}>
         <div className="nav-item">
-          <img src={'../images/nav-pinboard.svg'} alt="nav-pinboard" />
+          <img src={navPin} alt="nav-pinboard" />
           Pin Board
         </div>
       </Link>
 
       <Link to={'/fernstagram'}>
         <div className="nav-item">
-          <img src={'../images/nav-ferngram.svg'} alt="nav-ferngram" />
+          <img src={navGram} alt="nav-ferngram" />
           FernGram
         </div>
       </Link>
 
-      <Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }} >
+      <Link to={`/user-page/${user._id}/settings`} >
         <div className="nav-item">
-          <img src={'../images/nav-settings.svg'} alt="nav-settings" />
+          <img src={navSetting} alt="nav-settings" />
           Settings
         </div>
       </Link>
+
+      <div className="nav-div-buttons">
+        <button className="button-green button-nav button-brown" onClick={logout}>
+          Logout
+        </button>
+      </div>
+
+
     </div>
-
-    <span className="nav-button" onClick={openNav}><img src={'../images/NAV-WHITE.svg'} alt="icon" /></span>
-
+    <span className="nav-button" onClick={openNav}><img src={navWhite} alt="icon" /></span>
   </nav>
+
+  return <nav>
+    <div id="mySidenav" className="sidenav">
+      <a className="closebtn"
+        onClick={closeNav}>&times;</a>
+
+      <div className="nav-div-buttons">
+        <Link to={'/user/login'}>
+          <button className="button-green button-nav">
+            LOGIN
+          </button>
+        </Link>
+
+        <Link to={'/user/register'}>
+          <button className="button-green button-nav button-brown" >
+            REGISTER
+          </button>
+        </Link>
+
+
+      </div>
+
+
+    </div>
+    <span className="nav-button" onClick={openNav}><img src={navWhite} alt="icon" /></span>
+  </nav>
+
+
+
+
+
 }
 
 export default Header
-
-
-// const Header = () => {
-//   return <nav>
-//     <img src={'../images/NAV-WHITE.svg'} alt="icon"/>
-//   </nav>
-// }

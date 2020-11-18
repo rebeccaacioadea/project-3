@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react'
-
+import { getUserId } from '../lib/auth'
 import axios from 'axios'
 
 
 
 const Settings = (props) => {
-  const userData = props.location.state.user
-  const userId = props.match.params.userId
-  console.log(userId)
-  console.log(userData)
+  const [userData, updateUserData] = useState({})
+  const token = localStorage.getItem('token')
 
-  console.log(props)
 
   const [radioButton, updateRadioButton] = useState()
+
+  useEffect(() => {
+    axios.get(`/api/user/${getUserId()}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(resp => {
+        updateUserData(resp.data)
+        console.log(resp.data)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
 
   const [formData, updateFormData] = useState({
     name: `${userData.name}`,
@@ -22,7 +31,6 @@ const Settings = (props) => {
     passwordConfirmation: '',
     postcode: `${userData.postcode}`,
     image: ''
-
   })
 
 
@@ -51,7 +59,7 @@ const Settings = (props) => {
     const token = localStorage.getItem('token')
     console.log(token)
 
-    axios.put(`/api/user/${userId}`, formData, {
+    axios.put(`/api/user/${getUserId()}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -64,9 +72,8 @@ const Settings = (props) => {
 
   return <div className="section">
     <h5> Update your profile</h5>
-    <img src="" alt="userImage" />
+    {/* <img src="" alt="userImage" /> */}
     <h1>{`Hello ${userData.name}`} </h1>
-
     <form onSubmit={handleSubmit} >
 
       <h5>Status</h5>
