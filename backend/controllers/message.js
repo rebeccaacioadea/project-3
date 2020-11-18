@@ -13,9 +13,10 @@ function addMessage(req, res) {
   message.user = req.currentUser
   Message
     .create(message)
-    .populate('user')
-    .then(message => res.send(message))
-    .catch(error => res.send(error))
+  Message    
+    .find().sort({ 'createdAt': -1 })
+    .then(resp => res.send(resp))
+    .catch(error => res.send(error)) 
 }
 
 function getMessage(req, res) {
