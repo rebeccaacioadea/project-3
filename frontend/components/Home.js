@@ -28,7 +28,6 @@ const Home = () => {
     })
       .then(resp => {
         updateUser(resp.data)
-        console.log(resp.data)
       })
       .then(() => {
         getPlantList()
@@ -55,19 +54,14 @@ const Home = () => {
     })
       .then(resp => {
         updateUser(resp.data)
-        console.log(typeof resp.data._id)
-        console.log(resp.data)
       })
       .catch(err => console.log(err))
   }
 
   function getPlantList() {
-    console.log('is it working?')
     axios.get(`api/users-plants/${getUserId()}`)
       .then(resp => {
         updateUserPlants(resp.data)
-        console.log(resp.data)
-        console.log('itworked')
       })
       .catch(err => console.log(err))
   }

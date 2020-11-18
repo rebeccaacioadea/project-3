@@ -41,7 +41,7 @@ const App = () => {
       <Route exact path="/user/register" component={Register} />
       <Route exact path="/user/login/" component={Login} />
       {/* Landing Page */}
-      <Route exact path ="/user-page/:userId/settings/" component = { Settings } />
+      <Route exact path ="/user-page/:userId/settings/" component={Settings} />
       <Route exact path="/" component={Home} />
     </Switch>
   </BrowserRouter>

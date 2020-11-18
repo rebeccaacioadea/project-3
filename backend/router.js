@@ -36,7 +36,7 @@ router.route('/user/login')
 
 // FIND / EDIT
 router.route('/user/users')
-  .get(secureRoute, userController.listUsers)
+  .get(userController.listUsers)
 
 router.route('/user/:userid')
   .put(secureRoute, userController.editUser)
@@ -81,5 +81,9 @@ router.route('/social/:socialid/:commentid')
 // DELETE SOCIAL
 router.route('/social/:socialid')
   .delete(secureRoute, socialController.deleteFeedPost)
+
+// POSTCODE API
+router.route('/post-code/:postcode')
+  .get(userController.postcodeGet)
 
 module.exports = router 

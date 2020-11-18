@@ -1,21 +1,3 @@
-// form {
-//   height: 300px;
-//   width: 600px;
-// }
-// //? LOGIN-PAGE
-// .login {
-//   margin-left: 40px;
-
-// }
-// //?EDIT-PLANT-PAGE
-// #editPlant{
-//   width:100vw;
-// margin-left: 40px;
-// padding: 10px;
-//   background-color: grey
-
-// }
-
 // ? IMPORTS
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:ital,wght@0,300;0,600;0,700;1,300;1,400;1,500&display=swap");
 
@@ -185,6 +167,16 @@ nav {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+.nav-div-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  left: 0;
 }
 
 /* Height is less than 450px */
@@ -463,7 +455,7 @@ select {
 }
 
 input:focus {
-  border: none;
+  border: 0;
   opacity: 1;
 }
 
@@ -544,6 +536,17 @@ form {
   margin-top: 20px;
 }
 
+.button-brown {
+  margin-top: 20px;
+  background-color: $brown;
+  box-shadow: none;
+}
+
+.button-nav {
+  min-width: 250px;
+  max-width: 250px;
+}
+
 // ! DON'T MOVE ORDER OF .BUTTON-RADIO
 // ! AND .ACTIVE
 .button-radio {
@@ -574,8 +577,8 @@ form {
   background-color: $button;
   color: white;
 }
-
 // ! *****
+
 // ? User Profile
 .button-addPlant {
   background: $brown;
@@ -585,3 +588,10 @@ form {
   justify-content: center;
   align-items: center;
 }
+
+// PLANT-SITTER
+.messageBoard {
+  border: 2px solid grey;
+  margin: 10px;
+}
+

@@ -72,7 +72,7 @@ const Register = (props) => {
             <label className="label"><h5>Name</h5></label>
             <input className="input"
               type="text"
-              placeholder="Type Here"
+              placeholder="Name"
               onChange={handleChange}
               value={formData.name}
               name="name"
@@ -86,7 +86,7 @@ const Register = (props) => {
             <label className="label"><h5>Username</h5></label>
             <input className="input"
               type="text"
-              placeholder=""
+              placeholder="Username"
               onChange={handleChange}
               value={formData.userName}
               name="userName"
@@ -104,7 +104,7 @@ const Register = (props) => {
             <label className="label"><h5>Email</h5></label>
             <input className="input"
               type="text"
-              placeholder=""
+              placeholder="Email"
               onChange={handleChange}
               value={formData.email}
               name="email"
@@ -118,7 +118,7 @@ const Register = (props) => {
             <label className="label"><h5>Password</h5></label>
             <input className="input"
               type="text"
-              placeholder=""
+              placeholder="Password"
               onChange={handleChange}
               value={formData.password}
               name="password"
@@ -132,7 +132,7 @@ const Register = (props) => {
             <label className="label"><h5>Confirm Password</h5></label>
             <input className="input"
               type="text"
-              placeholder=""
+              placeholder="Password Confirmation"
               onChange={handleChange}
               value={formData.passwordConfirmation}
               name="passwordConfirmation"
@@ -147,7 +147,7 @@ const Register = (props) => {
             <label className="label"><h5>Postcode</h5></label>
             <input className="input"
               type="text"
-              placeholder=""
+              placeholder="Postcode"
               onChange={handleChange}
               value={formData.postcode}
               name="postcode"

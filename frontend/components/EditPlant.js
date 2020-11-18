@@ -77,7 +77,7 @@ const EditPlant = (props) => {
           <div className="header-icon">
             {/* Making 'Messages' and the icon align center */}
             <img src="../images/book.svg" alt="message-icon" />
-            <h6>INSERT LIBRARY SCHEMA</h6>
+            <h6>{plantData.library}</h6>
           </div>
           <div>
             <img src="../images/share.svg" alt="edit-icon" />

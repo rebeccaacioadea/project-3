@@ -21,25 +21,24 @@ const AddPlant = (props) => {
   const [radioButton, updateRadioButton] = useState()
   const [reducedSynonyms, updateReducedSynonyms] = useState('')
 
-  // ! * WED RICO LOOK AT
+  // * Shortens List of Synonyms
   useEffect(() => {
     let synLimit = 4
-    plantData.synonyms.map((syn) => {
-      if (synLimit !== 0) {
-        updateReducedSynonyms(reducedSynonyms + syn)
+    updateReducedSynonyms(plantData.synonyms.map((syn) => {
+      if (synLimit > 0) {
+        // Makes a list of items
         synLimit--
-        console.log(synLimit)
-      } else if (synLimit === 0 && synLimit > 0) {
-        updateReducedSynonyms(reducedSynonyms + syn)
+        return syn + ', '
+      } else if (synLimit === 0 ) {
+        // If last item add a fullstop
         synLimit--
-        console.log(synLimit)
+        return syn + '.'
       }
 
-    })
+    }))
     console.log(reducedSynonyms)
     console.log(plantData.synonyms)
   }, [])
-  // ! ****
 
   const [formData, updateFormData] = useState({
     image: `${plantData.image_url}`,

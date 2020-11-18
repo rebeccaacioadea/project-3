@@ -1,6 +1,8 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
+const axios = require('axios')
+const { Error } = require('mongoose')
 
 // ? REGISTER
 function registerUser(req, res) {
@@ -99,6 +101,13 @@ function listUsers(req, res) {
     .then(resp => res.send(resp))
 }
 
+// ? PROXY POSTCODE INFORMATION
+function postcodeGet(req, res) {
+  const postcode = req.params.postcode
+  axios.get(`https://api.postcodes.io/postcodes/${postcode}`)
+    .then(resp => res.send(resp.data))
+    .catch(err => res.send(err))
+}
 
 module.exports = {
   registerUser,
@@ -106,5 +115,6 @@ module.exports = {
   editUser,
   deleteUser,
   getUser,
-  listUsers
+  listUsers,
+  postcodeGet
 }
