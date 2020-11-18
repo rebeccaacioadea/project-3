@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
   password: { 
     type: String, required: true, minlength: 6, 
-    match: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
+    match: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(.*\W){1}.*$/
   },
   owner: { type: Boolean, required: false },
   sitter: { type: Boolean, required: false },
