@@ -67,9 +67,6 @@ const EditPlant = (props) => {
   }
 
 
-<<<<<<< HEAD
-  return <form id="editPlant" > 
-=======
   return <main>
 
     <section className="cover">
@@ -189,7 +186,6 @@ export default EditPlant
 
 
 {/* <form id="editPlant" onSubmit = { handleSubmit} > 
->>>>>>> development
     <div>
       <div>
         <div>
