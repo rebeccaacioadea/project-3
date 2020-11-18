@@ -5,7 +5,6 @@ const userController = require('./controllers/user')
 const messageController = require('./controllers/message')
 const secureRoute = require('./middleware/secureRoute')
 
-
 // ? PLANTS
 // Grabbing from external API
 router.route('/plants-external/:query')
@@ -49,8 +48,8 @@ router.route('/messages/message-board')
   .get(secureRoute, messageController.getMessages)
   .post(secureRoute, messageController.addMessage)
 
-// router.route('/messages/:messageid/comments')
-//   .post(secureRoute, messageController.postComment)
+router.route('/messages/:messageid/comment')
+  .post(secureRoute, messageController.postComment)
 // 
 // router.route('/messages/:messageid/:commentid')
 //   .put(secureRoute, messageController.editComment)
