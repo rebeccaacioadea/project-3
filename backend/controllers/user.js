@@ -2,7 +2,6 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
-
 // ? REGISTER
 function registerUser(req, res) {
   const body = req.body
@@ -100,6 +99,7 @@ function listUsers(req, res) {
     .populate('plants')
     .then(resp => res.send(resp))
 }
+
 
 module.exports = {
   registerUser,

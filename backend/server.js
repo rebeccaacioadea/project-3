@@ -7,6 +7,7 @@ const Router = require('./router')
 const mongoose = require('mongoose')
 
 
+
 mongoose.connect(
 
   //! Complete DB location 
@@ -21,11 +22,10 @@ mongoose.connect(
     if (err) console.log(err)
     else console.log('Mongoose connected successfully!')
   }
-
 )
 
 
-// For environment varibles
+// For environment variables
 console.log(process.env.hello)
 
 // Logging

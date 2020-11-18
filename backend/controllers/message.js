@@ -58,13 +58,30 @@ function deleteMessage(req, res) {
       res.status(202).send({ message: 'DELETE accepted.' })
     })
     .catch(error => res.send(error))
-
 }
+
+function postComment(req, res) {
+  const comment = req.body
+  const messageId = req.params.messageid
+  comment.user = req.currentUser
+  Message
+    .findById(messageId)
+    .populate('comment.user')
+    .then(message => {
+      if (!message) return res.status(404).send({ message: 'Not found' })
+      message.comments.push(comment)
+      return message.save()
+    })
+    .then(message => res.send(message))
+    .catch(error => res.send(error))
+}
+
 
 module.exports = {
   getMessages,
   getMessage,
   addMessage,
   editMessage,
-  deleteMessage
+  deleteMessage,
+  postComment
 }
