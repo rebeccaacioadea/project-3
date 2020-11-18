@@ -5,7 +5,6 @@ const { secret } = require('../config/environment')
 // ? REGISTER
 function registerUser(req, res) {
   const body = req.body
-  console.log('hello')
   User
     .create(body)
     .then(user => {

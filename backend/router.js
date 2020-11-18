@@ -3,6 +3,7 @@ const router = express.Router()
 const dataController = require('./controllers/data')
 const userController = require('./controllers/user')
 const messageController = require('./controllers/message')
+const socialController = require('./controllers/social')
 const secureRoute = require('./middleware/secureRoute')
 
 // ? PLANTS
@@ -43,21 +44,42 @@ router.route('/user/:userid')
   .get(userController.getUser)
 
 // ? MESSAGE BOARD 
-// GET MESSAGES
+// GET/POST MESSAGES
 router.route('/messages/message-board')
   .get(secureRoute, messageController.getMessages)
   .post(secureRoute, messageController.addMessage)
 
+// POST COMMENT
 router.route('/messages/:messageid/comment')
   .post(secureRoute, messageController.postComment)
-// 
-// router.route('/messages/:messageid/:commentid')
-//   .put(secureRoute, messageController.editComment)
-//   .delete(secureRoute, messageController.deleteComment)
-
+// DELETE COMMENT
+router.route('/messages/:messageid/:commentid')
+  .delete(secureRoute, messageController.deleteComment)
+// GET/DELETE MESSAGE
 router.route('/messages/:messageid')
   .get(secureRoute, messageController.getMessage)
-  .put(secureRoute, messageController.editMessage)
   .delete(secureRoute, messageController.deleteMessage)
+
+// ? SOCIAL BOARD
+// GET/POST TO FEED
+router.route('/social')
+  .get(secureRoute, socialController.getFeed)
+  .post(secureRoute, socialController.postFeed)
+// GET SOCIAL BY USER
+router.route('/users-social/:userid')
+  .get(secureRoute, socialController.getUserFeed)
+// POST COMMENT
+router.route('/social/:socialid/comment')
+  .post(secureRoute, socialController.postComment)
+// NESTED COMMENTS
+router.route('/social/:socialid/:commentid/:nestedid')
+  .delete(secureRoute, socialController.deleteNestedComment)
+// DELETE COMMENT/POST NESTED COMMENT
+router.route('/social/:socialid/:commentid')
+  .delete(secureRoute, socialController.deleteComment)
+  .post(secureRoute, socialController.postNestedComment)
+// DELETE SOCIAL
+router.route('/social/:socialid')
+  .delete(secureRoute, socialController.deleteFeedPost)
 
 module.exports = router 

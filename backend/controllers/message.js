@@ -13,8 +13,9 @@ function addMessage(req, res) {
   message.user = req.currentUser
   Message
     .create(message)
-    .populate('user')
-    .then(message => res.send(message))
+  Message
+    .find()
+    .then(resp => res.send(resp))
     .catch(error => res.send(error))
 }
 
@@ -25,24 +26,6 @@ function getMessage(req, res) {
     .populate('user')
     .populate('comments.user')
     .then(message => res.send(message))
-    .catch(error => res.send(error))
-}
-
-function editMessage(req, res) {
-  const messageId = req.params.messageid
-  const currentUser = req.currentUser
-
-  Message
-    .findById(messageId)
-    .then(message => {
-      if (!message) return res.status(404).send({ message: 'Message not found.' })
-      if (!req.currentUser.isAdmin && !message.user.equals(currentUser._id)) {
-        return res.status(401).send({ message: `${req.method} Unauthorized` })
-      }
-      message.set(req.body)
-      message.save()
-        .then(message => res.send(message))
-    })
     .catch(error => res.send(error))
 }
 
@@ -78,12 +61,28 @@ function postComment(req, res) {
     .catch(error => res.send(error))
 }
 
+function deleteComment(req, res) {
+  const messageId = req.params.messageid
+  Message
+    .findById(messageId)
+    .then(message => {
+      if (!message) return res.status(404).send({ message: 'Message not found.' })
+      const comment = message.comments.id(req.params.commentid)
+      if (!req.currentUser.isAdmin && !comment.user.equals(req.currentUser._id) || !message.user.equals(req.currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
+      comment.remove()
+      return message.save()
+    })
+    .then(message => res.send(message))
+    .catch(error => res.send(error))
+}
 
 module.exports = {
   getMessages,
   getMessage,
   addMessage,
-  editMessage,
   deleteMessage,
-  postComment
+  postComment,
+  deleteComment
 }

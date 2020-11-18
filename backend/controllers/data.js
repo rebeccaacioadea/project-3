@@ -32,11 +32,10 @@ function getPlants(req, res) {
 
 function getPlantsByUser(req, res) {
   const userId = req.params.userid
-  console.log(userId)
   Data
     .find({ user: userId })
     .then(resp => res.send(resp))
-}
+}  
 
 // ? EDIT OUR PLANT
 function editPlants(req, res) {
@@ -76,7 +75,6 @@ function deletePlants(req, res) {
 // ? GET SINGLE PLANT
 function singlePlant(req, res) {
   const id = req.params.id
-  console.log('hello')
   Data
     .findById(id)
     .then(plant => {
