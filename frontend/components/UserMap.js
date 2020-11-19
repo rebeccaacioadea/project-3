@@ -48,15 +48,13 @@ const UserMap = () => {
 
 
   const [viewPort, setViewPort] = useState({
-    height: '100vh',
-    width: '100vw',
+    height: '80vh',
+    width: '100%',
     latitude: 51.515,
     longitude: -0.078,
     zoom: 10
   })
 
-  // ! Issue with mapbox pulling through the correct sizing which we cannot solve. Have used 
-  // ! a 'hack' with the style.scss to target just the correct
   return <main>
     <section className="cover">
       <h1>User Map</h1>
@@ -68,8 +66,8 @@ const UserMap = () => {
           <MapGL
             {...viewPort}
             mapboxApiAccessToken={'pk.eyJ1IjoicmFjaGVsYmVhbGUiLCJhIjoiY2tobmIyMGNnMDAxcTJ0cGVodGpxMDdjaCJ9.jIEvNHrY6OQ45Q05K2SO_w'}
-            // mapStyle="mapbox://styles/rachelbeale/ckhnmobp5103219o01iq25g8x"
-            onViewStateChange={(viewPort) => setViewPort(viewPort)}
+            mapStyle="mapbox://styles/rachelbeale/ckhoxbpuf299a19mmtb9arg8a"
+            onViewportChange={(viewPort) => setViewPort(viewPort)}
 
           >
 
@@ -79,13 +77,13 @@ const UserMap = () => {
                 latitude={user.lat}
                 longitude={user.long}
               >
-                <button
+                <button className="marker"
                   onClick={event => {
                     event.preventDefault()
                     updatePopupInfo(user)
                   }}
                 >
-                  <img src={'navGram'} alt={'img'} />
+        
                 </button>
               </Marker>
             })}

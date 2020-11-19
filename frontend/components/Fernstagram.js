@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+
 // ! This is the social feed
 // * List of all posts in time order 
 // * Image with caption 
@@ -14,6 +15,7 @@ import axios from 'axios'
 const Fernstagram = () => {
 
   const [feedData, updateFeedData] = useState([])
+  const [text, setText] = useState('')
   const token = localStorage.getItem('token')
 
   useEffect(() => {
@@ -26,6 +28,17 @@ const Fernstagram = () => {
         updateFeedData(data)
       })
   }, [])
+
+
+  // function handleComments(photoid) {
+  //   axios.post(`/api/social/${photoid}/comment`, { text }, {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //     .then(resp => {
+  //       setText('')
+  //       updateFeedData(resp.data)
+  //     })
+  // }
 
   return <main>
     <section className='cover'>
@@ -41,10 +54,10 @@ const Fernstagram = () => {
       </section>}
     <section className='social-feed'>
       {feedData.length > 0 && feedData.map(post => {
-        var timestamp = new Date(post.createdAt);
+        var timestamp = new Date(post.createdAt)
         var datetime = timestamp.getDate() + '/'
           + (timestamp.getMonth() + 1) + '/'
-          + timestamp.getFullYear() + '-'
+          + timestamp.getFullYear() + ' at '
           + timestamp.getHours() + ':'
           + timestamp.getMinutes() + ':'
           + timestamp.getSeconds()
@@ -53,6 +66,7 @@ const Fernstagram = () => {
           className='social-item'>
           <div className='title'>
             <h3>User: {post.user.name}</h3>
+            {/* { console.log(post._id)} */}
             <h4>Posted: {datetime}</h4>
           </div>
           <div className='image-container'
@@ -60,7 +74,21 @@ const Fernstagram = () => {
           >
           </div>
           <p>{post.caption}</p>
-          <div>comments</div>
+          {/* <button className="button-green"
+          >Comments</button> */}
+
+          <textarea
+            className="input"
+            placeholder="Add a comment"
+            onChange={event => setText(event.target.value)}
+            value={text}
+          >
+            {text}
+          </textarea>
+          <button
+            // onClick={handleComments(post._id)}
+          >Submit</button>
+
         </div>
       })}
     </section>
