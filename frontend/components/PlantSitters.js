@@ -3,7 +3,6 @@ import axios from 'axios'
 import { getUserId, isCreator } from '../lib/auth'
 import { update } from '../../backend/models/data'
 
-
 const PlantSitters = (props) => {
   const token = localStorage.getItem('token')
   // console.log(token)
@@ -74,6 +73,7 @@ const PlantSitters = (props) => {
         updateUserMessage('')
         updateMessages(resp.data)
         
+
       })
     refreshPage()
   }

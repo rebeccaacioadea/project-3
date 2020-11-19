@@ -98,6 +98,10 @@ function deleteNestedComment(req, res) {
     .findById(socialId)
     .then(post => {
       if (!post) return res.status(404).send({ message: 'Message not found.' })
+      if (!req.currentUser.isAdmin && !post.user.equals(req.currentUser._id) 
+      || !post.directComments.id(commentId).secondComments.id(nestedId).equals(req.currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
       post.directComments.id(commentId).secondComments.id(nestedId).remove()
       post.save()
       res.send(post)
