@@ -589,7 +589,7 @@ form {
   align-items: center;
 }
 
-// PLANT-SITTER
+// PLANT-SITTER ***************************
 .messageBoard {
   border: 3px solid rgba(243, 238, 238, 0.954);
   margin: 30px;
@@ -609,4 +609,13 @@ form {
     padding: 40px;
   }
 
+  .deleteButton{
+   text-align: right;
+  }
+
+  .updateButton{
+    text-align: right;
+    margin: 10px;
+  }
+// ****************************************************
 
