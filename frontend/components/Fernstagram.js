@@ -30,15 +30,15 @@ const Fernstagram = () => {
   }, [])
 
 
-  function handleComments(photoid) {
-    axios.post(`/api/social/${photoid}/comment`, { text }, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(resp => {
-        setText('')
-        updateFeedData(resp.data)
-      })
-  }
+  // function handleComments(photoid) {
+  //   axios.post(`/api/social/${photoid}/comment`, { text }, {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //     .then(resp => {
+  //       setText('')
+  //       updateFeedData(resp.data)
+  //     })
+  // }
 
   return <main>
     <section className='cover'>
@@ -86,7 +86,7 @@ const Fernstagram = () => {
             {text}
           </textarea>
           <button
-            onClick={handleComments(post._id)}
+            // onClick={handleComments(post._id)}
           >Submit</button>
 
         </div>
