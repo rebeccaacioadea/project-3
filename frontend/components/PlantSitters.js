@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getUserId, isCreator } from '../lib/auth'
+import { update } from '../../backend/models/data'
 
 
 const PlantSitters = (props) => {
@@ -98,6 +99,21 @@ const PlantSitters = (props) => {
       })
   }
 
+  function handleDeleteComment(messageId, commentid) {
+    axios.delete(`/api/messages/${messageId}/${commentid}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(resp => {
+      updateMessages(resp.data)
+    })
+
+  }
+   
+      
+ 
+
+  
+
 
   return <div>
     <h1>hello plantsitters</h1>
@@ -119,14 +135,21 @@ const PlantSitters = (props) => {
 
           {/* show the comments on the message Board */}
           {message.comments && message.comments.map(comment => {
-            return <div className="comments"
+            return <article className="comments"
               key={comment._id}>
               <h4>Replies</h4>
               <h6>{comment.user.userName} </h6>
               <p>{comment.text} </p>
+              {isCreator && <div className = 'media-right'>
+                <button
+                className = "delete"
+                onClick = {() => handleDeleteComment(comment._id) }>
+                </button>
+
+              </div> }
 
 
-            </div>
+            </article>
           })}
 
           <div>
@@ -165,7 +188,7 @@ const PlantSitters = (props) => {
 
 
 
-    <article>
+    <article className="messageBox">
 
       <h4> Add message to Pin Board</h4>
 
