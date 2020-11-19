@@ -45,6 +45,7 @@ function deleteMessage(req, res) {
     .catch(error => res.send(error))
 }
 
+
 function postComment(req, res) {
   const comment = req.body
   const messageId = req.params.messageid
@@ -67,6 +68,7 @@ function postComment(req, res) {
     .catch(error => res.send(error))
 }
 
+
 function deleteComment(req, res) {
   const messageId = req.params.messageid
   Message
@@ -74,7 +76,9 @@ function deleteComment(req, res) {
     .then(message => {
       if (!message) return res.status(404).send({ message: 'Message not found.' })
       const comment = message.comments.id(req.params.commentid)
-      if (!req.currentUser.isAdmin && !comment.user.equals(req.currentUser._id) || !message.user.equals(req.currentUser._id)) {
+      if (!req.currentUser.isAdmin && !comment.user.equals(req.currentUser._id) 
+      // || !message.user.equals(req.currentUser._id)
+      ) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
       comment.remove()

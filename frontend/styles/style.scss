@@ -92,8 +92,16 @@ body {
   background-color: $background;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
 }
 
 a,
@@ -117,11 +125,15 @@ nav {
 }
 
 /* The side navigation menu */
+.logo {
+  width: 240px;
+  padding: 30px 0px 30px 40px;
+}
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 10; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: $background;
@@ -138,6 +150,10 @@ nav {
   color: $Headings-Icons;
   display: block;
   transition: 0.3s;
+
+  .logout {
+    color: white
+  }
 }
 
 .nav-item {
@@ -381,13 +397,9 @@ select {
 .search-cover {
   background: linear-gradient($overlay, $overlay), url("/images/BG-1.jpg");
   background-size: cover;
-  height: 363.5px;
+  height: 370px;
   width: 100%;
   border-radius: 30px;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
 
   h1 {
     position: absolute;
@@ -398,31 +410,75 @@ select {
     height: 20px;
     width: 20px;
   }
+
+  input {
+    color: white;
+    border: 0px solid
+  }
+
+  input::placeholder {
+    font-family: $monts;
+    color: white;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+    opacity: 1;
+  }
 }
 
 #content-search {
   top: 300px;
-  background-color: transparent;
+  background-color: white;
+  height: 70vh;
+  overflow: scroll;
+}
+
+.new-flex {
+  display: flex;
+  flex-direction: column;
 }
 
 .search-bar {
   height: 47px;
-  width: 90%;
+  width: -webkit-fill-available;
   border-radius: 7px;
   background-color: rgba(255, 255, 255, 0.3);
   border: hidden;
   position: absolute;
-  top: 230px;
-  left: 30px;
+  top: 215px;
+  left: 0;
+  right: 0;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.fade {
+  position: fixed;
+  top: 300px;
+  min-width: 375px;
+  max-width: 700px;
+  height: 100px;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0.00) 100%);
+  z-index: 3;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  right: 0;
+  left: 0;
 }
 
 #search-profile {
-  background: linear-gradient($overlay, $overlay);
   background-size: cover;
   background-position: center;
   justify-content: center;
   flex-direction: column;
   align-items: flex-end;
+  text-align: right;
+
+  h3 {
+    margin-bottom: 10px;
+  }
 
   h4 {
     color: white;
@@ -474,12 +530,20 @@ input {
   max-width: 540px;
 }
 
+.plant-title {
+  margin-top: 5px
+}
+
 form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+
+.top-space {
+  margin-top: 10px
 }
 
 // ? PLANT PROFILE
@@ -528,6 +592,8 @@ form {
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: white;
+
+
 }
 
 .button-red {
@@ -545,6 +611,7 @@ form {
 .button-nav {
   min-width: 250px;
   max-width: 250px;
+  margin-right: 20px;
 }
 
 // ! DON'T MOVE ORDER OF .BUTTON-RADIO
@@ -589,11 +656,67 @@ form {
   align-items: center;
 }
 
-// PLANT-SITTER
+// PLANT-SITTER ***************************
 .messageBoard {
-  border: 2px solid grey;
-  margin: 10px;
+  border: 3px solid rgba(243, 238, 238, 0.954);
+  margin: 30px;
+  padding: 40px;
 }
+
+.comments {
+  border: 3px solid lightblue;
+  margin: 10px;
+  padding: 20px;
+
+}
+.messageBox {
+
+    border: 1px solid rgba(243, 238, 238, 0.954);
+    margin: 30px;
+    padding: 40px;
+  }
+
+// ? ANIMATION
+.fade-in {
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+  }
+  @keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+  }
+  .deleteButton{
+   text-align: right;
+  }
+
+  .updateButton{
+    text-align: right;
+    margin: 10px;
+  }
+// ****************************************************
 
 // ! FERNGRAM
 
@@ -648,13 +771,11 @@ form {
   width: 600px;
 }
 // ? 
-// .mapIcon {
-// //   height: 100vh;
-// //   width: 100vw;
-// }
-.mapIcon:first-child{
-// div:first-of-type{
-  height: 40vh !important;
-  width: 40vw !important;
-  position: relative !important;
+.marker {
+  background-image: url('../images/round-flower-white.svg');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
 }

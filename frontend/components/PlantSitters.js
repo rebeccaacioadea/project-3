@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getUserId, isCreator } from '../lib/auth'
-
+import { update } from '../../backend/models/data'
 
 const PlantSitters = (props) => {
   const token = localStorage.getItem('token')
-  console.log(token)
-  console.log(props)
+  // console.log(token)
+  // console.log(props)
 
-
+  // ! A function to reload the page 
+  const refreshPage = () => {
+    window.location.reload()
+  }
 
 
   const [text, setText] = useState('')
@@ -67,23 +70,23 @@ const PlantSitters = (props) => {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
-        updateMessages(resp.data)
         updateUserMessage('')
+        updateMessages(resp.data)
+        
 
       })
+    refreshPage()
   }
 
 
-
   function handleDeleteUserMessage(messageId) {
-
-
     axios.delete(`/api/messages/${messageId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
         updateMessages(resp.data)
       })
+    refreshPage()
   }
 
 
@@ -96,9 +99,20 @@ const PlantSitters = (props) => {
         setText('')
         updateMessages(resp.data)
       })
+    refreshPage()
   }
 
+  function handleDeleteComment(messageId, commentId) {
 
+    axios.delete(`/api/messages/${messageId}/${commentId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(resp => {
+        updateMessages(resp.data)
+      })
+    refreshPage()
+  }
+   
   return <div>
     <h1>hello plantsitters</h1>
     <h2>{userData.userName} </h2>
@@ -110,23 +124,42 @@ const PlantSitters = (props) => {
 
         return <div className="messageBoard "
           key={message._id}>
-          <h4 className="title is-4"> {message.user.userName} </h4>
+                    
+          {isCreator && <div className = "deleteButton">
+            <button
+              onClick={() => handleDeleteUserMessage(messageId)}>
+              Delete Your Message
+            </button>
+          </div>}
+          {isCreator && <div className = "updateButton">
+            <button
+              onClick={() => handleDeleteUserMessage(messageId)}>
+              Update Your Message
+            </button>
+          </div>}
+          <h3 className="title is-4"> {message.user.userName} </h3>
           <div>
-            <h6> From: {message.dateStart} </h6>
-            <h6> To: {message.dateEnd} </h6>
             <p>{message.commentBody} </p>
+            <small> From: {message.dateStart} </small>
+            <small> To: {message.dateEnd} </small>
           </div>
 
           {/* show the comments on the message Board */}
           {message.comments && message.comments.map(comment => {
-            return <div className="comments"
+            const commentId = comment._id
+            return <article className="comments"
               key={comment._id}>
               <h4>Replies</h4>
               <h6>{comment.user.userName} </h6>
+              <small>{comment.createdAt} </small>
               <p>{comment.text} </p>
-
-
-            </div>
+              {isCreator && <div>
+                <button
+                  onClick = {() => handleDeleteComment(messageId, commentId) }
+                > Delete your comment
+                </button>
+              </div> }
+            </article>
           })}
 
           <div>
@@ -134,7 +167,7 @@ const PlantSitters = (props) => {
             <p>
               <textarea
                 className=""
-                placeholder="Your Reply"
+                placeholder="Write Your Comment"
                 onChange={event => setText(event.target.value)}
                 value={text[message._id]}
                 name="comment"
@@ -143,31 +176,24 @@ const PlantSitters = (props) => {
               </textarea>
             </p>
             <button
-              onClick={() => handleComment(messageId)}
+              onClick={() => handleComment(messageId) }
             > Reply
             </button>
 
           </div>
 
-          {/* <button> Update Your Message</button> */}
-          {isCreator && <div>
-            <button
-              onClick={() => handleDeleteUserMessage(messageId)}>
-              Delete Your Message
-            </button>
-          </div>}
+
         </div>
       })}
-
     </div>
 
 
 
 
 
-    <article>
+    <article className="messageBox">
 
-      <h4> Add message to Pin Board</h4>
+      <h2> Add Your Message To Pin Board</h2>
 
       <div>
         <p>

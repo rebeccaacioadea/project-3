@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { getUserId } from '../lib/auth'
 import axios from 'axios'
 
@@ -6,9 +6,9 @@ import axios from 'axios'
 
 const Settings = (props) => {
   const userData = props.location.state.user
-  const userId = props.match.params.userId
+  // const userId = props.match.params.userId
 
-  const [radioButton, updateRadioButton] = useState()
+  const [radioButton, updateRadioButton] = useState(userData.sitter)
 
   const [formData, updateFormData] = useState({
     name: `${userData.name}`,
@@ -18,9 +18,15 @@ const Settings = (props) => {
     passwordConfirmation: '',
     postcode: `${userData.postcode}`,
     image: '',
-    bio: ''
-
+    bio: `${userData.bio}`,
+    sitter: `${userData.sitter}`
   })
+
+
+
+  function sameButton(event) {
+    event.preventDefault()
+  }
 
 
   function handleChange(event) {
@@ -32,7 +38,6 @@ const Settings = (props) => {
       [name]: value
     }
     updateFormData(data)
-    console.log(formData)
   }
 
 
@@ -74,39 +79,42 @@ const Settings = (props) => {
 
         <form onSubmit={handleSubmit}>
 
-          <div className="form-section">
+          <div className="form-section extra-space">
+            <label className="label"><h5>Status</h5></label>
             {radioButton === true ?
-              <div className="radio-buttons">
+              <div className="radio-buttons top-space">
                 <button
                   id="button-radio-grow"
                   className="button-radio active"
-                  value="sitter"
-                  name="status">
+                  onClick={sameButton}
+                  value={true}
+                  name="sitter">
                   <img src="" alt="" />Sitter</button>
-                <button
-                  id="button-radio-grow"
-                  className="button-radio "
-                  onClick={handleRadioButton}
-                  value="owner"
-                  name="status">
-                  <img src="" alt="" />
-                Owner</button>
-              </div>
-              :
-              <div className="radio-buttons">
                 <button
                   id="button-radio-grow"
                   className="button-radio"
                   onClick={handleRadioButton}
-                  value="sitter"
-                  name="status">
+                  value={false}
+                  name="sitter">
+                  <img src="" alt="" />
+                Owner</button>
+              </div>
+              :
+              <div className="radio-buttons top-space">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio"
+                  onClick={handleRadioButton}
+                  value={true}
+                  name="sitter">
                   <img src="" alt="" />Sitter</button>
 
                 <button
                   id="button-radio-grow"
+                  onClick={sameButton}
                   className="button-radio active"
-                  value="owner"
-                  name="status">
+                  value={false}
+                  name="sitter">
                   <img src="" alt="" />
                 Owner</button>
               </div>
@@ -147,6 +155,17 @@ const Settings = (props) => {
           </div>
 
           <div className="form-section">
+            <label className="label"><h5>BIO</h5></label>
+            <textarea
+              className="input"
+              placeholder={userData.bio}
+              onChange={handleChange}
+              value={formData.bio}
+              name="bio"
+            ></textarea>
+          </div>
+
+          <div className="form-section">
             <label className="label"><h5>Password</h5></label>
             <input className="input"
               type="text"
@@ -183,121 +202,3 @@ const Settings = (props) => {
 
 
 export default Settings
-
-{/* <div className="section">
-    <h5> Update your profile</h5>
-    <h1>{`Hello ${userData.name}`} </h1>
-    <form onSubmit={handleSubmit} >
-
-      <h5>Status</h5>
-      <div className="">
-        <div>
-          {radioButton === true ?
-            <div className="radio-buttons">
-              <button
-                id="button-radio-grow"
-                className="button-radio active"
-                value="sitter"
-                name="status">
-                <img src="" alt="" />Sitter</button>
-              <button
-                id="button-radio-grow"
-                className="button-radio "
-                onClick={handleRadioButton}
-                value="owner"
-                name="status">
-                <img src="" alt="" />
-                Owner</button>
-            </div>
-            :
-            <div className="radio-buttons">
-              <button
-                id="button-radio-grow"
-                className="button-radio"
-                onClick={handleRadioButton}
-                value="sitter"
-                name="status">
-                <img src="" alt="" />Sitter</button>
-
-              <button
-                id="button-radio-grow"
-                className="button-radio active"
-                value="owner"
-                name="status">
-                <img src="" alt="" />
-                Owner</button>
-            </div>
-          }
-        </div>
-      </div>
-
-      <div className="form-section">
-        <label className="label"><h5>Name</h5></label>
-        <input className="input"
-          type="text"
-          placeholder=""
-          onChange={handleChange}
-          value={formData.name}
-          name="name"
-        />
-      </div>
-      <div className="form-section">
-        <label className="label"><h5>Email</h5></label>
-        <input className="input"
-          type="text"
-          placeholder=""
-          onChange={handleChange}
-          value={formData.email}
-          name="email"
-        />
-      </div>
-      <div className="form-section">
-        <label className="label"><h5>Postcode</h5></label>
-        <input className="input"
-          type="text"
-          placeholder=""
-          onChange={handleChange}
-          value={formData.postcode}
-          name="postcode"
-        />
-      </div>
-      <div className="form-section">
-        <label className="label"><h5>Password</h5></label>
-        <input className="input"
-          type="text"
-          placeholder=""
-          onChange={handleChange}
-          value={formData.password}
-          name="password"
-        />
-      </div>
-      <div className="form-section">
-        <label className="label"><h5>Confirm Password</h5></label>
-        <input className="input"
-          type="text"
-          placeholder=""
-          onChange={handleChange}
-          value={formData.passwordConfirmation}
-          name="passwordConfirmation"
-        />
-      </div>
-
-      <div className="form-section">
-        <textarea
-          className="input"
-          placeholder={userData.bio}
-          onChange={handleChange}
-          value={formData.bio}
-          name="bio"
-        ></textarea>
-      </div>
-
-      <button style={{ backgroundColor: 'red' }}
-        onClick={handleSubmit}>Update My Profile</button>
-
-
-    </form>
-
-   
-      
-  </div> */}

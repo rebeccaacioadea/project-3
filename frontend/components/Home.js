@@ -86,8 +86,9 @@ const Home = () => {
             <img src="./images/messages.svg" alt="message-icon" />
             <h6>Messages</h6>
           </div>
-          <div>
+          <div><Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }}>
             <img src="./images/edit.svg" alt="edit-icon" />
+          </Link>
           </div>
         </div>
 
@@ -97,10 +98,17 @@ const Home = () => {
             <h5>Support<br />Badge</h5>
           </div>
           <img src="./images/vertical-line.svg" alt="vertical-line" />
-          <div>
-            <img src="./images/plantpot.svg" alt="flower-in-pot" />
-            <h5>Looking<br />For</h5>
-          </div>
+          {user.sitter ?
+            <div>
+              <img src="../images/plantpot.svg" alt="flower-in-pot" />
+              <h5>PLANT<br />SITTER</h5>
+            </div>
+            :
+            <div>
+              <img src="../images/compass.svg" alt="compass" />
+              <h5>PLANT<br />OWNER</h5>
+            </div>
+          }
           <img src="./images/vertical-line.svg" alt="vertical-line" />
           <div>
             <h1>{userPlants.length}</h1>
