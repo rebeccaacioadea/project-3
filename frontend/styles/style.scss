@@ -596,6 +596,21 @@ form {
 }
 
 // ! FERNGRAM
+
+.post-item {
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 10px;
+  h2 {
+    color: #819667;
+    margin: 5px;
+  }
+}
+
 .social-item {
   border-radius: 10px;
   border-bottom-left-radius: 30px;
@@ -604,8 +619,14 @@ form {
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
+  h2 {
+    color: #819667;
+    margin: 5px;
+    
+  }
 
   .title{
+    width: 80%;
     margin: 20px;
     display: flex;
     flex-direction: row;
@@ -618,6 +639,7 @@ form {
     h4 {
       color: #678262;
     }
+
   }
   
 }

@@ -1,3 +1,4 @@
+
 const Social = require('../models/social')
 
 function getFeed(req, res) {
