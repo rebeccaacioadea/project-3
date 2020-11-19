@@ -625,3 +625,14 @@ form {
 .social-feed {
   width: 600px;
 }
+// ? 
+// .mapIcon {
+// //   height: 100vh;
+// //   width: 100vw;
+// }
+.mapIcon:first-child{
+// div:first-of-type{
+  height: 40vh !important;
+  width: 40vw !important;
+  position: relative !important;
+}
