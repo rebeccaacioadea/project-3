@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Data = require('./models/data')
 const User = require('./models/user')
 const Message = require('./models/message')
+const Social = require('./models/social')
 
 mongoose.connect(
   'mongodb://localhost/seeded',
@@ -40,6 +41,21 @@ mongoose.connect(
       .then(users => {
         console.log(`${users.length} users have been created`)
         return users
+      })
+
+      .then(users => {
+        return Social.create([
+          {
+            image: 'https://i.imgur.com/TvUzQKk.jpg',
+            caption: 'Made a planter for my Cactus!',
+            user: users[0]
+          },
+          {
+            image: 'https://i.imgur.com/PDYIpMg.jpg',
+            caption: 'The Jasmine is looking lovely today.',
+            user: users[1]
+          }
+        ]), users
       })
 
       .then(users => {

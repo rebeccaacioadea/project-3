@@ -32,7 +32,6 @@ function secureRoute(req, res, next){
 
   })
 
-  console.log('In my secure route!')
 
 }
 
