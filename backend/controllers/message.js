@@ -45,6 +45,7 @@ function deleteMessage(req, res) {
     .catch(error => res.send(error))
 }
 
+
 function postComment(req, res) {
   const comment = req.body
   const messageId = req.params.messageid
@@ -57,7 +58,13 @@ function postComment(req, res) {
       message.comments.push(comment)
       return message.save()
     })
-    .then(message => res.send(message))
+  Message
+    .find().sort({ 'createdAt': -1 })
+    .populate('user')
+    .populate('comments.user')
+    .then(resp => {
+      return res.send(resp)
+    })
     .catch(error => res.send(error))
 }
 

@@ -3,18 +3,19 @@ import axios from 'axios'
 import { getUserId, isCreator } from '../lib/auth'
 
 
-
 const PlantSitters = (props) => {
   const token = localStorage.getItem('token')
   console.log(token)
+  console.log(props)
 
-  
+
+
 
   const [text, setText] = useState('')
 
   const [userData, updateUserData] = useState({})
 
-  useEffect(() =>{
+  useEffect(() => {
     axios.get(`/api/user/${getUserId()}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -29,17 +30,15 @@ const PlantSitters = (props) => {
   const [messages, updateMessages] = useState([])
 
   useEffect(() => {
-    axios.get('/api/messages/message-board' , {
+    axios.get('/api/messages/message-board', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
         console.log(resp.data)
         updateMessages(resp.data)
-        
+
       })
   }, [])
-
-  // console.log(messages)
 
 
   const [userMessage, updateUserMessage] = useState({
@@ -59,24 +58,26 @@ const PlantSitters = (props) => {
     }
     updateUserMessage(data)
   }
-  
+
 
   function handleMessageSubmit(event) {
+    event.preventDefault()
 
-
-    axios.post('/api/messages/message-board',  userMessage , {
+    axios.post('/api/messages/message-board', userMessage, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
         updateMessages(resp.data)
         updateUserMessage('')
-       
+
       })
   }
 
 
 
-  function handleDeleteUserMessage(messageId){
+  function handleDeleteUserMessage(messageId) {
+
+
     axios.delete(`/api/messages/${messageId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -87,7 +88,8 @@ const PlantSitters = (props) => {
 
 
   function handleComment(messageId) {
-    axios.post(`/api/messages/${messageId}/comment`, {
+
+    axios.post(`/api/messages/${messageId}/comment`, { text }, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -100,59 +102,80 @@ const PlantSitters = (props) => {
   return <div>
     <h1>hello plantsitters</h1>
     <h2>{userData.userName} </h2>
-    <div className ="messages" >        
-      {!messages.commentBody && messages.map((message, index) => {
-        return <div className="messageBoard " 
-          key={index}> 
+    <div className="messages" >
+
+      {/* show All the messages */}
+      {!messages.commentBody && messages.map((message) => {
+        const messageId = message._id
+
+        return <div className="messageBoard "
+          key={message._id}>
           <h4 className="title is-4"> {message.user.userName} </h4>
           <div>
             <h6> From: {message.dateStart} </h6>
             <h6> To: {message.dateEnd} </h6>
             <p>{message.commentBody} </p>
           </div>
+
+          {/* show the comments on the message Board */}
+          {message.comments && message.comments.map(comment => {
+            return <div className="comments"
+              key={comment._id}>
+              <h4>Replies</h4>
+              <h6>{comment.user.userName} </h6>
+              <p>{comment.text} </p>
+
+
+            </div>
+          })}
+
           <div>
-        
+
             <p>
               <textarea
-                className= ""
-                placeholder = "Your Reply"
-                onChange = {event => setText(event.target.value)}
-                value = {text}
-              >    
+                className=""
+                placeholder="Your Reply"
+                onChange={event => setText(event.target.value)}
+                value={text[message._id]}
+                name="comment"
+
+              >
               </textarea>
             </p>
             <button
-              onClick = {handleComment}
-            > Reply 
+              onClick={() => handleComment(messageId)}
+            > Reply
             </button>
 
           </div>
-       
+
           {/* <button> Update Your Message</button> */}
           {isCreator && <div>
             <button
-              onClick = {() => handleDeleteUserMessage(message._id) }> 
+              onClick={() => handleDeleteUserMessage(messageId)}>
               Delete Your Message
             </button>
           </div>}
         </div>
       })}
- 
+
     </div>
 
 
-      
 
-    
+
+
     <article>
-     
+
+      <h4> Add message to Pin Board</h4>
+
       <div>
         <p>
           <textarea
-            className= "textarea"
-            placeholder ="Write your message"
-            onChange = { handleMessageChange }
-            value = {userMessage.commentBody}
+            className="textarea"
+            placeholder="Write your message"
+            onChange={handleMessageChange}
+            value={userMessage.commentBody}
             name="commentBody"
           >
             {userMessage}
@@ -181,8 +204,8 @@ const PlantSitters = (props) => {
       </div>
       <div>
         <p>
-          <button 
-            onClick = {handleMessageSubmit}
+          <button
+            onClick={handleMessageSubmit}
           >
 
             Submit
@@ -191,8 +214,8 @@ const PlantSitters = (props) => {
       </div>
     </article>
   </div>
-  
- 
+
+
 
 }
 
