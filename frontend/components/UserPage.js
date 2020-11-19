@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { getUserId, isCreator } from '../lib/auth'
+import { isCreator } from '../lib/auth'
 
 // ! User Page
 // * Name 
@@ -19,8 +19,8 @@ import { getUserId, isCreator } from '../lib/auth'
 
 
 const UserPage = (props) => {
-  const [userInfo, updateUserInfo] = useState({})
-  const token = localStorage.getItem('token')
+  const [user, updateUser] = useState({})
+  // const token = localStorage.getItem('token')
   const profileId = props.match.params.userId
   const [userPlants, updateUserPlants] = useState([])
   const [radioButton, updateRadioButton] = useState()
@@ -33,7 +33,7 @@ const UserPage = (props) => {
       })
     axios.get(`/api/user/${profileId}`)
       .then(resp => {
-        updateUserInfo(resp.data)
+        updateUser(resp.data)
         console.log(resp.data)
       })
   }, [])
@@ -51,7 +51,7 @@ const UserPage = (props) => {
 
     <section className="content">
       <section className="margin">
-        <h2>{userInfo.name}</h2>
+        <h2>{user.name}</h2>
         <div className="header-title">
           {/* Making left section and right edit icon align center */}
           <div className="header-icon">
@@ -59,8 +59,7 @@ const UserPage = (props) => {
             <img src="../images/messages.svg" alt="message-icon" />
             <h6>Messages</h6>
           </div>
-          <div>
-            <img src="../images/edit.svg" alt="edit-icon" />
+          <div><Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }}><img src="../images/edit.svg" alt="edit-icon" /></Link>
           </div>
         </div>
 
@@ -71,7 +70,7 @@ const UserPage = (props) => {
           </div>
           <img src="../images/vertical-line.svg" alt="vertical-line" />
 
-          {userInfo.sitter ?
+          {user.sitter ?
             <div>
               <img src="../images/plantpot.svg" alt="flower-in-pot" />
               <h5>PLANT<br />SITTER</h5>
@@ -93,10 +92,10 @@ const UserPage = (props) => {
         <hr />
 
         <div>
-          {userInfo.bio ?
+          {user.bio ?
             <div className="bio">
               <h5>Bio</h5>
-              <p>{userInfo.bio}</p>
+              <p>{user.bio}</p>
             </div>
             :
             <div className="bio">
@@ -121,13 +120,13 @@ const UserPage = (props) => {
                   Posts
                   </button>
                 </div>
-                {isCreator(userInfo._id) && <Link to={'/plant-search'}>
+                {isCreator(user._id) && <Link to={'/plant-search'}>
                   <div className="button-green button-addPlant">Add New plant</div>
                 </Link>}
                 {userPlants.map((plant, index) => {
                   return <Link key={index}
                     to={`/profile-plant/${plant._id}`} >
-                    <div style={{ backgroundImage: `url(${plant.image})` }}
+                    <div style={{ backgroundImage: `linear-gradient(rgba(129, 150, 103, 0.9), rgba(129, 150, 103, 0.9)), url(${plant.image})` }}
                       className="list-item" id="search-profile">
                       <h3>{plant.commonName} </h3>
                       <h4>{plant.scientificName}</h4>

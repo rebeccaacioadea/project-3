@@ -10,6 +10,7 @@ import navPin from '../images/nav-pinboard.svg'
 import navGram from '../images/nav-ferngram.svg'
 import navSetting from '../images/nav-settings.svg'
 import navWhite from '../images/NAV-WHITE.svg'
+import logo from '../images/logo.svg'
 
 // ! Burger for mobile
 // ! Navbar for desktop 
@@ -59,6 +60,8 @@ const Header = () => {
     <div id="mySidenav" className="sidenav">
       <a className="closebtn"
         onClick={closeNav}>&times;</a>
+
+      <img className="logo" src={logo} alt={'seeded-logo'} />
 
       <Link to={'/'}>
         <div className="nav-item">
@@ -113,7 +116,7 @@ const Header = () => {
 
       <div className="nav-div-buttons">
         <a href="/" onClick={logout}><button className="button-green button-nav button-brown">Logout</button>
-          
+
         </a>
       </div>
 

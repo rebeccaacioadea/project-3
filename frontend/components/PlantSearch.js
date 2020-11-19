@@ -22,7 +22,7 @@ const PlantSearch = () => {
         .then(resp => {
           updateResults(resp.data.data)
         })
-    } 
+    }
   }
 
   useEffect(() => {
@@ -40,28 +40,40 @@ const PlantSearch = () => {
     <section className="search-cover">
       <h1>Plant <br /> Library</h1>
       <input className="search-bar"
-        placeholder="Search"
+        placeholder="Search..."
         onChange={(event) => updateTypedWord(event.target.value)}
         value={typedWord}
         onKeyPress={enterKey}
       />
     </section>
 
-    <section className="content" id="content-search">
-      <section className="margin" id="search-margin">
-        {results.map((plant, index) => {
-          return <Link key={index}
-            to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
-            <div style={{ backgroundImage: `url(${plant.image_url})` }}
-              className="list-item" id="search-profile">
-              <h3>{plant.common_name} </h3>
-              <h4>{plant.scientific_name}</h4>
-            </div>
-          </Link>
-        })}
+    {query ?
+      <section className="content fade-in" id="content-search">
+        <div className="fade"></div>
+        <section className="margin">
+          {results.map((plant, index) => {
+            return <Link key={index}
+              to={{ pathname: `/add-plant/${plant.id}`, state: { plant } }} >
+              <div style={{ backgroundImage: `linear-gradient(rgba(129, 150, 103, 0.9), rgba(129, 150, 103, 0.9)), url(${plant.image_url})` }}
+                className="list-item" id="search-profile">
+                <h3>{plant.common_name} </h3>
+                <h4>{plant.scientific_name}</h4>
+              </div>
+            </Link>
+          })}
+        </section>
       </section>
-    </section>
+
+      :
+
+      <div></div>
+
+    }
+
+
   </main>
 }
+
+
 
 export default PlantSearch

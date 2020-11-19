@@ -86,8 +86,9 @@ const Home = () => {
             <img src="./images/messages.svg" alt="message-icon" />
             <h6>Messages</h6>
           </div>
-          <div>
+          <div><Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }}>
             <img src="./images/edit.svg" alt="edit-icon" />
+          </Link>
           </div>
         </div>
 
