@@ -595,3 +595,33 @@ form {
   margin: 10px;
 }
 
+// ! FERNGRAM
+.social-item {
+  border-radius: 10px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 10px;
+
+  .title{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      color:#678258;
+    }
+
+    h4 {
+      color: #678262;
+    }
+  }
+  
+}
+
+.social-feed {
+  width: 600px;
+}

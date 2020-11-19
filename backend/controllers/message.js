@@ -13,10 +13,10 @@ function addMessage(req, res) {
   message.user = req.currentUser
   Message
     .create(message)
-  Message    
+  Message
     .find().sort({ 'createdAt': -1 })
     .then(resp => res.send(resp))
-    .catch(error => res.send(error)) 
+    .catch(error => res.send(error))
 }
 
 function getMessage(req, res) {
@@ -57,7 +57,13 @@ function postComment(req, res) {
       message.comments.push(comment)
       return message.save()
     })
-    .then(message => res.send(message))
+  Message
+    .find().sort({ 'createdAt': -1 })
+    .populate('user')
+    .populate('comments.user')
+    .then(resp => {
+      return res.send(resp)
+    })
     .catch(error => res.send(error))
 }
 
