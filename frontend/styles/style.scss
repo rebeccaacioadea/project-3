@@ -589,11 +589,35 @@ form {
   align-items: center;
 }
 
-// PLANT-SITTER
+// PLANT-SITTER ***************************
 .messageBoard {
-  border: 2px solid grey;
-  margin: 10px;
+  border: 3px solid rgba(243, 238, 238, 0.954);
+  margin: 30px;
+  padding: 40px;
 }
+
+.comments {
+  border: 3px solid lightblue;
+  margin: 10px;
+  padding: 20px;
+
+}
+.messageBox {
+
+    border: 1px solid rgba(243, 238, 238, 0.954);
+    margin: 30px;
+    padding: 40px;
+  }
+
+  .deleteButton{
+   text-align: right;
+  }
+
+  .updateButton{
+    text-align: right;
+    margin: 10px;
+  }
+// ****************************************************
 
 // ! FERNGRAM
 .social-item {
