@@ -34,6 +34,7 @@ const UserPage = (props) => {
     axios.get(`/api/user/${profileId}`)
       .then(resp => {
         updateUserInfo(resp.data)
+        console.log(resp.data)
       })
   }, [])
 
@@ -69,10 +70,20 @@ const UserPage = (props) => {
             <h5>Support<br />Badge</h5>
           </div>
           <img src="../images/vertical-line.svg" alt="vertical-line" />
-          <div>
-            <img src="../images/plantpot.svg" alt="flower-in-pot" />
-            <h5>Looking<br />For</h5>
-          </div>
+
+          {userInfo.sitter ?
+            <div>
+              <img src="../images/plantpot.svg" alt="flower-in-pot" />
+              <h5>PLANT<br />SITTER</h5>
+            </div>
+            :
+            <div>
+              <img src="../images/compass.svg" alt="compass" />
+              <h5>PLANT<br />OWNER</h5>
+            </div>
+          }
+
+
           <img src="../images/vertical-line.svg" alt="vertical-line" />
           <div>
             <h1>{userPlants.length}</h1>
@@ -82,10 +93,15 @@ const UserPage = (props) => {
         <hr />
 
         <div>
-          <div className="bio">
-            <h5>Bio</h5>
-            <p>Bio goes here TO MAP WHEN USER SCHEMA HAS BEEN UPDATED</p>
-          </div>
+          {userInfo.bio ?
+            <div className="bio">
+              <h5>Bio</h5>
+              <p>{userInfo.bio}</p>
+            </div>
+            :
+            <div className="bio">
+            </div>
+          }
 
           <div className="form-Section">
             {radioButton === true ?

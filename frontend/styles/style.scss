@@ -138,6 +138,10 @@ nav {
   color: $Headings-Icons;
   display: block;
   transition: 0.3s;
+
+  .logout {
+    color: white
+  }
 }
 
 .nav-item {
@@ -482,6 +486,10 @@ form {
   align-items: center;
 }
 
+.top-space {
+  margin-top: 10px
+}
+
 // ? PLANT PROFILE
 .profile-info {
   display: flex;
@@ -528,6 +536,8 @@ form {
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: white;
+
+
 }
 
 .button-red {
@@ -545,6 +555,7 @@ form {
 .button-nav {
   min-width: 250px;
   max-width: 250px;
+  margin-right: 20px;
 }
 
 // ! DON'T MOVE ORDER OF .BUTTON-RADIO

@@ -112,8 +112,8 @@ const Header = () => {
 
 
       <div className="nav-div-buttons">
-        <a href="/" className="button-green button-nav button-brown" onClick={logout}>
-          Logout
+        <a href="/" onClick={logout}><button className="button-green button-nav button-brown">Logout</button>
+          
         </a>
       </div>
 
@@ -153,11 +153,3 @@ const Header = () => {
 }
 
 export default Header
-
-
-{/* <Link to={`/user-page/${user._id}/settings`} >
-<div className="nav-item">
-  <img src={navSetting} alt="nav-settings" />
-  Settings
-</div>
-</Link> */}

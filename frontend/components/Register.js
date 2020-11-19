@@ -4,6 +4,8 @@ import axios from 'axios'
 
 
 const Register = (props) => {
+  const [radioButton, updateRadioButton] = useState()
+
 
   const [formData, updateFormData] = useState({
     name: '',
@@ -11,9 +13,11 @@ const Register = (props) => {
     email: '',
     password: '',
     passwordConfirmation: '',
-    postcode: ''
-
+    postcode: '',
+    sitter: false,
+    bio: ''
   })
+
   const [errors, updateErrors] = useState({
     name: '',
     userName: '',
@@ -24,11 +28,20 @@ const Register = (props) => {
 
   })
 
+  function handleRadioButton(event) {
+    event.preventDefault()
+    updateRadioButton(!radioButton)
+    handleChange(event)
+  }
 
+  function sameButton(event) {
+    event.preventDefault()
+  }
 
   function handleChange(event) {
     const name = event.target.name
     const value = event.target.value
+
 
     const data = {
       ...formData,
@@ -155,6 +168,58 @@ const Register = (props) => {
             {errors.postcode && <p style={{ color: 'red' }}>
               {`There was a problem with your ${errors.postcode.path}`}
             </p>}
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>Status</h5></label>
+            {radioButton === true ?
+              <div className="radio-buttons top-space">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active"
+                  onClick={sameButton}
+                  value={true}
+                  name="sitter">
+                  <img src="../images/deer-white.svg" alt="deer" />Sitter</button>
+                <button
+                  id="button-radio-grow"
+                  className="button-radio "
+                  onClick={handleRadioButton}
+                  value={false}
+                  name="sitter">
+                  <img src="../images/fireplace-green.svg" alt="fireplace" />
+              Owner</button>
+              </div>
+              :
+              <div className="radio-buttons top-space">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio"
+                  onClick={handleRadioButton}
+                  value={true}
+                  name="sitter">
+                  <img src="../images/deer-green.svg" alt="deer" />Sitter</button>
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active"
+                  onClick={sameButton}
+                  value={false}
+                  name="sitter">
+                  <img src="../images/fireplace-white.svg" alt="fireplace" />
+              Owner</button>
+              </div>
+            }
+          </div>
+
+          <div className="form-section">
+            <label className="label"><h5>BIO</h5></label>
+            <textarea
+              className="input"
+              placeholder="Tell us about yourself"
+              onChange={handleChange}
+              value={formData.bio}
+              name="bio"
+            ></textarea>
           </div>
 
           <button className="button-green" id="button-grow">Sign Up</button>

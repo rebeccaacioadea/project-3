@@ -63,7 +63,7 @@ const Login = (props) => {
               name="password"
             />
           </div>
-          <a href="/" onClick={handleSubmit} className="button-green" id="button-grow">LOGIN</a>
+          <a href="/" onClick={handleSubmit} className="button-green"><button className="button-green">LOGIN</button></a>
         </form>
       </section>
     </section>
