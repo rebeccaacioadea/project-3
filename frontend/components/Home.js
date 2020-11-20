@@ -7,7 +7,7 @@ import illustrationtwo from '../images/illustration-2.svg'
 import illustrationthree from '../images/illustration-3.svg'
 import logowhite from '../images/logo-white.svg'
 import messages from '../images/messages.svg'
-import badge from './images/badge.svg'
+import badge from '../images/badge.svg'
 import verticalline from '../images/vertical-line.svg'
 import plantpot from '../images/plantpot.svg'
 import compass from '../images/compass.svg'
@@ -16,7 +16,7 @@ import search from '../images/magnifying.svg'
 import map from '../images/map.svg'
 import gram from '../images/leaves.svg'
 import board from '../images/pinboard.svg'
-import edit from './images/edit.svg'
+import edit from '../images/edit.svg'
 
 
 // ! This is the landing page
