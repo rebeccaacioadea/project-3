@@ -7,12 +7,10 @@ const Router = require('./router')
 const mongoose = require('mongoose')
 
 
-
 mongoose.connect(
 
   //! Complete DB location 
   'mongodb://localhost/seeded',
-
 
   // This will remove warnings that we don't need. We don't really need
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
@@ -23,7 +21,6 @@ mongoose.connect(
     else console.log('Mongoose connected successfully!')
   }
 )
-
 
 // For environment variables
 console.log(process.env.hello)

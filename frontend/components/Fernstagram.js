@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import navProfile from '../images/nav-profile.svg'
 
 // ! This is the social feed
 // * List of all posts in time order 
@@ -10,13 +10,24 @@ import axios from 'axios'
 // * If you click on their profile image it will take you to their profile
 
 
-
-
 const Fernstagram = () => {
 
   const [feedData, updateFeedData] = useState([])
+  const [comments, updateComments] = useState('')
   const [text, setText] = useState('')
   const token = localStorage.getItem('token')
+  const [button, updateButton] = useState()
+
+
+  const [postData, updatePostData] = useState({
+    caption: '',
+    image: ''
+  })
+  const [inputValue, updateInputValue] = useState('')
+
+  const refreshPage = () => {
+    window.location.reload()
+  }
 
   useEffect(() => {
     axios.get('/api/social', {
@@ -29,69 +40,222 @@ const Fernstagram = () => {
       })
   }, [])
 
+  const [image, setImage] = useState('')
 
-  // function handleComments(photoid) {
-  //   axios.post(`/api/social/${photoid}/comment`, { text }, {
+  function handleUpload() {
+    window.cloudinary.createUploadWidget(
+      {
+        cloudName: 'seeded',
+        uploadPreset: 'ml_default'
+      },
+      (err, result) => {
+        if (result.event !== 'success') {
+          return
+        }
+        console.log(result.info.url)
+        updatePostData({
+          ...postData,
+          image: result.info.url
+        })
+      }
+    ).open()
+  }
+
+  function handleChange(e) {
+    updateInputValue(e.target.value)
+    updatePostData({
+      ...postData,
+      caption: e.target.value
+    })
+  }
+
+  function handleSubmit() {
+    if (postData.image === '' || postData.caption === '') return console.log('hello')
+    axios.post('/api/social', postData, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        updatePostData({
+          ...postData,
+          image: '',
+          caption: ''
+        })
+        updateInputValue('')
+      })
+      .then(() => {
+        axios.get('/api/social', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+          .then(resp => {
+            const data = resp.data
+            console.log(data)
+            updateFeedData(data)
+          })
+      })
+
+  }
+
+  function handleButton(event) {
+    event.preventDefault()
+    updateButton(!button)
+  }
+
+  console.log(postData)
+  console.log(text)
+
+  // function handleComments(event) {
+  //   // event.preventDefault()
+  //   // useEffect(() => {
+  //   axios.post(`/api/social/${event}/comment`, { text }, {
   //     headers: { Authorization: `Bearer ${token}` }
   //   })
   //     .then(resp => {
   //       setText('')
-  //       updateFeedData(resp.data)
+  //       updateComments(resp.data)
+  //       console.log('working')
+
   //     })
+  //   refreshPage()
+  //   // }, [])
   // }
 
+  const [messages, updateMessages] = useState([])
+
+  // function handleComment(postId) {
+
+  //   axios.post(`/api/social/${postId}/comment`, { text }, {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //     .then(resp => {
+  //       setText('')
+  //       updateMessages(resp.data)
+  //     })
+  //   refreshPage()
+  // }
+
+  // useEffect(() => {
+  //   handleComment(messages)
+  // }, [messages])
+
+  { console.log(comments) }
+
   return <main>
-    <section className='cover'>
+    <section className='search-cover' id="fernCover">
       <h1>FernGram</h1>
+
     </section>
-    {feedData.length === 0 &&
-      <section className='content'>
-        <section className='margin'>
-          <h4>
-            There Are No Posts To Be Found!
-          </h4>
+
+    {button === true ?
+      <section className="content">
+        <section className="margin">
+          <div className="title">
+            <button
+              className="button-green socialPost"
+              onClick={handleUpload}
+            >
+              Click to upload
+            </button>
+            <textarea
+              className="input" id="socialCaption"
+              placeholder="Post Caption"
+              onChange={handleChange}
+              value={inputValue} />
+            {postData.image && <img
+              src={postData.image}
+              style={{ height: '180px', margin: '5px', borderRadius: '5px' }}
+            />}
+            <button
+              className="button-green socialPost"
+              onClick={handleSubmit}
+            >
+              Post!
+            </button>
+            <button
+              className="button-green socialPost" id="toGram"
+              onClick={handleButton}
+            > Return to feed</button>
+          </div>
         </section>
-      </section>}
-    <section className='social-feed'>
-      {feedData.length > 0 && feedData.map(post => {
-        var timestamp = new Date(post.createdAt)
-        var datetime = timestamp.getDate() + '/'
-          + (timestamp.getMonth() + 1) + '/'
-          + timestamp.getFullYear() + ' at '
-          + timestamp.getHours() + ':'
-          + timestamp.getMinutes() + ':'
-          + timestamp.getSeconds()
-        return <div
-          key={post._id}
-          className='social-item'>
-          <div className='title'>
-            <h3>User: {post.user.name}</h3>
-            {/* { console.log(post._id)} */}
-            <h4>Posted: {datetime}</h4>
-          </div>
-          <div className='image-container'
-            style={{ background: `url(${post.image}) no-repeat center center`, backgroundSize: 'cover', height: '550px', width: '550px' }}
-          >
-          </div>
-          <p>{post.caption}</p>
-          {/* <button className="button-green"
-          >Comments</button> */}
+      </section>
+      :
+      <div>
+        <button
+          className="search-bar addFernGram"
+          onClick={handleButton}
+        > Add New Post</button>
 
-          <textarea
-            className="input"
-            placeholder="Add a comment"
-            onChange={event => setText(event.target.value)}
-            value={text}
-          >
-            {text}
-          </textarea>
-          <button
-            // onClick={handleComments(post._id)}
-          >Submit</button>
+        {feedData.length === 0 &&
+          <section className='content' id="content-search">
+            <section className='margin'>
+              <h4>
+                There Are No Posts To Be Found!
+              </h4>
+            </section>
+          </section>}
 
-        </div>
-      })}
-    </section>
+
+        <section className='content' id="content-fern">
+          <section className="margin">
+
+            {feedData.length > 0 && feedData.map(post => {
+              var timestamp = new Date(post.createdAt)
+              var datetime = timestamp.getDate() + '/'
+                + (timestamp.getMonth() + 1) + '/'
+                + timestamp.getFullYear() + ' at '
+                + timestamp.getHours() + ':'
+                + timestamp.getMinutes()
+              return <div
+                key={post._id}
+              // className='social-item'
+              >
+
+                <div className="nav-item">
+                  <img src={navProfile} alt="nav-profile" />
+                  <h4>{post.user.name} </h4>
+
+                  {console.log(post._id)}
+
+                </div>
+                <div className="socialStatus">
+                  <div className='list-item' id="fernPhoto"
+                    style={{ background: `url(${post.image}) no-repeat center center`, backgroundSize: 'cover' }}
+                  >
+                  </div>
+                  <h4>{post.caption}</h4>
+                  <h5>{datetime}</h5>
+                </div>
+                <textarea
+                  className="input" id="socialInput"
+                  placeholder="Add a comment"
+                  onChange={event => setText(event.target.value)}
+                  value={text[post._id]}
+                >
+                  {text}
+                </textarea>
+                <div className="socialComments">
+                  <button className="button-green" id="commentButton"
+
+                    // onClick={handleComment(post._id)}
+                  >Post</button>
+                </div>
+
+
+              </div>
+            })}
+          </section>
+
+
+
+        </section>
+
+      </div>
+
+    }
+
+
+
+
+
 
 
   </main>

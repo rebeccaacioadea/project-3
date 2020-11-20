@@ -10,7 +10,7 @@ const Login = (props) => {
     userName: '',
     password: ''
   })
-
+  const [errors, updateErrors] = useState('')
   function handleChange(event) {
     const name = event.target.name
     const value = event.target.value
@@ -29,11 +29,17 @@ const Login = (props) => {
         localStorage.setItem('token', resp.data.token)
         props.history.push('/')
       })
-      .then(() => {
-        location.reload()
+      // .then(() => {
+      //   location.reload()
+      // })
+      .catch(error => {
+        console.log(error)
+        updateErrors(error)
+        return error 
       })
   }
 
+// console.log(errors)
 
   return <main>
     <section className="cover">
@@ -63,6 +69,9 @@ const Login = (props) => {
               name="password"
             />
           </div>
+          {errors && <p className ="errorMessages" style={{ color: 'red' }}>
+            {'Invalid username or password' }
+          </p>}
           <a href="/" onClick={handleSubmit} className="button-green"><button className="button-green">LOGIN</button></a>
         </form>
       </section>
