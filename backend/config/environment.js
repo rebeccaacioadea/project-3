@@ -1,5 +1,5 @@
 // ! Any other config variables that you used can stay in here, make sure you are still exporting them at the bottom.
-const secret = 'Say aloe to my little frined'
+const secret = 'Say aloe to my little friend'
 
 // ! This gives us the power to customize our port with heroku
 const port = process.env.PORT || 8000

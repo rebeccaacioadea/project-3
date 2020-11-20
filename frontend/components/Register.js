@@ -66,6 +66,7 @@ const Register = (props) => {
 
     axios.post('/api/user/register', formData)
       .then(resp => {
+       
         if (resp.data.errors) {
           updateErrors(resp.data.errors)
         } else {
@@ -188,13 +189,13 @@ const Register = (props) => {
                   onClick={sameButton}
                   value={true}
                   name="sitter">
-                  <img src={chairWhite} alt="chair" />Sitter</button>
+                  <img src="../images/chair-white.svg" alt="chair" />Sitter</button>
                 <button
                   className="button-radio "
                   onClick={handleRadioButton}
                   value={false}
                   name="sitter">
-                  <img src={potGreen} alt="flowerpot" />
+                  <img src="../images/flowerpot-green.svg" alt="flowerpot" />
               Owner</button>
               </div>
               :
@@ -204,13 +205,13 @@ const Register = (props) => {
                   onClick={handleRadioButton}
                   value={true}
                   name="sitter">
-                  <img src={chairGreen} alt="chair" />Sitter</button>
+                  <img src="../images/chair-green.svg" alt="chair" />Sitter</button>
                 <button
                   className="button-radio active"
                   onClick={sameButton}
                   value={false}
                   name="sitter">
-                  <img src={potWhite} alt="flowerpot" />
+                  <img src="../images/flowerpot-white.svg" alt="flowerpot" />
               Owner</button>
               </div>
             }
@@ -237,5 +238,6 @@ const Register = (props) => {
 }
 
 export default Register
+
 
 
