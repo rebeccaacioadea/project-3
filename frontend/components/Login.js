@@ -51,7 +51,7 @@ const Login = (props) => {
           <div className="form-section">
             <label className="label"><h5>Username</h5></label>
             <input className="input"
-              type="password"
+              type="text"
               placeholder="Type Here"
               onChange={handleChange}
               value={formData.userName}
