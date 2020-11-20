@@ -117,6 +117,7 @@ const Home = () => {
       <h1>Welcome</h1>
     </section>
 
+
     <section className="content">
       <section className="margin">
         <h2>{user.name}</h2>
