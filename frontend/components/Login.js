@@ -29,17 +29,16 @@ const Login = (props) => {
         localStorage.setItem('token', resp.data.token)
         props.history.push('/')
       })
-      // .then(() => {
-      //   location.reload()
-      // })
+      .then(() => {
+        location.reload()
+      })
       .catch(error => {
-        console.log(error)
         updateErrors(error)
         return error 
       })
   }
 
-// console.log(errors)
+
 
   return <main>
     <section className="cover">
@@ -52,7 +51,7 @@ const Login = (props) => {
           <div className="form-section">
             <label className="label"><h5>Username</h5></label>
             <input className="input"
-              type="text"
+              type="password"
               placeholder="Type Here"
               onChange={handleChange}
               value={formData.userName}
