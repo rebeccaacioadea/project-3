@@ -33,7 +33,6 @@ const Login = (props) => {
         location.reload()
       })
       .catch(error => {
-        console.log(error)
         updateErrors(error)
         return error
       })
