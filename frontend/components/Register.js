@@ -64,7 +64,7 @@ const Register = (props) => {
       .then(resp => {
         console.log(resp.data)
         if (resp.data.errors) {
-          updateErrors(resp.data.error)
+          updateErrors(resp.data.errors)
         } else {
           props.history.push('/user/login')
         }
@@ -90,8 +90,8 @@ const Register = (props) => {
               value={formData.name}
               name="name"
             />
-            {errors.name && <p style={{ color: 'red' }}>
-              {`There was a problem with your ${errors.name.path}`}
+            {errors.name && <p className ="errorMessages" style={{ color: 'red' }}>
+              {`Enter your ${errors.name.path}`}
             </p>}
           </div>
 
@@ -104,11 +104,8 @@ const Register = (props) => {
               value={formData.userName}
               name="userName"
             />
-            {errors.userName && <p style={{ color: 'red' }}>
-              {`There was a problem with your ${errors.userName.path}`}
-            </p>}
-            {errors.name && <p style={{ color: 'red' }}>
-              {`There was a problem with your ${errors.name.path}`}
+            {errors.userName && <p className ="errorMessages" style={{ color: 'red' }}>
+              {'Invalid username'}
             </p>}
           </div>
 
@@ -122,8 +119,8 @@ const Register = (props) => {
               value={formData.email}
               name="email"
             />
-            {errors.email && <p style={{ color: 'red' }}>
-              {`There was a problem with your ${errors.email.path}`}
+            {errors.email && <p className ="errorMessages" style={{ color: 'red' }}>
+              {`Invalid ${errors.email.path}`}
             </p>}
           </div>
 
@@ -136,9 +133,19 @@ const Register = (props) => {
               value={formData.password}
               name="password"
             />
-            {errors.password && <p style={{ color: 'red' }}>
-              {`There was a problem with your ${errors.password.path}`}
-            </p>}
+            {errors.password && 
+            <div>
+              <p className ="errorMessages" style={{ color: 'red' }}>
+                {`${errors.password.path} must have at least:`}
+              </p>
+              <ul> 
+                <li>6 characters</li>
+                <li>1 uppercase letter </li>
+                <li>1 lowercase letter </li>
+                <li>1 special character</li>
+              </ul>
+            </div>
+            }
           </div>
 
           <div className="form-section">
@@ -150,7 +157,7 @@ const Register = (props) => {
               value={formData.passwordConfirmation}
               name="passwordConfirmation"
             />
-            {errors.passwordConfirmation && <p style={{ color: 'red' }}>
+            {errors.passwordConfirmation && <p className ="errorMessages" style={{ color: 'red' }}>
               {'Does not match password'}
             </p>}
           </div>
@@ -165,8 +172,8 @@ const Register = (props) => {
               value={formData.postcode}
               name="postcode"
             />
-            {errors.postcode && <p style={{ color: 'red' }}>
-              {`There was a problem with your ${errors.postcode.path}`}
+            {errors.postcode && <p className ="errorMessages" style={{ color: 'red' }}>
+              {`Must enter valid ${errors.postcode.path}`}
             </p>}
           </div>
 
