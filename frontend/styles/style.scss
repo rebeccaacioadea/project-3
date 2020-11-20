@@ -406,11 +406,7 @@ select {
     top: 90px;
     left: 30px;
   }
-  .search-button {
-    height: 20px;
-    width: 20px;
-  }
-
+ 
   input {
     color: white;
     border: 0px solid
@@ -719,7 +715,37 @@ form {
 // ****************************************************
 
 // ! FERNGRAM
+#fernCover {
+  height: 200px;
+}
 
+.addFernGram {
+  color: white;
+  font-family: $monts;
+  font-weight: 400;
+  font-size: 12px;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  background-color: rgb(70, 87, 71);
+}
+
+#toGram {
+    background-color: rgb(70, 87, 71);
+    margin-top: 10px;
+}
+
+#content-fern{
+  top: 200px;
+  background-color: white;
+  height: 70vh;
+  overflow: scroll;
+  margin-top: 80px;
+  position: initial;
+width: 600px;
+// max-width: 700px;
+min-width: 300px;
+}
 .post-item {
   border-radius: 10px;
   border-bottom-left-radius: 30px;
@@ -734,45 +760,67 @@ form {
   }
 }
 
-.social-item {
-  border-radius: 10px;
-  border-bottom-left-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  margin-bottom: 10px;
-  h2 {
-    color: #819667;
-    margin: 5px;
-    
-  }
+#fernPhoto {
+  height: 400px;
+}
 
   .title{
-    width: 80%;
     margin: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    h3 {
-      color:#678258;
-    }
-
-    h4 {
-      color: #678262;
-    }
-
+ 
   }
   
+#socialCaption {
+  min-width: 60%;
+  max-width: 350px;
+  height: 200px;
 }
 
-.social-feed {
-  width: 600px;
+.socialPost {
+  min-width: 60%;
+  max-width: 350px;
 }
+
+.socialComments {
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+justify-content: flex-end;
+}
+
+#commentButton {
+  height: 20px;
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  margin-bottom: 10px;
+}
+#socialInput {
+  margin-bottom: 5px;
+}
+
+.socialStatus h4, h5 {
+  margin-top: 15px;
+}
+
 // ? 
-.marker {
-  background-image: url('../images/round-flower-white.svg');
+.markerSitter {
+  // background-image: url('../images/round-flower-white.svg');
+  background: white;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+// ? 
+.markerOwner {
+  // background-image: url('../images/round-flower-white.svg');
+  background: black;
   background-size: cover;
   width: 30px;
   height: 30px;

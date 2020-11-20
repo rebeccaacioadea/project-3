@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 
-const secondCommentSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  secondComment: { type: String, required: true }
-}, {
-  timestamps: true
-})
+// const secondCommentSchema = new mongoose.Schema({
+//   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+//   secondComment: { type: String, required: true }
+// }, {
+//   timestamps: true
+// })
 
 const directCommentSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  directComment: { type: String, required: true },
-  secondComments: [secondCommentSchema]
+  directComment: { type: String, required: true }
+  // secondComments: [secondCommentSchema]
 }, {
   timestamps: true
 })
