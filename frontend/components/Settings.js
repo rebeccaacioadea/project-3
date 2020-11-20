@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { getUserId } from '../lib/auth'
 import axios from 'axios'
-
+import chairwhite from '../images/chair-white.svg'
+import chairgreen from '../images/chair-green.svg'
+import flowerpotwhite from '../images/flowerpot-white.svg'
+import flowerpotgreen from '../images/flowerpot-green.svg'
 
 
 const Settings = (props) => {
@@ -84,38 +87,34 @@ const Settings = (props) => {
             {radioButton === true ?
               <div className="radio-buttons top-space">
                 <button
-                  id="button-radio-grow"
                   className="button-radio active"
                   onClick={sameButton}
                   value={true}
                   name="sitter">
-                  <img src="" alt="" />Sitter</button>
+                  <img src={chairwhite} alt="chair" />Sitter</button>
                 <button
-                  id="button-radio-grow"
                   className="button-radio"
                   onClick={handleRadioButton}
                   value={false}
                   name="sitter">
-                  <img src="" alt="" />
+                  <img src={flowerpotgreen} alt="flowerpot" />
                 Owner</button>
               </div>
               :
               <div className="radio-buttons top-space">
                 <button
-                  id="button-radio-grow"
                   className="button-radio"
                   onClick={handleRadioButton}
                   value={true}
                   name="sitter">
-                  <img src="" alt="" />Sitter</button>
+                  <img src={chairgreen} alt="chair" />Sitter</button>
 
                 <button
-                  id="button-radio-grow"
                   onClick={sameButton}
                   className="button-radio active"
                   value={false}
                   name="sitter">
-                  <img src="" alt="" />
+                  <img src={flowerpotwhite} alt="flowerpot" />
                 Owner</button>
               </div>
             }
@@ -168,7 +167,7 @@ const Settings = (props) => {
           <div className="form-section">
             <label className="label"><h5>Password</h5></label>
             <input className="input"
-              type="text"
+              type="password"
               placeholder=""
               onChange={handleChange}
               value={formData.password}
@@ -179,7 +178,7 @@ const Settings = (props) => {
           <div className="form-section">
             <label className="label"><h5>Confirm Password</h5></label>
             <input className="input"
-              type="text"
+              type="password"
               placeholder=""
               onChange={handleChange}
               value={formData.passwordConfirmation}

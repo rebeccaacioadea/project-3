@@ -130,7 +130,7 @@ const Register = (props) => {
           <div className="form-section">
             <label className="label"><h5>Password</h5></label>
             <input className="input"
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={handleChange}
               value={formData.password}
@@ -144,7 +144,7 @@ const Register = (props) => {
           <div className="form-section">
             <label className="label"><h5>Confirm Password</h5></label>
             <input className="input"
-              type="text"
+              type="password"
               placeholder="Password Confirmation"
               onChange={handleChange}
               value={formData.passwordConfirmation}
@@ -175,37 +175,33 @@ const Register = (props) => {
             {radioButton === true ?
               <div className="radio-buttons top-space">
                 <button
-                  id="button-radio-grow"
                   className="button-radio active"
                   onClick={sameButton}
                   value={true}
                   name="sitter">
-                  <img src="../images/deer-white.svg" alt="deer" />Sitter</button>
+                  <img src="../images/chair-white.svg" alt="chair" />Sitter</button>
                 <button
-                  id="button-radio-grow"
                   className="button-radio "
                   onClick={handleRadioButton}
                   value={false}
                   name="sitter">
-                  <img src="../images/fireplace-green.svg" alt="fireplace" />
+                  <img src="../images/flowerpot-green.svg" alt="flowerpot" />
               Owner</button>
               </div>
               :
               <div className="radio-buttons top-space">
                 <button
-                  id="button-radio-grow"
                   className="button-radio"
                   onClick={handleRadioButton}
                   value={true}
                   name="sitter">
-                  <img src="../images/deer-green.svg" alt="deer" />Sitter</button>
+                  <img src="../images/chair-green.svg" alt="chair" />Sitter</button>
                 <button
-                  id="button-radio-grow"
                   className="button-radio active"
                   onClick={sameButton}
                   value={false}
                   name="sitter">
-                  <img src="../images/fireplace-white.svg" alt="fireplace" />
+                  <img src="../images/flowerpot-white.svg" alt="flowerpot" />
               Owner</button>
               </div>
             }

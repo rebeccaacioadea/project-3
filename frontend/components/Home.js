@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getUserId } from '../lib/auth'
 import { Link } from 'react-router-dom'
+import illustrationone from '../images/illustration-1.svg'
+import illustrationtwo from '../images/illustration-2.svg'
+import illustrationthree from '../images/illustration-3.svg'
 
 
 // ! This is the landing page
@@ -41,9 +44,35 @@ const Home = () => {
     </section>
     <section className="content">
       <section className="margin">
-        <h4>
-          Welcome to Seeded! A platform dedicated to help users find plant sitters
-        </h4>
+
+        <div className="home-one">
+          <h2>
+            Plants Jonesing?
+          </h2>
+          <img src={illustrationone} alt="illustration" />
+          <p>Welcome to Seeded! An online platform here to help you get your plant fix. We know how hard it can be, that sweet sweet tempteation for a sweet sweet succulent. But tight on a budget? Can't commit long term? We've got the thing for you! </p>
+        </div>
+
+        <hr />
+
+        <div className="home-two">
+          <h2>
+            Asta la vista baby
+          </h2>
+          <img src={illustrationtwo} alt="illustration" />
+          <p>We understand that keeping your horticultural friends alive can be challenging at the best of times, especially when on the move, thats why with seeded, sit back and relax. It's never been easier to get away. </p>
+        </div>
+
+        <hr />
+
+        <div className="home-two">
+          <h2>
+            Aloe aloe aloe
+          </h2>
+          <img src={illustrationthree} alt="illustration" />
+          <p> Take a break, enjoy your time off. Find someone near you who's willing to look after your plants or offer their plants up for a temporarily delicious set of time. No hasstle, no charge, all love! We're rooting for you!</p>
+        </div>
+
       </section>
     </section>
   </main>

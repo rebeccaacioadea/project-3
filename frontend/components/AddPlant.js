@@ -34,12 +34,11 @@ const AddPlant = (props) => {
         synLimit--
         return syn + '.'
       }
-
     }))
     console.log(reducedSynonyms)
-    console.log(plantData.synonyms)
   }, [])
 
+  
   const [formData, updateFormData] = useState({
     image: `${plantData.image_url}`,
     commonName: `${plantData.common_name}`,
@@ -51,10 +50,9 @@ const AddPlant = (props) => {
     plantType: ''
   })
 
-  // { console.log(formData) }
-  // { console.log(plantData) }
+  { console.log(formData) }
 
-  // Function to take values from the browser and include in formData
+
   function handleChange(event) {
     const data = {
       ...formData,
@@ -74,7 +72,6 @@ const AddPlant = (props) => {
       .then(resp => {
         const newPlantId = resp.data._id
         props.history.push({ pathname: `/profile-plant/${newPlantId}`, state: { formData } })
-        console.log(resp.data._id)
       })
   }
 
@@ -199,51 +196,3 @@ const AddPlant = (props) => {
 }
 
 export default AddPlant
-
-{/* <div>
-    <div>
-      <img src={plantData.image_url}></img>
-      <h3>{plantData.scientific_name}</h3>
-      <h3>{plantData.common_name}</h3>
-      <h5>{plantData.bibliography}</h5>
-      <h5>SYNONYMS {plantData.synonyms}</h5>
-      <textarea
-        placeholder="Care notes for your plant..."
-        onChange={handleChange}
-        value={formData.careNotes}
-        name="careNotes"
-      ></textarea>
-      <button
-        onClick={handleChange}
-        value={true}
-        name="outdoor"
-      >outdoor</button>
-      <button
-        onClick={handleChange}
-        value={false}
-        name="outdoor">
-        Indoor</button>
-
-      <select
-        onChange={handleChange}
-        name="plantType">
-        <option>Plant Type...</option>
-        <option>Bulb</option>
-        <option>Cactus/Succulent</option>
-        <option>Climber</option>
-        <option>Conifer</option>
-        <option>Fern</option>
-        <option>Fruit</option>
-        <option>Herb</option>
-        <option>Ornamental</option>
-        <option>Grass</option>
-        <option>Perennial</option>
-        <option>Rose</option>
-        <option>Shrub</option>
-        <option>Tree</option>
-        <option>Palm</option>
-        <option>Bamboo</option>
-      </select>
-      <button onClick={handleSubmit}>Add to my list</button>
-    </div>
-  </div> */}
