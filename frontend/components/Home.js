@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getUserId } from '../lib/auth'
 import { Link } from 'react-router-dom'
-import illustrationone from '/Users/rebeccaacio-adea/development/project-3/frontend/images/illustration-1.svg'
+import illustrationone from '../images/illustration-1.svg'
 import illustrationtwo from '../images/illustration-2.svg'
 import illustrationthree from '../images/illustration-3.svg'
 import logowhite from '../images/logo-white.svg'
-codeimport messages from '../images/messages.svg'
+import messages from '../images/messages.svg'
 import badge from '../images/badge.svg'
 import verticalline from '../images/vertical-line.svg'
 import plantpot from '../images/plantpot.svg'
@@ -17,7 +17,6 @@ import map from '../images/map.svg'
 import gram from '../images/leaves.svg'
 import board from '../images/pinboard.svg'
 import edit from '../images/edit.svg'
-
 
 
 // ! This is the landing page
@@ -53,7 +52,7 @@ const Home = () => {
 
   if (!token) return <main>
     <section className="cover">
-      <h1>Welcome</h1>
+      <img src={logowhite} alt="illustration" />
     </section>
     <section className="content">
       <section className="margin">
@@ -63,7 +62,7 @@ const Home = () => {
             Plants Jonesing?
           </h2>
           <img src={illustrationone} alt="illustration" />
-          <p>Welcome to Seeded! An online platform here to help you get your plant fix. We know how hard it can be, that sweet sweet tempteation for a sweet sweet succulent. But tight on a budget? Can't commit long term? We've got the thing for you! </p>
+          <p>Welcome to Seeded! An online platform here to help you get your plant fix. We know how hard it can be, that sweet sweet tempteation for a sweet sweet succulent. But tight on a budget? Can&#39;t commit long term? We&#39;ve got the thing for you! </p>
         </div>
 
         <hr />
@@ -73,7 +72,7 @@ const Home = () => {
             Asta la vista baby
           </h2>
           <img src={illustrationtwo} alt="illustration" />
-          <p>We understand that keeping your horticultural friends alive can be challenging at the best of times, especially when on the move, thats why with seeded, sit back and relax. It's never been easier to get away. </p>
+          <p>We understand that keeping your horticultural friends alive can be challenging at the best of times, especially when on the move, thats why with seeded, sit back and relax. It&#39;s never been easier to get away. </p>
         </div>
 
         <hr />
@@ -83,7 +82,7 @@ const Home = () => {
             Aloe aloe aloe
           </h2>
           <img src={illustrationthree} alt="illustration" />
-          <p> Take a break, enjoy your time off. Find someone near you who's willing to look after your plants or offer their plants up for a temporarily delicious set of time. No hasstle, no charge, all love! We're rooting for you!</p>
+          <p> Take a break, enjoy your time off. Find someone near you who&#39;s willing to look after your plants or offer their plants up for a temporarily delicious set of time. No hasstle, no charge, all love! We&#39;re rooting for you!</p>
         </div>
 
       </section>
@@ -118,6 +117,7 @@ const Home = () => {
       <h1>Welcome</h1>
     </section>
 
+
     <section className="content">
       <section className="margin">
         <h2>{user.name}</h2>
@@ -125,33 +125,34 @@ const Home = () => {
           {/* Making left section and right edit icon align center */}
           <div className="header-icon">
             {/* Making 'Messages' and the icon align center */}
-            <img src="./images/messages.svg" alt="message-icon" />
+            <img src={messages} alt="message-icon" />
             <h6>Messages</h6>
           </div>
           <div><Link to={{ pathname: `/user-page/${user._id}/settings`, state: { user } }}>
-            <img src="./images/edit.svg" alt="edit-icon" />
+            <img src={edit} alt="edit-icon" />
           </Link>
           </div>
         </div>
 
+
         <section className="status">
           <div>
-            <img src="./images/badge.svg" alt="badge-icon" />
+            <img src={badge} alt="badge-icon" />
             <h5>Support<br />Badge</h5>
           </div>
-          <img src="./images/vertical-line.svg" alt="vertical-line" />
+          <img src={verticalline} alt="vertical-line" />
           {user.sitter ?
             <div>
-              <img src="../images/plantpot.svg" alt="flower-in-pot" />
+              <img src={plantpot} alt="flower-in-pot" />
               <h5>PLANT<br />SITTER</h5>
             </div>
             :
             <div>
-              <img src="../images/compass.svg" alt="compass" />
+              <img src={compass} alt="compass" />
               <h5>PLANT<br />OWNER</h5>
             </div>
           }
-          <img src="./images/vertical-line.svg" alt="vertical-line" />
+          <img src={verticalline} alt="vertical-line" />
           <div>
             <h1>{userPlants.length}</h1>
             <h5>Plant<br />Count</h5>
@@ -162,31 +163,31 @@ const Home = () => {
         <section className="list">
           <Link to={`/user-page/${user._id}`}>
             <div className="list-item" id="home-profile">
-              <img src="./images/profile.svg" alt="profile" />
+              <img src={profile} alt="profile" />
               <h3>Profile</h3>
             </div>
           </Link>
           <Link to={'/plant-search'}>
             <div className="list-item" id="home-search">
-              <img src="./images/magnifying.svg" alt="magnifying" />
+              <img src={search} alt="magnifying" />
               <h3>Plant Search</h3>
             </div>
           </Link>
           <Link to={'/user-map'}>
             <div className="list-item" id="home-map">
-              <img src="./images/map.svg" alt="map" />
+              <img src={map} alt="map" />
               <h3>User Map</h3>
             </div>
           </Link>
           <Link to={'/fernstagram'}>
             <div className="list-item" id="home-ferngram">
-              <img src="./images/leaves.svg" alt="leaves" />
+              <img src={gram} alt="leaves" />
               <h3>FernGram</h3>
             </div>
           </Link>
           <Link to={'/plant-sitters'}>
             <div className="list-item" id="home-pinboard">
-              <img src="./images/pinboard.svg" alt="pinboard" />
+              <img src={board} alt="pinboard" />
               <h3>Pin Board</h3>
             </div>
           </Link>
