@@ -16,8 +16,6 @@ const Fernstagram = () => {
   const [text, setText] = useState('')
   const token = localStorage.getItem('token')
   const [button, updateButton] = useState()
-  // const [comment, updateComment] = useState('')
-
 
   const [postData, updatePostData] = useState({
     caption: '',
@@ -123,15 +121,15 @@ const Fernstagram = () => {
   return <main>
     <section className='search-cover' id="fernCover">
       <h1>FernGram</h1>
-
     </section>
+    {/* </section> */}
 
     {button === true ?
       <section className="content">
         <section className="margin">
           <div className="title">
             <button
-              className="button-green socialPost"
+              className="button-green"
               onClick={handleUpload}
             >
               Click to upload
@@ -146,13 +144,13 @@ const Fernstagram = () => {
               style={{ height: '180px', margin: '5px', borderRadius: '5px' }}
             />}
             <button
-              className="button-green socialPost"
+              className="button-green"
               onClick={handleSubmit}
             >
               Post!
             </button>
             <button
-              className="button-green socialPost" id="toGram"
+              className="button-green button-brown" id="toGram"
               onClick={handleButton}
             > Return to feed</button>
           </div>
@@ -224,19 +222,11 @@ const Fernstagram = () => {
             })}
           </section>
 
-
-
         </section>
 
       </div>
 
     }
-
-
-
-
-
-
 
   </main>
 }

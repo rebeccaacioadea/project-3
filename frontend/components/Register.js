@@ -62,7 +62,6 @@ const Register = (props) => {
 
     axios.post('/api/user/register', formData)
       .then(resp => {
-        console.log(resp.data)
         if (resp.data.errors) {
           updateErrors(resp.data.errors)
         } else {
@@ -70,7 +69,6 @@ const Register = (props) => {
         }
       })
   }
-  console.log(formData)
 
   return <main>
     <section className="cover">

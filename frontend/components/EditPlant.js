@@ -13,7 +13,6 @@ const EditPlant = (props) => {
   const [plantData, updatePlantData] = useState({})
 
   useEffect(() => {
-    console.log(props)
     axios.get(`/api/plants/${plantId}`)
       .then(resp => {
         updatePlantData(resp.data)
