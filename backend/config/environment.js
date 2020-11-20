@@ -14,5 +14,7 @@ const dbURI = env === 'production'
 
 // ! Export everything
 module.exports = {
-  secret, port, dbURI
+  secret,
+  port, 
+  dbURI
 }
