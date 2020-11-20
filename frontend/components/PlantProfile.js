@@ -18,7 +18,6 @@ const PlantProfile = (props) => {
     axios.get(`/api/plants/${plantId}`)
       .then((resp) => {
         updatePlantData(resp.data)
-        console.log(resp.data)
       })
   }, [])
 

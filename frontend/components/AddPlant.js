@@ -35,7 +35,6 @@ const AddPlant = (props) => {
         return syn + '.'
       }
     }))
-    console.log(reducedSynonyms)
   }, [])
 
   
@@ -49,8 +48,6 @@ const AddPlant = (props) => {
     outdoor: false,
     plantType: ''
   })
-
-  { console.log(formData) }
 
 
   function handleChange(event) {

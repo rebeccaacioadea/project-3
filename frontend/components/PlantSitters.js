@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { getUserId, isCreator } from '../lib/auth'
+import { isCreator } from '../lib/auth'
 import moment from 'moment'
 
 const PlantSitters = () => {
   const token = localStorage.getItem('token')
   const [text, setText] = useState('')
-  const [userData, updateUserData] = useState({})
   const [messages, updateMessages] = useState([])
 
 
@@ -15,17 +14,6 @@ const PlantSitters = () => {
   const refreshPage = () => {
     window.location.reload()
   }
-
-  // ? GET USER DATA... why?
-  useEffect(() => {
-    axios.get(`/api/user/${getUserId()}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(resp => {
-        const data = resp.data
-        updateUserData(data)
-      })
-  }, [])
 
   // ? GET ALL MESSAGES
   useEffect(() => {
@@ -151,8 +139,6 @@ const PlantSitters = () => {
         </section>
 
 
-
-
       </section>
     </section>
 
@@ -164,7 +150,7 @@ const PlantSitters = () => {
 
         return <div className="messages"
           key={message._id}>
-          <h4 className="title"> {message.user.name} </h4>
+          <h4> {message.user.name} </h4>
           <h5> From  {message.dateStart} || To  {message.dateEnd}</h5>
           <div className="message">
             <h4>{message.commentBody} </h4>
@@ -223,129 +209,3 @@ const PlantSitters = () => {
 }
 
 export default PlantSitters
-
-
-// return <div>
-// <h1>hello plantsitters</h1>
-// <h2>{userData.userName} </h2>
-// <div className="messages" >
-
-//   {/* show All the messages */}
-//   {!messages.commentBody && messages.map((message) => {
-//     const messageId = message._id
-
-//     return <div className="messageBoard "
-//       key={message._id}>
-
-//       {isCreator && <div className="deleteButton">
-//         <button
-//           onClick={() => handleDeleteUserMessage(messageId)}>
-//           Delete Your Message
-//         </button>
-//       </div>}
-//       {isCreator && <div className="updateButton">
-//         <button
-//           onClick={() => handleMessageChange(messageId)}>
-//           Update Your Message
-//         </button>
-//       </div>}
-//       <h3 className="title is-4"> {message.user.userName} </h3>
-//       <div>
-//         <p>{message.commentBody} </p>
-//         <small> From: {message.dateStart} </small>
-//         <small> To: {message.dateEnd} </small>
-//       </div>
-
-{/* show the comments on the message Board */ }
-{/* {message.comments && message.comments.map(comment => {
-        const commentId = comment._id
-        return <article className="comments"
-          key={comment._id}>
-          <h4>Replies</h4>
-          <h6>{comment.user.userName} </h6>
-          <small>{comment.createdAt} </small>
-          <p>{comment.text} </p>
-          {isCreator && <div>
-            <button
-              onClick={() => handleDeleteComment(messageId, commentId)}
-            > Delete your comment
-            </button>
-          </div>}
-        </article>
-      })}
-
-      <div>
-
-        <p>
-          <textarea
-            className=""
-            placeholder="Write Your Comment"
-            onChange={event => setText(event.target.value)}
-            value={text[message._id]}
-            name="comment"
-
-          >
-          </textarea>
-        </p>
-        <button
-          onClick={() => handleComment(messageId)}
-        > Reply
-        </button>
-
-      </div>
-
-
-    </div>
-  })}
-</div>
-
-<article className="messageBox">
-
-  <h2> Add Your Message To Pin Board</h2>
-
-  <div>
-    <p>
-      <textarea
-        className="textarea"
-        placeholder="Write your message"
-        onChange={handleMessageChange}
-        value={userMessage.commentBody}
-        name="commentBody"
-      >
-        {userMessage}
-      </textarea>
-    </p>
-  </div>
-  <div>
-    <label className="label"><h5>From</h5></label>
-    <input className="input"
-      type="date"
-      placeholder="Enter the start date"
-      onChange={handleMessageChange}
-      value={userMessage.dateStart}
-      name="dateStart"
-    />
-  </div>
-  <div>
-    <label className="label"><h5>To</h5></label>
-    <input className="input"
-      type="date"
-      placeholder="Enter the end date"
-      onChange={handleMessageChange}
-      value={userMessage.dateEnd}
-      name="dateEnd"
-    />
-  </div>
-  <div>
-    <p>
-      <button
-        onClick={handleMessageSubmit}
-      >
-
-        Submit
-      </button>
-    </p>
-  </div>
-</article>
-</div>
- */}

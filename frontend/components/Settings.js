@@ -53,7 +53,6 @@ const Settings = (props) => {
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
-    console.log(token)
 
     axios.put(`/api/user/${getUserId()}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
