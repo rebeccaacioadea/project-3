@@ -142,8 +142,8 @@ const Fernstagram = () => {
   return <main>
     <section className='search-cover' id="fernCover">
       <h1>FernGram</h1>
-
     </section>
+    {/* </section> */}
 
     {button === true ?
       <section className="content">
@@ -235,7 +235,7 @@ const Fernstagram = () => {
                 <div className="socialComments">
                   <button className="button-green" id="commentButton"
 
-                    // onClick={handleComment(post._id)}
+                  // onClick={handleComment(post._id)}
                   >Post</button>
                 </div>
 

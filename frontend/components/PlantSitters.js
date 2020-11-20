@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getUserId, isCreator } from '../lib/auth'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const PlantSitters = () => {
   const token = localStorage.getItem('token')
@@ -164,7 +165,10 @@ const PlantSitters = () => {
 
         return <div className="messages"
           key={message._id}>
-          <h4 className="title"> {message.user.name} </h4>
+          <Link to={`/user-page/${message.user._id}`}>
+            <h4> {message.user.name} </h4>
+          </Link>
+          {/* {console.log(message)} */}
           <h5> From  {message.dateStart} || To  {message.dateEnd}</h5>
           <div className="message">
             <h4>{message.commentBody} </h4>
@@ -181,7 +185,9 @@ const PlantSitters = () => {
             const commentId = comment._id
             return <section className="reply"
               key={comment._id}>
-              <h6>{comment.user.name} </h6>
+              <Link to={`/user-page/${comment.user._id}`}>
+                <h6>{comment.user.name} </h6>
+              </Link>
               <h5>RESPONDED</h5>
               <h4>{comment.text} </h4>
               <h5>{moment(comment.createdAt).format('LLL')}</h5>

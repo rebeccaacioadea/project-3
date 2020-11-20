@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
+import navProfile from '../images/nav-profile.svg'
 
 // ! User Page
 // * Name 
@@ -24,7 +25,7 @@ const UserPage = (props) => {
   const profileId = props.match.params.userId
   const [userPlants, updateUserPlants] = useState([])
   const [radioButton, updateRadioButton] = useState()
-
+  const [posts, updatePosts] = useState([])
   // * Get request for users plants
   useEffect(() => {
     axios.get(`/api/users-plants/${profileId}`)
@@ -38,6 +39,13 @@ const UserPage = (props) => {
       })
   }, [])
 
+  useEffect(() => {
+    axios.get(`/api/users-social/${profileId}`)
+      .then(resp => {
+        updatePosts(resp.data)
+        console.log(resp.data)
+      })
+  }, [])
 
   function handleRadioButton(event) {
     event.preventDefault()
@@ -101,41 +109,43 @@ const UserPage = (props) => {
             <div className="bio">
             </div>
           }
+        </div>
 
-          <div className="form-Section">
-            {radioButton === true ?
-              <div>
-                <div className="radio-buttons">
-                  <button
-                    id="button-radio-grow"
-                    className="button-radio active">
-                    <img src="../images/round-flower-white.svg" alt="flower"></img>
+        <div className="form-Section">
+          {radioButton === true ?
+            <div>
+              <div className="radio-buttons">
+                <button
+                  id="button-radio-grow"
+                  className="button-radio active">
+                  <img src="../images/round-flower-white.svg" alt="flower"></img>
                   Plants
                   </button>
-                  <button
-                    id="button-radio-grow"
-                    className="button-radio"
-                    onClick={handleRadioButton}>
-                    <img src="../images/camera-green.svg" alt="camera"></img>
+                <button
+                  id="button-radio-grow"
+                  className="button-radio"
+                  onClick={handleRadioButton}>
+                  <img src="../images/camera-green.svg" alt="camera"></img>
                   Posts
                   </button>
-                </div>
-                {isCreator(user._id) && <Link to={'/plant-search'}>
-                  <div className="button-green button-addPlant">Add New plant</div>
-                </Link>}
-                {userPlants.map((plant, index) => {
-                  return <Link key={index}
-                    to={`/profile-plant/${plant._id}`} >
-                    <div style={{ backgroundImage: `linear-gradient(rgba(129, 150, 103, 0.9), rgba(129, 150, 103, 0.9)), url(${plant.image})` }}
-                      className="list-item" id="search-profile">
-                      <h3>{plant.commonName} </h3>
-                      <h4>{plant.scientificName}</h4>
-                    </div>
-                  </Link>
-                })}
-
               </div>
-              :
+              {isCreator(user._id) && <Link to={'/plant-search'}>
+                <div className="button-green button-addPlant">Add New plant</div>
+              </Link>}
+              {userPlants.map((plant, index) => {
+                return <Link key={index}
+                  to={`/profile-plant/${plant._id}`} >
+                  <div style={{ backgroundImage: `linear-gradient(rgba(129, 150, 103, 0.9), rgba(129, 150, 103, 0.9)), url(${plant.image})` }}
+                    className="list-item" id="search-profile">
+                    <h3>{plant.commonName} </h3>
+                    <h4>{plant.scientificName}</h4>
+                  </div>
+                </Link>
+              })}
+
+            </div>
+            :
+            <div>
               <div className="radio-buttons">
                 <button
                   id="button-radio-grow"
@@ -143,21 +153,52 @@ const UserPage = (props) => {
                   onClick={handleRadioButton}>
                   <img src="../images/round-flower-green.svg" alt="flower"></img>
                   Plants
-                </button>
+                  </button>
                 <button
                   id="button-radio-grow"
                   className="button-radio active">
                   <img src="../images/camera-white.svg" alt="camera"></img>
                   Posts
-                </button>
+                  </button>
               </div>
-            }
+              {isCreator(user._id) && <Link to={'/fernstagram'}>
+                <div className="button-green button-addPlant">Fernstagram</div>
+              </Link>}
+              {posts.map((post, index) => {
+                var timestamp = new Date(post.createdAt)
+                var datetime = timestamp.getDate() + '/'
+                  + (timestamp.getMonth() + 1) + '/'
+                  + timestamp.getFullYear() + ' at '
+                  + timestamp.getHours() + ':'
+                  + timestamp.getMinutes()
+                return <div
+                  key={post._id}
+                // className='social-item'
+                >
 
-          </div>
+                  <div className="nav-item">
+                    <img src={navProfile} alt="nav-profile" />
+                    <h4>{user.name} </h4>
+
+                    {console.log(post._id)}
+
+                  </div>
+                  <div className="socialStatus">
+                    <div className='list-item' id="fernPhoto"
+                      style={{ background: `url(${post.image}) no-repeat center center`, backgroundSize: 'cover' }}
+                    >
+                    </div>
+                    <h4>{post.caption}</h4>
+                    <h5>{datetime}</h5>
+                  </div>
+                </div>
+              })}
+            </div>
+          }
         </div>
       </section>
     </section>
-  </main >
+  </main>
 }
 
 

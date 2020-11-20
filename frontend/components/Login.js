@@ -29,9 +29,9 @@ const Login = (props) => {
         localStorage.setItem('token', resp.data.token)
         props.history.push('/')
       })
-      // .then(() => {
-      //   location.reload()
-      // })
+      .then(() => {
+        location.reload()
+      })
       .catch(error => {
         console.log(error)
         updateErrors(error)

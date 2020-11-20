@@ -67,7 +67,7 @@ router.route('/social')
   .post(secureRoute, socialController.postFeed)
 // GET SOCIAL BY USER
 router.route('/users-social/:userid')
-  .get(secureRoute, socialController.getUserFeed)
+  .get(socialController.getUserFeed)
 // POST COMMENT
 router.route('/social/:socialid/comment')
   .post(secureRoute, socialController.postComment)
