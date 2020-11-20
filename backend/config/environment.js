@@ -9,8 +9,8 @@ const env = process.env.NODE_ENV || 'development'
 
 // ! This will allow us to use a different url for heroku (which will point to mongo atlas)
 const dbURI = env === 'production'
-? process.env.MONGODB_URI
-: `mongodb://localhost/seeded-${env}`
+  ? process.env.MONGODB_URI
+  : `mongodb://localhost/seeded-${env}`
 
 // ! Export everything
 module.exports = {
