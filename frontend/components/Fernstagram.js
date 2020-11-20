@@ -13,10 +13,10 @@ import navProfile from '../images/nav-profile.svg'
 const Fernstagram = () => {
 
   const [feedData, updateFeedData] = useState([])
-  const [comments, updateComments] = useState('')
   const [text, setText] = useState('')
   const token = localStorage.getItem('token')
   const [button, updateButton] = useState()
+  // const [comment, updateComment] = useState('')
 
 
   const [postData, updatePostData] = useState({
@@ -25,9 +25,6 @@ const Fernstagram = () => {
   })
   const [inputValue, updateInputValue] = useState('')
 
-  const refreshPage = () => {
-    window.location.reload()
-  }
 
   useEffect(() => {
     axios.get('/api/social', {
@@ -40,7 +37,6 @@ const Fernstagram = () => {
       })
   }, [])
 
-  const [image, setImage] = useState('')
 
   function handleUpload() {
     window.cloudinary.createUploadWidget(
@@ -70,7 +66,7 @@ const Fernstagram = () => {
   }
 
   function handleSubmit() {
-    if (postData.image === '' || postData.caption === '') return console.log('hello')
+    if (postData.image === '' || postData.caption === '') return
     axios.post('/api/social', postData, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -100,44 +96,29 @@ const Fernstagram = () => {
     updateButton(!button)
   }
 
-  console.log(postData)
-  console.log(text)
+  function handleComment(socialId) {
+    if (text === '') return
+    console.log(socialId)
+    axios.post(`/api/social/${socialId}/comment`, { directComment: text }, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        axios.get('/api/social', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+          .then(resp => {
+            console.log(resp)
+            const data = resp.data
+            setText('')
+            updateFeedData(data)
+          })
+      })
+  }
 
-  // function handleComments(event) {
-  //   // event.preventDefault()
-  //   // useEffect(() => {
-  //   axios.post(`/api/social/${event}/comment`, { text }, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then(resp => {
-  //       setText('')
-  //       updateComments(resp.data)
-  //       console.log('working')
-
-  //     })
-  //   refreshPage()
-  //   // }, [])
-  // }
-
-  const [messages, updateMessages] = useState([])
-
-  // function handleComment(postId) {
-
-  //   axios.post(`/api/social/${postId}/comment`, { text }, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then(resp => {
-  //       setText('')
-  //       updateMessages(resp.data)
-  //     })
-  //   refreshPage()
-  // }
-
-  // useEffect(() => {
-  //   handleComment(messages)
-  // }, [messages])
-
-  { console.log(comments) }
+  function handleInput(e) {
+    console.log(e.target.value)
+    setText(e.target.value)
+  }
 
   return <main>
     <section className='search-cover' id="fernCover">
@@ -206,15 +187,11 @@ const Fernstagram = () => {
                 + timestamp.getMinutes()
               return <div
                 key={post._id}
-              // className='social-item'
               >
 
                 <div className="nav-item">
                   <img src={navProfile} alt="nav-profile" />
                   <h4>{post.user.name} </h4>
-
-                  {console.log(post._id)}
-
                 </div>
                 <div className="socialStatus">
                   <div className='list-item' id="fernPhoto"
@@ -227,18 +204,21 @@ const Fernstagram = () => {
                 <textarea
                   className="input" id="socialInput"
                   placeholder="Add a comment"
-                  onChange={event => setText(event.target.value)}
+                  onChange={handleInput}
                   value={text[post._id]}
-                >
-                  {text}
-                </textarea>
+                />
                 <div className="socialComments">
                   <button className="button-green" id="commentButton"
-
-                    // onClick={handleComment(post._id)}
+                    onClick={() => handleComment(post._id)}
                   >Post</button>
                 </div>
-
+                {post.directComments.map(comment => {
+                  { console.log(comment.user.name) }
+                  return <div key={comment._id}>
+                    <h5>{comment.user.name}</h5>
+                    <p>{comment.directComment}</p>
+                  </div>
+                })}
 
               </div>
             })}

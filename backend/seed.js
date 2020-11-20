@@ -28,8 +28,8 @@ mongoose.connect(
           },
           {
             email: 'hello@hello.com',
-            name: 'hello',
-            userName: 'hello',
+            name: 'Dave',
+            userName: 'Dave',
             password: 'Hello1!',
             passwordConfirmation: 'Hello1!',
             postcode: 'CT146DL',

@@ -73,7 +73,7 @@ router.route('/social/:socialid/comment')
   .post(secureRoute, socialController.postComment)
 // NESTED COMMENTS
 router.route('/social/:socialid/:commentid/:nestedid')
-  // .delete(secureRoute, socialController.deleteNestedComment)
+// .delete(secureRoute, socialController.deleteNestedComment)
 // DELETE COMMENT/POST NESTED COMMENT
 router.route('/social/:socialid/:commentid')
   .delete(secureRoute, socialController.deleteComment)
