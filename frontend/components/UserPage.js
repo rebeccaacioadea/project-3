@@ -35,7 +35,6 @@ const UserPage = (props) => {
     axios.get(`/api/user/${profileId}`)
       .then(resp => {
         updateUser(resp.data)
-        console.log(resp.data)
       })
   }, [])
 

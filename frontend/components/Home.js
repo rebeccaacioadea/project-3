@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import illustrationone from '../images/illustration-1.svg'
 import illustrationtwo from '../images/illustration-2.svg'
 import illustrationthree from '../images/illustration-3.svg'
+import logowhite from '../images/logo-white.svg'
 
 
 // ! This is the landing page
@@ -40,7 +41,7 @@ const Home = () => {
 
   if (!token) return <main>
     <section className="cover">
-      <h1>Welcome</h1>
+      <img src={logowhite} alt="illustration" />
     </section>
     <section className="content">
       <section className="margin">
@@ -50,7 +51,7 @@ const Home = () => {
             Plants Jonesing?
           </h2>
           <img src={illustrationone} alt="illustration" />
-          <p>Welcome to Seeded! An online platform here to help you get your plant fix. We know how hard it can be, that sweet sweet tempteation for a sweet sweet succulent. But tight on a budget? Can't commit long term? We've got the thing for you! </p>
+          <p>Welcome to Seeded! An online platform here to help you get your plant fix. We know how hard it can be, that sweet sweet tempteation for a sweet sweet succulent. But tight on a budget? Can&#39;t commit long term? We&#39;ve got the thing for you! </p>
         </div>
 
         <hr />
@@ -60,7 +61,7 @@ const Home = () => {
             Asta la vista baby
           </h2>
           <img src={illustrationtwo} alt="illustration" />
-          <p>We understand that keeping your horticultural friends alive can be challenging at the best of times, especially when on the move, thats why with seeded, sit back and relax. It's never been easier to get away. </p>
+          <p>We understand that keeping your horticultural friends alive can be challenging at the best of times, especially when on the move, thats why with seeded, sit back and relax. It&#39;s never been easier to get away. </p>
         </div>
 
         <hr />
@@ -70,7 +71,7 @@ const Home = () => {
             Aloe aloe aloe
           </h2>
           <img src={illustrationthree} alt="illustration" />
-          <p> Take a break, enjoy your time off. Find someone near you who's willing to look after your plants or offer their plants up for a temporarily delicious set of time. No hasstle, no charge, all love! We're rooting for you!</p>
+          <p> Take a break, enjoy your time off. Find someone near you who&#39;s willing to look after your plants or offer their plants up for a temporarily delicious set of time. No hasstle, no charge, all love! We&#39;re rooting for you!</p>
         </div>
 
       </section>
