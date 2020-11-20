@@ -23,7 +23,8 @@ mongoose.connect(
             postcode: 'SE108GE',
             badges: [],
             isAdmin: true,
-            bio: 'Say aloe to my little friend'
+            bio: 'Say aloe to my little friend',
+            sitter: true
           },
           {
             email: 'hello@hello.com',
@@ -33,7 +34,63 @@ mongoose.connect(
             passwordConfirmation: 'Hello1!',
             postcode: 'CT146DL',
             badges: [],
-            bio: 'Just your usual plant obsessed software engineer.'
+            bio: 'Just your usual plant obsessed software engineer.',
+            sitter: false
+          },
+          {
+            email: 'huckleberry@finn.com',
+            name: 'Huckleberry Finn',
+            userName: 'huckleberry',
+            password: 'Huckleberry1?',
+            passwordConfirmation: 'Huckleberry1?',
+            postcode: 'E14 9EP',
+            badges: [],
+            bio: 'How do succulents confess their feelings - Aloe you so much!',
+            sitter: false
+          },
+          {
+            email: 'jay@gatsby.com',
+            name: 'Jay Gatsby',
+            userName: 'Gatsby',
+            password: 'Gatsby1?',
+            passwordConfirmation: 'Gatsby1?',
+            postcode: 'SW20 2FE',
+            badges: [],
+            bio: 'What do you call a cheerleading herb - An encourage mint!',
+            sitter: true
+          },
+          {
+            email: 'sherlock@holmes.com',
+            name: 'Sherlock Holmes',
+            userName: 'Sherlock',
+            password: 'Sherlock1?',
+            passwordConfirmation: 'Sherlock1?',
+            postcode: 'W1U 6SG',
+            badges: [],
+            bio: 'I like to solve mysteries and look after plants',
+            sitter: true
+          },
+          {
+            email: 'holly@golightly.com',
+            name: 'Holly Golightly',
+            userName: 'Golightly',
+            password: 'Golightly1?',
+            passwordConfirmation: 'Golightly1?',
+            postcode: 'SE3 7BH',
+            badges: [],
+            bio: 'What did the big flower say to the little flower - Whats up bud',
+            sitter: false
+          },
+          {
+            email: 'elizabeth@windsor.com',
+            name: 'Elizabeth Windsor',
+            userName: 'Queenie',
+            password: 'Queenie1?',
+            passwordConfirmation: 'Queenie1?',
+            postcode: 'SW1A 1AA',
+            badges: [],
+            bio: 'Gardening and royal duties',
+            sitter: true
           }
         ])
       })
@@ -54,7 +111,27 @@ mongoose.connect(
             image: 'https://i.imgur.com/PDYIpMg.jpg',
             caption: 'The Jasmine is looking lovely today.',
             user: users[1]
-          }
+          },
+          {
+            image: 'https://i.imgur.com/iY9XEtj.jpg',
+            caption: 'Growing so fast!!',
+            user: users[3]
+          },
+          {
+            image: 'https://i.imgur.com/xnUtYOd.jpg',
+            caption: 'Fav spot',
+            user: users[4]
+          },
+          {
+            image: 'https://i.imgur.com/gI2ixW8.jpg',
+            caption: 'Time to re-organise!',
+            user: users[4]
+          },
+          {
+            image: 'https://i.imgur.com/mTcuM2e.jpg',
+            caption: 'Best birthday present!',
+            user: users[5]
+          },
         ]), users
       })
 

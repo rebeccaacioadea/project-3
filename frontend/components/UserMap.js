@@ -31,7 +31,8 @@ const UserMap = () => {
                     lat: data.result.latitude,
                     user: user._id,
                     name: user.name,
-                    bio: user.bio
+                    bio: user.bio,
+                    sitter: user.sitter
                   }
                   resolve(position)
                 })
@@ -72,19 +73,32 @@ const UserMap = () => {
           >
 
             {longLat.map(user => {
+              console.log
               return <Marker
                 key={user.user}
                 latitude={user.lat}
                 longitude={user.long}
-              >
-                <button className="marker"
-                  onClick={event => {
-                    event.preventDefault()
-                    updatePopupInfo(user)
-                  }}
-                >
-        
-                </button>
+              > {
+                  user.sitter === true ?
+                    <button className="markerSitter"
+                      onClick={event => {
+                        event.preventDefault()
+                        updatePopupInfo(user)
+                      }}
+                    >
+                    </button>
+                    :
+                    <button className="markerOwner"
+                      onClick={event => {
+                        event.preventDefault()
+                        updatePopupInfo(user)
+                      }}
+                    >
+                    </button>
+                }
+
+
+
               </Marker>
             })}
 
