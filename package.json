@@ -5,12 +5,9 @@
   "main": "server.js",
   "scripts": {
     "build": "webpack -p --env.NODE_ENV=production",
-    "seed": "node backend/seed.js",
     "start": "node backend/server.js",
-    "frontend": "webpack-dev-server --mode=development --env.NODE_ENV=local",
-    "backend": "nodemon backend/server.js"
-   
-    
+    "seed": "node backend/seed.js",
+    "frontend": "webpack-dev-server --mode=development --env.NODE_ENV=local" 
   },
   "author": "",
   "license": "ISC",
