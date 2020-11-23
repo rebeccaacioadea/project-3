@@ -9,6 +9,7 @@
     "seed": "node backend/seed.js",
     "frontend": "webpack-dev-server --mode=development --env.NODE_ENV=local" 
   },
+  
   "author": "",
   "license": "ISC",
   "devDependencies": {

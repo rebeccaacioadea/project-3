@@ -1,5 +1,5 @@
 // ! Any other config variables that you used can stay in here, make sure you are still exporting them at the bottom.
-const secret = 'Say aloe to my little friend'
+const secret = 'Say aloe to my little frined'
 
 // ! This gives us the power to customize our port with heroku
 const port = process.env.PORT || 8000
@@ -14,7 +14,5 @@ const dbURI = env === 'production'
 
 // ! Export everything
 module.exports = {
-  secret,
-  port, 
-  dbURI
+  secret, port, dbURI
 }
