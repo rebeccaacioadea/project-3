@@ -4,12 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    
-    "backend": "nodemon backend/server.js",
-    "start": "node backend/server.js",
+    "build": "webpack -p --env.NODE_ENV=production",
     "seed": "node backend/seed.js",
+    "start": "node backend/server.js",
     "frontend": "webpack-dev-server --mode=development --env.NODE_ENV=local",
-    "build": "webpack -p --env.NODE_ENV=production"
+    "backend": "nodemon backend/server.js"
+   
+    
   },
   "author": "",
   "license": "ISC",
