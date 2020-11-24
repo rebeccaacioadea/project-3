@@ -7,9 +7,8 @@
     "build": "webpack -p --env.NODE_ENV=production",
     "start": "node backend/server.js",
     "seed": "node backend/seed.js",
-    "frontend": "webpack-dev-server --mode=development --env.NODE_ENV=local" 
+    "frontend": "webpack-dev-server --mode=development --env.NODE_ENV=local"
   },
-  
   "author": "",
   "license": "ISC",
   "devDependencies": {
