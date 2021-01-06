@@ -89,7 +89,7 @@ We used BrowserRouter provided by ***'react-router-dom'*** for routing the compo
 ## Potential future features
 
 ### Problems 
-During this project, we spent most time working on separate components, hence more than one component at a time, we were faced with so much errors and we didn’t know what was causing them, and on top of that every time I wanted to ‘console.log’ on chrome, my partner had to do it for me. The solution I came out with was, I copied the code for the components I was working on and commented out the code on my partner VS Code.  I use my own VScode to write the code, and chrome to test that it works properly before inserting the code back to our project. 
+
 
 ## Summary
 
