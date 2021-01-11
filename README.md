@@ -1,11 +1,11 @@
 
 ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
-General Assembly Software Engineering Immersive
+General Assembly, Software Engineering Immersive
 
 # Seeded
  [](http://seeded-1.herokuapp.com/)
  
-###MERN Full Stack Application
+### MERN Full Stack Application
 A Plant Baby Sitting App
 
 ## Overview 
@@ -76,7 +76,7 @@ ENDPOINT from treffle:
 
 https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=strawberry
 
-This is the sample of the data that is retrieved from the endpoint. It return up to 30 plants in an array 
+This is the sample of the data that is retrieved from the endpoint. It returns up to 30 plants in an array 
 
 ![](https://i.imgur.com/k8xGLT9.png)
 
@@ -118,7 +118,7 @@ We briefly went through the components for the frontend and setted it up togethe
 
 ![](https://i.imgur.com/43hzJtG.png)
 
-We used React hooks, useState and useEffect along with axios to fletch data from our internal API. 
+We used React hooks, useState and useEffect along with axios to fetch data from our internal API. 
 
 Example of the lines of codes for displaying messages on our message board(*Pin Board*)
 ![](https://i.imgur.com/OOa80E1l.png)
