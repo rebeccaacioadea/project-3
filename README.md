@@ -2,27 +2,27 @@
 ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
 General Assembly, Software Engineering Immersive
 
-# Seeded
- [](http://seeded-1.herokuapp.com/)
+# [Seeded](http://seeded-1.herokuapp.com/)
+ 
  
 ### MERN Full Stack Application
 A Plant Baby Sitting App
 
 ## Overview 
-This is my third project at General Assembly as a Software Engineer Immersive course's student. We were placed in a group of 4 to worked together to design and develop a MERN full-stack application within 7 days
+This is my third project at General Assembly as a Software Engineer Immersive course's student. We were placed in a group of 4 to worked together to design and develop a MERN full-stack application within 7 days.
 
 Seeded is a plant sitting app whereby plants' owners and plants' sitters can communicate with each other to share tips on plants, showcase their plants, look for a plant sitter or make a quick cash.
 The app features lots of functionalities such as image uploading and message boards.
 
 ### Brief:
 
-* Collaborative development using Git and GitHub
-* Build a full-stack application using mongoose, express, react and node.js 
-* Use Express API to serve the data from a Mongo database (MongoDB)
-* Consume your API with a separate front-end built with React
-* Be a complete project with multiple relationships and CRUD functionality 
-* Design a visually impressive Front End, with mobile responsiveness as a key element
-* Be deploy online and accessible to the public
+* Collaborative development using Git and GitHub.
+* Build a full-stack application using mongoose, express, react and node.js.
+* Use Express API to serve the data from a Mongo database (MongoDB).
+* Consume your API with a separate front-end built with React.
+* Be a complete project with multiple relationships and CRUD functionality.
+* Design a visually impressive Front End, with mobile responsiveness as a key element.
+* Be deploy online and accessible to the public.
 
 ### Technologies:
 
@@ -48,10 +48,10 @@ The app features lots of functionalities such as image uploading and message boa
 User should be able to:
 * Register and
 login into our app.
-* Update and delete their account
-* Add, update or delete plants in their profile
-* Post message on into the 'Pin Board'
-* Make comments on message on the 'Pin Board'
+* Update and delete their account.
+* Add, update or delete plants in their profile.
+* Post message on into the 'Pin Board'.
+* Make comments on message on the 'Pin Board'.
 
 ## Approach taken:
 
@@ -61,7 +61,7 @@ login into our app.
 On the first we discussed the full-stack app we wanted to design and build as a team and then we work through the backend framework together.
 We look at different features we wanted the app to have. We had to look into what our Schema might look like for our data.
 We also identify on day 1 that we will need an external API for this project, therefore we had to find the API that was able to give us the information required.
-Additionally, looked at what CRUD we would like our API to use
+Additionally, we looked at what CRUD endpoints we would like our API to have.
 
 Below is a copy of the planning for our backend development we came out with this project.
  
@@ -102,7 +102,7 @@ Example of the routes for adding and editing a plant on the user's profile.
 Example of how the CRUD functionality is executed on the Backend through the controller.
 ![](https://i.imgur.com/iNnDxz4m.png)
 
-We call our external API from the Backend
+We call our external API from the backend.
 ![](https://i.imgur.com/JOFEfX0l.png)
 
 When the user needs to add, update or delete a plant, message or a comment, we created authentication process through ***secure route***. Therefore, a user can only post on the app if they are registered and have logged in on the app and they can only update or delete what they have posted.
@@ -120,18 +120,18 @@ We briefly went through the components for the frontend and setted it up togethe
 
 We used React hooks, useState and useEffect along with axios to fetch data from our internal API. 
 
-Example of the lines of codes for displaying messages on our message board(*Pin Board*)
+Example of the lines of codes for displaying messages on our message board(*Pin Board*).
 ![](https://i.imgur.com/OOa80E1l.png)
 
 
-Example of JSX for mapping the response data for the ***Messages ***
+Example of JSX for mapping the response data for the ***Messages*** 
 
 ![](https://i.imgur.com/ZujU65ml.png)
 
 We wanted our app to display the location of all the users so that others users is able to see the plant sitter nearby.
 For this we use two external APIs:
 
-1. [Postcode.io](https://postcodes.io/) - For grabing the coordinations of the users' locations via their postcode they had provided during the registeration. Below is the code excuted for pulling these coordinates 
+1. [Postcode.io](https://postcodes.io/) - For grabing the coordinations of the users' locations via their postcode they had provided during the registeration. Below is the code created for pulling these coordinates. 
  ![](https://i.imgur.com/u5zXhnrl.png)
  
 2. [Mapbox](https://www.mapbox.com/) - The location coordination grabed by the [Postcode.io](https://postcodes.io/) is then used by the ***Mapbox*** to renderd on the page as a component with markers to display the users' locations on the map.
@@ -154,6 +154,15 @@ Example of the logo and colour theme design.
 ![](https://i.imgur.com/r6qPToBm.png)
 ![](https://i.imgur.com/aqHwavmm.png)
 
+## Key learnings
+By the end of this project, I had learnt:
+
+1. How to build a API using Express, Mongoose and MongoDB.
+2. How to combine both internal and external APIs to create an expressive frontend using React.js.
+3. Importance of effective communication vital collaborating with others. 
+4. Effectiveness of planning. 
+3. Importance of setting and meeting deadlines.
+4. Presentation skill as we had to demonstrate our demo.
 
 ## Summary
 
