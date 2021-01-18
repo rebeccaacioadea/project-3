@@ -120,7 +120,7 @@ We briefly went through the components for the frontend and setted it up togethe
 
 We used React hooks, useState and useEffect along with axios to fetch data from our internal API. 
 
-Example of the lines of codes for displaying messages on our message board(*Pin Board*).
+Example of the lines of codes for displaying messages on our message board (*Pin Board*).
 ![](https://i.imgur.com/OOa80E1l.png)
 
 
@@ -128,18 +128,18 @@ Example of JSX for mapping the response data for the ***Messages***
 
 ![](https://i.imgur.com/ZujU65ml.png)
 
-We wanted our app to display the location of all the users so that others users is able to see the plant sitter nearby.
+We wanted our app to display the location of all the users so that other users are able to see the plant sitter nearby.
 For this we use two external APIs:
 
-1. [Postcode.io](https://postcodes.io/) - For grabing the coordinations of the users' locations via their postcode they had provided during the registeration. Below is the code created for pulling these coordinates. 
+1. [Postcode.io](https://postcodes.io/) - For grabbing the coordination of the users' locations via their postcode they had provided during the registration. Below is the code created for pulling these coordinates. 
  ![](https://i.imgur.com/u5zXhnrl.png)
  
-2. [Mapbox](https://www.mapbox.com/) - The location coordination grabed by the [Postcode.io](https://postcodes.io/) is then used by the ***Mapbox*** to renderd on the page as a component with markers to display the users' locations on the map.
+2. [Mapbox](https://www.mapbox.com/) - The location coordination grabbed by the [Postcode.io](https://postcodes.io/) is then used by the ***Mapbox*** to rendered on the page as a component with markers to display the users' locations on the map.
 ![](https://i.imgur.com/WfENjzqm.png)
 
 ### Designs and Styling
 
-Styling was an important part in this project as we had to delivered a full-stack application with different functionalities and an impressive design.
+Styling was an important part in this project as we had to deliver a full-stack application with different functionalities and an impressive design.
 We looked at the design for all the features for our app from logo design to colour theme.
 Our colleague Enrico providing an excellent design direction for us.
 
@@ -154,21 +154,29 @@ Example of the logo and colour theme design.
 ![](https://i.imgur.com/r6qPToBm.png)
 ![](https://i.imgur.com/aqHwavmm.png)
 
+## Wins & Challenges
+
+There were four people in this people. Everyone coming with different ideas and knowledge level. Because I and the rest of the team members recognised and acknowledge each other’s skills, it made it easier when we had to separate the work equally within the team. 
+The win for this project, was that We had a very detailed planning, which made things easier when I was working on the registration, login, plant pages etc. because I knew exactly what I had to create.
+
+The only thing I found challenging was completing everything within the timeframe.
+
+
 ## Key learnings
 By the end of this project, I had learnt:
 
-1. How to build a API using Express, Mongoose and MongoDB.
+1. How to build an API using Express, Mongoose and MongoDB.
 2. How to combine both internal and external APIs to create an expressive frontend using React.js.
 3. Importance of effective communication vital collaborating with others. 
 4. Effectiveness of planning. 
-3. Importance of setting and meeting deadlines.
-4. Presentation skill as we had to demonstrate our demo.
+5. Importance of setting and meeting deadlines.
+6. Presentation skill as we had to demonstrate our demo.
 
 ## Summary
 
 
 In our group we had to communicate effectively and respect each other's opinions and be supportive as we are all still learning. 
-From the beginning we recognised and acknowlegded each other strength, and we worked together effectively, ensuring we communicated regularly about our progress on the project.
+From the beginning we recognised and acknowledged each other strength, and we worked together effectively, ensuring we communicated regularly about our progress on the project.
 Our teams were very professional and by the end of the project, we had put together and deployed an app that I am very proud of. It looks amazing and it is easy to use.
 It had been an amazing experience to build our own API and then use it to do so many things on the frontend.
 
