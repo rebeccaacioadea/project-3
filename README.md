@@ -6,7 +6,7 @@ General Assembly, Software Engineering Immersive
  
  
 ### MERN Full Stack Application
-A Plant Baby Sitting App
+A Plant Sitting App
 
 ## Overview 
 This is my third project at General Assembly as a Software Engineer Immersive course's student. We were placed in a group of 4 to worked together to design and develop a MERN full-stack application within 7 days.
